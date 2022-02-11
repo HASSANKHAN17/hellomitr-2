@@ -1,0 +1,72 @@
+@import  "../../App.scss";
+
+.header{
+    height: 10vh;
+    background-color: black;
+    padding:.5%;
+    .imgdiv{
+        img{
+            width: 12vw;
+            margin-left: 5%;
+        }
+    }
+    .inputdiv{
+        width: 70%;
+        input{
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            padding:1% 2%;
+        }
+        input:focus{
+            outline: none;
+        }
+    }
+    .icondiv{
+        color: white;
+        .icon{
+            font-size: 1.6em;
+        }
+        padding-right: 2%;
+    }
+}
+
+
+@media (max-width: 992px) {
+
+}
+@media (max-width: 768px) {
+
+
+}
+@media (max-width: 576px) {
+    .header{
+        height: 10vh;
+        .imgdiv{
+            img{
+                width: 20vw;
+            }
+        }
+        .inputdiv{
+            width: 50%;
+            input{
+                width: 100%;
+                border-radius: 5px;
+                border: none;
+                padding:5% 4%;
+            }
+            input:focus{
+                outline: none;
+            }
+        }
+        .icondiv{
+            height: 100%;
+            color: white;
+            .icon{
+                font-size: 1em;
+            }
+        }
+    }
+    
+}
+
