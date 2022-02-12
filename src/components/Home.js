@@ -7,6 +7,7 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import bannermid from '../Images/banners/bannermid.jpg'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import Footer from './Footer/Footer'
 function Home() {
     return (
         <div className="home">
@@ -135,6 +136,7 @@ function Home() {
                 </div>
             </section>
 
+            <Footer />
         </div>
     )
 }
