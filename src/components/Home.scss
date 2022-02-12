@@ -10,15 +10,18 @@
         font-size: 1.5em;
     }
     .discountsection{
-      img{
+      .bannermid{
           width: 70vw;
           display: block;
           margin: auto;
           opacity: 1;
       }
         .row{
+            img{
+                width: 10vw;
+            }
             position: absolute;
-            top:120%;
+            top:90%;
             width: 100%;
             padding:0 20%;
             div{
@@ -35,7 +38,8 @@
     }
  
     .trending{
-        margin:10% 0;
+        margin-top: 20%;
+        margin-bottom: 10%;
         padding:1%;
         background-color: white;
     }
@@ -63,6 +67,41 @@
             font-size: 1.5em;
         }
     }
+    .discountsection{
+        
+        .bannermid{
+            width: 100vw !important;
+            display: block;
+            margin: auto;
+            opacity: 1;
+        }
+          .row{
+              img{
+                  width: 10vw;
+              }
+              position: absolute;
+              top:155% !important;
+              width: 100%;
+              padding:0 1% !important;
+              div{
+              background-color: white;
+              margin: 1%;
+              border-radius: 10px;
+              text-align: center;
+              padding:3% 1%;
+                  h1{
+                      font-size: 1em !important;
+                  }
+              }
+          }
+      }
+   
+      .trending{
+          margin-top: 100% !important;
+          margin-bottom: 10%;
+          padding:1%;
+          background-color: white;
+      }
     
 }
 
