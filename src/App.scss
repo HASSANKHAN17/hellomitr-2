@@ -7,7 +7,14 @@ $primary-font:'Montserrat', sans-serif;
 $secondary-font:'Roboto', sans-serif;
 
 h1,h2,h3,h5{
-  font-family: 'Friz Quadrata Std';
+  font-family: $primary-font;
+}
+p,span{
+  font-family: $secondary-font;
+}
+
+body{
+  background-color: #F8F8F8;
 }
 
 
