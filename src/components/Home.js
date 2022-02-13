@@ -10,7 +10,15 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import Footer from './Footer/Footer'
 import bannerdiv1 from '../Images/banners/bannerdiv1.jpeg'
 import bannerdiv2 from '../Images/banners/bannerdiv2.jpg'
+//import CarouselCard1 from "./carousel-cards/CarouselCard1";
+//import Carousel from "./carousel/Carousel";
 import bannerdiv3 from '../Images/banners/bannerdiv3.jfif'
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import img1 from '../Images/carousel1banner/img1.png'
+import img2 from '../Images/carousel1banner/img2.png'
+import img3 from '../Images/carousel1banner/img3.png'
+import c2img1 from '../Images/carousel2banner/Group 23.png'
 function Home() {
     return (
         <div className="home">
@@ -18,6 +26,33 @@ function Home() {
             <SubHeader />
 
             {/* corousal */}
+                {/* <Carousel
+                    totalSlides={5}
+                    visibleSlides={1}
+                    infinite={true}
+                    autoPlay={true}
+                    showDots={true}
+                    showArrow={false}
+                    spacing="0px"
+                >
+                    <CarouselCard1 />
+                    <CarouselCard1 />
+                    <CarouselCard1 />
+                    <CarouselCard1 />
+                    <CarouselCard1 />
+                </Carousel> */}
+                <CarouselProvider
+                naturalSlideWidth={100}
+                naturalSlideHeight={30}
+                totalSlides={3}
+                isPlaying
+                >
+                <Slider>
+                <Slide index={0}><img className="carousel1" src={img1} alt="img1" /></Slide>
+                <Slide index={1}><img className="carousel1" src={img2} alt="img2" /></Slide>
+                <Slide index={2}><img className="carousel1" src={img3} alt="img3" /></Slide>
+                </Slider>
+            </CarouselProvider>
 
             <section className="shadow-sm dod">
                 <h2><CardGiftcardIcon className="icon" /> Deals of the day</h2>
@@ -110,8 +145,24 @@ function Home() {
 
             {/* popular section carousal */}
 
+            <section className="shadow-sm popularitems" style={{textAlign:"center"}}>
+                    <h1>Popular Items</h1>
+                    <CarouselProvider
+                naturalSlideWidth={50}
+                naturalSlideHeight={15}
+                totalSlides={3}
+                isPlaying
+                >
+                <Slider>
+                <Slide index={0}><img className="c2" src={c2img1} alt="c12img1" /></Slide>
+                <Slide index={1}><img className="c2" src={img2} alt="img2" /></Slide>
+                <Slide index={2}><img className="c2" src={img3} alt="img3" /></Slide>
+                </Slider>
+            </CarouselProvider>
+            </section>
 
-            <section className="shadow-sm trending">
+
+            <section className="shadow-sm mostbought">
                 <h2><WhatshotIcon className="icon" /> Most Bought</h2>
                 <div className="row m-auto">
                 <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">

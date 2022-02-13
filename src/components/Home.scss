@@ -1,6 +1,10 @@
 @import "../App.scss";
 
 .home{
+    .carousel1{
+        width: 100vw;
+        margin: 2% 0;
+    }
     .dod{
         margin:2% 0;
         padding:1%;
@@ -21,7 +25,7 @@
                 width: 10vw;
             }
             position: absolute;
-            top:90%;
+            top:170%;
             width: 100%;
             padding:0 20%;
             div{
@@ -36,9 +40,27 @@
             }
         }
     }
- 
+    
+    .popularitems{
+        background-color: white;
+        padding:2% 0;
+        h1{
+            text-align: center;
+            margin-bottom: 2%;
+        }
+        .c2{
+            width: 100vw;
+        }
+    }
+
     .trending{
         margin-top: 20%;
+        margin-bottom: 10%;
+        padding:1%;
+        background-color: white;
+    }
+    .mostbought{
+        margin-top: 10%;
         margin-bottom: 10%;
         padding:1%;
         background-color: white;
@@ -80,7 +102,7 @@
                   width: 10vw;
               }
               position: absolute;
-              top:155% !important;
+              top:195% !important;
               width: 100%;
               padding:0 1% !important;
               div{
