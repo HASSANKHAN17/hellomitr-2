@@ -15,9 +15,9 @@ import bannerdiv2 from '../Images/banners/bannerdiv2.jpg'
 import bannerdiv3 from '../Images/banners/bannerdiv3.jfif'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import img1 from '../Images/carousel1banner/img1.png'
-import img2 from '../Images/carousel1banner/img2.png'
-import img3 from '../Images/carousel1banner/img3.png'
+import img1 from '../Images/carousel1banner/slider1.jpeg'
+import img2 from '../Images/carousel1banner/slider2.jpeg'
+import img3 from '../Images/carousel1banner/slider3.jpeg'
 import c2img1 from '../Images/carousel2banner/Group 23.png'
 function Home() {
     return (
@@ -43,7 +43,7 @@ function Home() {
                 </Carousel> */}
                 <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={30}
+                naturalSlideHeight={22}
                 totalSlides={3}
                 isPlaying
                 >
@@ -55,7 +55,7 @@ function Home() {
             </CarouselProvider>
 
             <section className="shadow-sm dod">
-                <h2><CardGiftcardIcon className="icon" /> Deals of the day</h2>
+                <h2><CardGiftcardIcon className="icon" /> New Arrivals</h2>
                 <div className="row m-auto">
                 <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                 <Item />
@@ -86,34 +86,13 @@ function Home() {
             </section>
 
 
-            <section className="discountsection">
-            <img  src={bannermid} className="bannermid" alt="bannermid" />
-
-            <div className="row abs justify-content-between m-auto">
-                    <div className="shadow col-3">
-                    <h1>70% off on electronics</h1>
-                    <img src={bannerdiv1} alt="bannerdiv" />
-                    </div>
-                    <div className="shadow col-3">
-                    <h1>High on demand</h1>
-                    <img src={bannerdiv2} alt="bannerdiv" />
-                    <p>
-                    Samsung Galaxy M21 2021 Edition (Charcoal Black, 4GB RAM, 64GB Storage)
-                    </p>
-                    </div>
-                    <div className="shadow col-3">
-                    <h1>Most bought</h1>
-                    <img src={bannerdiv3} alt="bannerdiv" />
-                    <p>
-                    Apple Watch Series 7 (GPS + Cellular, 41mm) - Midnight Aluminium Case with Midnight Sport Band - Regular
-                    </p>
-                    </div>
-                </div>
+            <section className="brands">
+           
               
             </section>
 
             <section className="shadow-sm trending">
-                <h2><TrendingUpIcon className="icon" /> Trending Items</h2>
+                <h2><TrendingUpIcon className="icon" /> Smart Phones</h2>
                 <div className="row m-auto">
                 <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                 <Item />
@@ -163,7 +142,7 @@ function Home() {
 
 
             <section className="shadow-sm mostbought">
-                <h2><WhatshotIcon className="icon" /> Most Bought</h2>
+                <h2><WhatshotIcon className="icon" /> LED TVs</h2>
                 <div className="row m-auto">
                 <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                 <Item />

@@ -10,34 +10,102 @@ import "./SubHeader.scss"
 function SubHeader() {
   return (
     <div className="shadow-sm subheader row m-auto justify-content-between">
-        <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 itemcontainer">
-            <img src={mobile} alt="mobile" />
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/mobile.jpeg' alt="mobile" />
+            </div>
+            
+            <div>
             <h5>Mobile</h5>
+            </div>
         </div>
 
-        <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 itemcontainer">
-            <img src={ledtv} alt="ledtv" />
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/ledtv.jpeg' alt="ledtv" />
+            </div>
+
+            <div>
             <h5>LED TVs</h5>
+            </div>
+
+
         </div>
 
-        <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 itemcontainer">
-            <img src={Laptop} alt="mobile" />
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/laptop.jpeg' alt="mobile" />
+            </div>
+
+            <div>
             <h5>Laptop</h5>
+            </div>
+
         </div>
 
-        <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 itemcontainer">
-            <img src={Accessories} alt="mobile" />
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/headphones.jpeg' alt="mobile" />
+            </div>
+
+            <div>
             <h5>Accessories</h5>
+            </div>
+
         </div>
 
-        <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 itemcontainer">
-            <img src={Smartwatch} alt="mobile" />
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/shoes.jpeg' alt="mobile" />
+            </div>
+
+            <div>
+            <h5>Shoes</h5>
+            </div>
+
+        </div>
+
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/smartwatch.jpeg' alt="mobile" />
+            </div>
+
+            <div>
             <h5>Smartwatch</h5>
+            </div>
+
         </div>
 
-        <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 itemcontainer">
-            <img src={Furniture} alt="mobile" />
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/jacket.jpeg' alt="mobile" />
+            </div>
+
+            <div>
+            <h5>Men</h5>
+            </div>
+
+        </div>
+
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/clothes.jpeg' alt="mobile" />
+            </div>
+
+            <div>
+            <h5>Women</h5>
+            </div>
+
+        </div>
+
+        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+            <div className="mr-3">
+            <img src='/assets/subheader/furniture.jpeg' alt="mobile" />
+            </div>
+
+            <div>
             <h5>Furniture</h5>
+            </div>
         </div>
     </div>
   )
