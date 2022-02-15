@@ -19,7 +19,15 @@ import img1 from '../Images/carousel1banner/slider1.jpeg'
 import img2 from '../Images/carousel1banner/slider2.jpeg'
 import img3 from '../Images/carousel1banner/slider3.jpeg'
 import c2img1 from '../Images/carousel2banner/Group 23.png'
-function Home() {
+
+import applelogo from '../Images/brands/applelogo.png'
+import samsunglogo from '../Images/brands/Samsung-Symbol.png'
+import xiaomilogo from '../Images/brands/Xiaomi-Logo.png'
+import realmelogo from '../Images/brands/1200px-Realme-realme-_logo_box-RGB-01_with_out_back_ground.svg.png'
+import vivologo from '../Images/brands/vivo logo.png'
+import oppologo from '../Images/brands/OPPO_LOGO_2019.png'
+
+function Home(props) {
     return (
         <div className="home">
             <Header id="1" />
@@ -57,7 +65,7 @@ function Home() {
             <section className="shadow-sm dod">
                 <h2><CardGiftcardIcon className="icon" /> New Arrivals</h2>
                 <div className="row m-auto">
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail")}>
                 <Item />
                 </div>
 
@@ -86,13 +94,44 @@ function Home() {
             </section>
 
 
-            <section className="brands">
-           
+            <section className="shadow-sm brands">
+            <h1>Shop by brands</h1>
+            <div className="row m-auto justify-content-center align-items-center">
+                <div className="col-3">
+                    <img src={applelogo} alt="applelogo" />
+                </div>
+
+                <div className="col-3">
+                    <img src={samsunglogo} alt="samsunglogo" />
+                </div>
+
+                <div className="col-3">
+                    <img src={oppologo} alt="oppologo" />
+                </div>
+
+                
+            </div>
+
+
+            <div className="row m-auto justify-content-center align-items-center">
+            <div className="col-3">
+                    <img src={vivologo} alt="vivologo" />
+                </div>
+
+                <div className="col-3">
+                    <img src={xiaomilogo} alt="xiaomilogo" />
+                </div>
+
+                <div className="col-3">
+                    <img src={realmelogo} alt="realmelogo" />
+                </div>
+
+            </div>
               
             </section>
 
             <section className="shadow-sm trending">
-                <h2><TrendingUpIcon className="icon" /> Smart Phones</h2>
+                <h2><TrendingUpIcon className="icon" /> Smartphones</h2>
                 <div className="row m-auto">
                 <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                 <Item />
@@ -124,6 +163,7 @@ function Home() {
 
             {/* popular section carousal */}
 
+
             <section className="shadow-sm popularitems" style={{textAlign:"center"}}>
                     <h1>Popular Items</h1>
                     <CarouselProvider
@@ -141,8 +181,226 @@ function Home() {
             </section>
 
 
+            <section className="shadow-sm trending">
+                <h2><TrendingUpIcon className="icon" /> LED TVs</h2>
+                <div className="row m-auto">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                </div>
+            </section>
+
+            <section className="shadow-sm trending">
+                <h2><TrendingUpIcon className="icon" /> Laptop</h2>
+                <div className="row m-auto">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                </div>
+            </section>
+
+            <section className="shadow-sm trending">
+                <h2><TrendingUpIcon className="icon" /> Accessories</h2>
+                <div className="row m-auto">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                </div>
+            </section>
+
+            <section className="shadow-sm trending">
+                <h2><TrendingUpIcon className="icon" /> Shoes</h2>
+                <div className="row m-auto">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                </div>
+            </section>
+
+
+            <section className="shadow-sm trending">
+                <h2><TrendingUpIcon className="icon" /> Smartwatch</h2>
+                <div className="row m-auto">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                </div>
+            </section>
+
+            <section className="shadow-sm trending">
+                <h2><TrendingUpIcon className="icon" /> Men</h2>
+                <div className="row m-auto">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                </div>
+            </section>
+
+            <section className="shadow-sm trending">
+                <h2><TrendingUpIcon className="icon" /> Women</h2>
+                <div className="row m-auto">
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+
+                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <Item />
+                </div>
+
+                </div>
+            </section>
+
             <section className="shadow-sm mostbought">
-                <h2><WhatshotIcon className="icon" /> LED TVs</h2>
+                <h2><TrendingUpIcon className="icon" /> Furniture</h2>
                 <div className="row m-auto">
                 <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                 <Item />

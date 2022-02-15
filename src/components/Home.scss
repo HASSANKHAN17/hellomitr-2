@@ -14,7 +14,24 @@
         font-size: 1.5em;
     }
     
-    
+    .brands{
+        background-color: white;
+        padding:2% 0;
+       text-align: center;
+       h1{
+           font-size: 3em;
+           padding-bottom: 2%;
+       }
+       .row{
+           padding:3% 0;
+           .col-3:hover{
+               cursor: pointer;
+           }
+       }
+        img{
+            width: 10vw;
+        }
+    }
     .popularitems{
         background-color: white;
         padding:2% 0;
@@ -28,13 +45,13 @@
     }
 
     .trending{
-        margin-top: 20%;
-        margin-bottom: 10%;
+        margin-top: 2%;
+        margin-bottom: 2%;
         padding:1%;
         background-color: white;
     }
     .mostbought{
-        margin-top: 10%;
+        margin-top: 2%;
         margin-bottom: 10%;
         padding:1%;
         background-color: white;

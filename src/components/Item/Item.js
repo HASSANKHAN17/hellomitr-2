@@ -5,7 +5,7 @@ import Rating from '@mui/material/Rating';
 
 function Item() {
   return (
-    <div className="item">
+    <div className="item" >
         <span className="discount">
             50%
         </span>
