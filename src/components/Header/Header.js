@@ -7,6 +7,7 @@ import Button from '@mui/material/Button'
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton'
+import Badge from '@mui/material/Badge';
 import "./Header.scss"
 
 
@@ -15,8 +16,11 @@ const Header = (props) => {
 	return (
       <div className="header row ">
 
-		  <div className="imgdiv m-auto">
+		  <div className="row imgdiv m-auto align-items-center justify-content-center">
+			<div>
 		  <img src={iconImage} alt="img" />
+		  </div>
+		  <p>Deliver to 431001</p>
 		  </div>
 
 		  <div className="inputdiv m-auto">
@@ -25,22 +29,28 @@ const Header = (props) => {
 
 		  <div className="icondiv m-auto row justify-content-end">
 
-			<IconButton color="secondary">
+		  <Link to="cart">
+		  <Badge badgeContent={4} color="primary">
+			<IconButton color="tertiary">
 				<ShoppingBagIcon className="icon" />
 			</IconButton>
+			</Badge>
+			</Link>
 
-			<IconButton color="secondary">
+			<Link to="signup">
+			<IconButton color="tertiary">
 				<AccountCircleIcon className="icon" />
 			</IconButton>
+			</Link>
 			
 		  </div>
 	  </div>
     );
 
 }
-const mapStateToProps =({EventUser})=>{
+const mapStateToProps =({user})=>{
 	return {
-		userToken:EventUser.user
+		userToken:user.user
 	}
 	}
 export default connect(mapStateToProps)(Header);

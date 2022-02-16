@@ -1,1 +1,86 @@
 @import  "../../App.scss";
+
+
+.itemdetail{
+    padding:2% 0;
+    .imagediv{
+        text-align: center;
+        .mainimg{
+            height: 50vh;
+            width: 30vw;
+        }
+        .row{
+            padding:0 30%;
+            .subimg{
+                border:1px solid #cccf;
+                border-radius: 5px;
+                padding:2%;
+                width: 5vw;
+            }
+            .subimg:hover{
+                cursor: pointer;
+            }
+
+        }
+    }
+
+}
+.productdetail{
+    .ratingdiv{
+        font-size: 1.1em;
+        background-color: green;
+        border-radius: 2px;
+        color: white;
+        padding:.5% 1%;
+    }
+    .ratingreview{
+        margin-left: 2%;
+        font-size: 1.1em;
+    }
+    .pricerow{
+        padding-top: 2%;
+        .price{
+            font-size: 2em;
+            font-weight: bold;
+            color: #d86800;
+        }
+        .mrp{
+            text-decoration: line-through;
+            margin: 0 1%;
+        }
+        .poff{
+            background-color: black;
+            color: white;
+            padding:1%;
+            border-radius: 5px;
+        }
+    }
+}
+.descriptionreviewtab{
+    margin: 1% 5%;
+}
+
+.review-container{
+    .row{
+        .avatar{
+        }
+        .detailcontainer{
+            margin-left: 1%;
+            .name{
+                font-size: 1.2em;
+                font-weight: bold;
+            }   
+            .rating{
+                font-weight: bold;
+                margin: 0 10px;
+            }
+            .timeline{
+                color: #a1a1a1;
+            }
+        }
+    }
+    .review{
+        width: 30%;
+        margin: 1% 0;
+    }
+}

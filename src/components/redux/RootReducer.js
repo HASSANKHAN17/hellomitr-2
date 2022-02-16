@@ -11,6 +11,6 @@ const socketPersistConfig = {
   }
 
 export default combineReducers({
-    EventUser:userReducer,
+    user:userReducer,
     socket:persistReducer(socketPersistConfig,socketReducer)
 })
