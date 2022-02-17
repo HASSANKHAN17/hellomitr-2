@@ -1,0 +1,28 @@
+@import  "../../App.scss";
+
+
+.checkout{
+    background-color: white;
+    margin: 2%;
+    width: 40%;
+    padding:1% 2%;
+    .pg{
+        padding:3%;
+        background-color: rgb(245, 245, 245);
+    }
+    .pg:hover{
+        background-color:#ff5e003b ;
+        color: balck;
+        transform: scale(1.1);
+        transition: .2s;
+        cursor: pointer;
+    }
+    .active{
+        background-color:#ff5e003b ;
+        color: balck;
+        transform: scale(1.1);
+    }
+    .btn{
+        margin: 5% 0;
+    }
+}

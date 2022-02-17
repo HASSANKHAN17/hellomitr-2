@@ -5,6 +5,8 @@ import SignUp from './components/Auth/SignUp'
 import LogIn from './components/Auth/LogIn'
 import ItemDetail from './components/Item/ItemDetail'
 import Cart from './components/Cart/Cart'
+import Checkout from './components/Cart/Checkout'
+import Categories from './components/Categories/Categories'
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={LogIn} />
       <Route path="/cart" component={Cart} />
+      <Route path="/categories" component={Categories} />
+      <Route path="/checkout" component={Checkout} />
     </Switch>
   );
 }

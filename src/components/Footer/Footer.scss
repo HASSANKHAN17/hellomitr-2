@@ -16,8 +16,30 @@
         margin-top: 2%;
         margin-left: 5%;
     }
-    .startupindia{
-        margin-left: 5%;
+    .startupindiadiv{
+        padding:3% 0;
+        border-top: 1px solid blue;
+        border-bottom: 1px solid blue;
+        .startupindia{
+            margin-left: 5%;
+        }
+      
+    }
+    .footerplay{
+        width: 22vw !important;
+        margin-top: 10%;
+    }
+
+    .apps{
+        .googleplay{
+            .icon{
+                font-size: 1.5em;
+            }    
+            .appname{
+                font-size: 1.5em;
+                color: white;
+            }
+        }
     }
     h2{
         font-weight: 500;

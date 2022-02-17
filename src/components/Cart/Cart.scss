@@ -1,1 +1,47 @@
 @import  "../../App.scss";
+
+.cart{
+    .cart-container{
+        margin: 2% 5%;
+    }
+    .cart-item{
+        padding:2% 1%;
+        background-color: white;
+       .imgdiv{
+           text-align: center;
+        img{
+            width: 7vw;
+        }
+       }
+       .closequantity{
+           text-align: right;
+           .row{
+               margin-top: 10%;
+               span{
+                   font-size: 1.1em;
+                   font-weight: bold;
+               }
+               .iconbutton{
+                   font-size: 1.5em;
+               }
+           }
+       }
+
+    }
+
+    .total-container{
+        background-color: white;
+        padding:2%;
+        p{
+            font-size: 1.5em;
+            font-weight: 300;
+            .total{
+                font-weight: 600;
+            }
+            
+        }
+        .btn{
+            margin-top: 5%;
+        }
+    }
+}

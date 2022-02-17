@@ -8,13 +8,44 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import startupindia from './startup.png'
 import Logo from '../../Images/logo.png'
+import ShopIcon from '@mui/icons-material/Shop';
+import AppleIcon from '@mui/icons-material/Apple';
+import footerplay from './footerplay.jpeg'
 function Footer() {
   return (
     <div className="footer row m-auto justify-content-between">
         <div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3">
             <img src={Logo} alt="logo" className="logo" />
             <p className="subtitle">Desh ka online marketplace</p>
+            <div className="startupindiadiv">
             <img src={startupindia} alt="startupindia" className="startupindia" />
+            </div>
+
+            <div>
+              <img src={footerplay} alt="footerplay" className="footerplay" />
+            </div>
+
+            {/* <div className="row m-auto apps">
+              <div className="row align-items-center m-auto googleplay">
+                  <div>
+                    <ShopIcon className="icon" />
+                  </div>
+                  <div className="ml-3">
+                    <p>Get it on</p>
+                    <p className="appname">Google Play</p>
+                  </div>
+              </div>
+
+              <div className="row align-items-center m-auto appstore">
+                  <div>
+                    <AppleIcon className="icon" />
+                  </div>
+                  <div>
+                    <p>Download on the</p>
+                    <p className="appname">App Store</p>
+                  </div>
+              </div>
+            </div> */}
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2>About Company</h2>

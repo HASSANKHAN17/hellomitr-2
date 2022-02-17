@@ -1,0 +1,17 @@
+@import  "../../App.scss";
+
+
+.categories{
+    margin: 2% 3%;
+    .filters{
+        background-color: white;
+        padding:2% ;
+     }
+    .products{
+        background-color: white;
+        margin-left: 1%;
+    }
+    .textfield{
+        width: 40%;
+    }
+}

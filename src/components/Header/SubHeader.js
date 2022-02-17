@@ -6,19 +6,20 @@ import Accessories from '../../Images/subheader/bags (1).png'
 import Smartwatch from '../../Images/subheader/smartwatch.png'
 import Furniture from '../../Images/subheader/furnitures.png'
 import "./SubHeader.scss"
+import {Link} from 'react-router-dom'
 
 function SubHeader() {
   return (
     <div className="shadow-sm subheader row m-auto justify-content-between">
-        <div className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories" className="row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/mobile.jpeg' alt="mobile" />
             </div>
             
             <div>
-            <h5>Mobile</h5>
+            <h5 style={{color:"black"}}>Mobile</h5>
             </div>
-        </div>
+        </Link>
 
         <div className="row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
