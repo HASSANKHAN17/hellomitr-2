@@ -33,7 +33,7 @@ function Cart(props) {
             </section>
             </div>
 
-            <div className="col-3 closequantity">
+            <div className="col-2 closequantity">
                 <IconButton>
                     <CloseIcon />
                 </IconButton>

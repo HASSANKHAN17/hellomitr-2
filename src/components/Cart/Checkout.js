@@ -5,6 +5,8 @@ import SubHeader from '../Header/SubHeader'
 import "./Checkout.scss"
 import Button from '@mui/material/Button'
 import axios from 'axios'
+import GppGoodIcon from '@mui/icons-material/GppGood';
+import safeandsecurep from './safeandsecurep.jpeg'
 function Checkout() {
   const [selected,setSelected]=React.useState(0)
   const openPayModal = () => {
@@ -135,7 +137,9 @@ function Checkout() {
 
           </div>
 
-          <div className="shadow-sm col-3 totaldiv">
+          <div className="col-3">
+
+            <div className="shadow-sm totaldiv">
               <h5>Your order</h5>
               <div className="row m-auto justify-content-between">
                 <p className="greytext">Subtotal:</p>
@@ -155,8 +159,20 @@ function Checkout() {
               <hr />
               <p className="total">INR 1623</p>
           </div>
+        <div className="row">
+          <div className="col-1">
+            <GppGoodIcon />
+          </div>
+          <div className="col-10">
+            <p>Safe and Secure Payments. Easy returns 100% Authentic product</p>
+          </div>
         </div>
 
+        </div>
+
+
+
+        </div>
 
 
        

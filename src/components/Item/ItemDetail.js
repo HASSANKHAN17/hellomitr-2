@@ -45,12 +45,12 @@ function ItemDetail(props) {
             </p>
 
             <section className="pricerow m-auto row align-items-center">
-                <div className="price">Rs 689</div>
+                <div className="price">₹689</div>
                 <div className="mrp">752</div>
                 <div className="poff">0.00% off</div>
             </section>
 
-            <p className='mt-3'>You Save: Rs 0.00 <br />
+            <p className='mt-3'>You Save: ₹0.00 <br />
             (Inclusive of all taxes)
             </p>
 

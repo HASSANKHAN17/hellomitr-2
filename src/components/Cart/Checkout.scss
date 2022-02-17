@@ -34,18 +34,30 @@
     }
 }
 
-.totaldiv{
-    background: white;
-    margin: 2%;
-    padding:2%;
-    border-radius: 5px;
+.col-3{
     height: 100%;
-    h5{
-        margin-bottom: 10%;
+    margin: 2%;
+
+    .totaldiv{
+    padding:5%;
+
+        background: white;
+        border-radius: 5px;
+        h5{
+            margin-bottom: 10%;
+        }
+        .total{
+            text-align: right;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
     }
-    .total{
-        text-align: right;
-        font-size: 1.5em;
-        font-weight: bold;
+    .img{
+        width: 30vw;
+    }
+    .row{
+        margin: 5% 1%;
+        background: white;
+        padding:2%;
     }
 }

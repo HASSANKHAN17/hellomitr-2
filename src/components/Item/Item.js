@@ -5,19 +5,19 @@ import Rating from '@mui/material/Rating';
 
 function Item() {
   return (
-    <div className="item" >
-        <span className="discount">
-            50%
+    <div className="shadow item" >
+       <span className="discount">
+            50% off
         </span>
-        <div className="shadow info">
+        <div className=" info">
+        
             <img src = {smartwatch} alt="smartwatch" />
-            <div>
+            <p className="heading">JBL 3.5mm earhpnes</p>
+            <div className="rating">
             <Rating name="read-only" value={4} readOnly />
             </div>
-            <p>JBL 3.5mm earhpnes</p>
-        </div>
-        <div className="price">
-            <p><span className="mrp">255</span> <span className="total">255 INR</span></p>
+            <p><span className="total">₹255</span> <span className="mrp">255</span></p>
+
         </div>
     </div>
   )

@@ -1,46 +1,42 @@
 @import  "../../App.scss";
 .item{
-    text-align: right;
     margin: 8% 2%;
-    .discount{
-        background-color: black;
-        color: white;
-        padding:10% 7%;
-        border-radius: 50%;
-        align-self: flex-end;
-        font-weight: 500;
+    border-radius: 5px;
+   .discount{
+       background: $primary;
+       color: white;
+       padding:2%;
+       border-radius: 0px 0px 5px 0px;
+       font-weight: bold;
    }
    .info{
-       padding:10% 3%;
-       text-align: center;
-       border-radius: 5px;
-       img{
-           width: 7vw;
-           margin-bottom: 10%;
-
-       }
-       p{
+       padding:4% 5%;
+       .heading{
+           margin-top: 10%;
            font-weight: bold;
+           margin-bottom: 0;
+           font-size: 1.1em;
        }
-       
+       .rating{
+           margin: 2% 0;
+       }
+       .mrp{
+           text-decoration: line-through;
+           color: grey;
+       }
+       .total{
+           font-weight: bold;
+           font-size: 1.2em;
+           color: $primary;
+       }
    }
-   .price{
-    background-color: black;
-    color: white;
-    padding:3%;
-    border-radius: 30px;
-    p{
-        text-align: center;
-        .mrp{
-            text-decoration: line-through;
-            color: grey;
-            margin-right: 3%;
-        }
-        .total{
-            font-weight: bold;
-        }
-    }
+   img{
+       width: 55%;
+       display: block;
+       margin: auto;
    }
+   
+   
 }
 
 
@@ -52,45 +48,7 @@
 
 }
 @media (max-width: 576px) {
-    .item{
-        text-align: right;
-        margin: 15% 2%;
-        .discount{
-            background-color: black;
-            color: white;
-            padding:10% 7%;
-            border-radius: 50%;
-            align-self: flex-end;
-            font-weight: 500;
-       }
-       .info{
-           padding:10% 3%;
-           text-align: center;
-           border-radius: 5px;
-           img{
-               width: 20vw;
     
-           }
-           
-       }
-       .price{
-        background-color: black;
-        color: white;
-        padding:3%;
-        border-radius: 30px;
-        p{
-            text-align: center;
-            .mrp{
-                text-decoration: line-through;
-                color: grey;
-                margin-right: 3%;
-            }
-            .total{
-                font-weight: bold;
-            }
-        }
-       }
-    }
     
 }
 
