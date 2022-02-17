@@ -10,7 +10,7 @@ import startupindia from './startup.png'
 import Logo from '../../Images/logo.png'
 import ShopIcon from '@mui/icons-material/Shop';
 import AppleIcon from '@mui/icons-material/Apple';
-import footerplay from './footerplay.jpeg'
+import footerplay from './gaplay.jpeg'
 function Footer() {
   return (
     <div className="footer row m-auto justify-content-between">
