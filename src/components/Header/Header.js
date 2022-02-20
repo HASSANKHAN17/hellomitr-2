@@ -8,23 +8,32 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge';
+import { withRouter } from 'react-router-dom';
 import "./Header.scss"
 
+import {compose} from "redux";
 
 const Header = (props) => {
-
+	console.log("header props",props)
+	const [searchItem,setSearchItem]=React.useState("")
+	const handleSubmit = (e)=>{
+		e.preventDefault()
+		props.history.push("/categories",searchItem)
+	}
 	return (
       <div className="header row ">
 
 		  <div className="row imgdiv m-auto align-items-center justify-content-center">
 			<div>
-		  <img src={iconImage} alt="img" />
+		  <img onClick={()=>props.history.push("/")} className="cursor-pointer" src={iconImage} alt="img" />
 		  </div>
 		  <p>Deliver to 431001</p>
 		  </div>
 
 		  <div className="inputdiv m-auto">
-			<input placeholder="search for items.." />
+			<form onSubmit={handleSubmit}>
+			<input placeholder="search for items.." value={searchItem} onChange={(e)=>setSearchItem(e.target.value)}/>
+			</form>
 		  </div>
 
 		  <div className="icondiv m-auto row justify-content-end">
@@ -53,4 +62,7 @@ const mapStateToProps =({user})=>{
 		userToken:user.user
 	}
 	}
-export default connect(mapStateToProps)(Header);
+	export default compose(
+		withRouter,
+		connect(mapStateToProps)
+	  )(Header);

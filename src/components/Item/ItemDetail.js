@@ -16,13 +16,14 @@ import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
 
 function ItemDetail(props) {
-    const [image,setImage]=React.useState("/assets/images/products/apple-watch-0.png")
+  let details = props.location.state;
+    const [image,setImage]=React.useState(details.images[0].src)
     const [value, setValue] = React.useState('1');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+console.log(props)
   return (
     <div>
     <Header id="1" />
@@ -31,22 +32,22 @@ function ItemDetail(props) {
         <div className="col-6 imagediv">
             <img src={image} alt="watch" className="mainimg" />
             <div className="row ml-auto mt-5 justify-content-between">
-            <img src="/assets/images/products/apple-watch-1.png" onClick={()=>setImage("/assets/images/products/apple-watch-1.png")} alt="watch" className="subimg" />
-            <img src="/assets/images/products/apple-watch-2.png" onClick={()=>setImage("/assets/images/products/apple-watch-2.png")} alt="watch" className="subimg" />
-            <img src="/assets/images/products/apple-watch-3.png" onClick={()=>setImage("/assets/images/products/apple-watch-3.png")} alt="watch" className="subimg" />
+            {
+              details.images.map((item,index)=><img key={index} src={item.src} onClick={()=>setImage(item.src)} alt="watch" className="subimg" />)
+            }
             </div>
         </div>
 
         <div className='col-6 productdetail'>
-            <h1>boAt Xtend Smartwatch</h1>
+            <h1>{details.name}</h1>
             <p>
-                <span className="ratingdiv">0.00 <StarIcon /></span>
-                <span className="ratingreview">(0 Ratings & Reviews)</span>
+                <span className="ratingdiv">{details.average_rating} <StarIcon /></span>
+                <span className="ratingreview">({details.rating_count} Ratings & Reviews)</span>
             </p>
 
             <section className="pricerow m-auto row align-items-center">
-                <div className="price">₹689</div>
-                <div className="mrp">752</div>
+                <div className="price">₹{details.price}</div>
+                <div className="mrp">{details.regular_price}</div>
                 <div className="poff">0.00% off</div>
             </section>
 
@@ -71,15 +72,31 @@ function ItemDetail(props) {
           </TabList>
         </Box>
         <TabPanel value="1">
+          {/* item specification section */}
             <h1 className="spec">Specification:</h1>
-            <p>
-            Brand: Beats <br />
-            Model: S450 <br />
-            Wireless Bluetooth Headset <br />
-            FM Frequency Response: 87.5 – 108 MHz <br />
-            Feature: FM Radio, Card Supported (Micro SD / TF) <br />
-            Made in China
-            </p>
+            <div className="specificationdiv">
+            <p dangerouslySetInnerHTML={{__html: details.description}} />
+            </div>
+
+
+            {/* atributes section */}
+            <section className="attributes"> 
+                {
+                  details.attributes.map((item,index)=>(
+                    <div className="row">
+                    <p className="col-4 key">{item.name}</p>
+                    <p className="col-8 value">{item.options.map(op=><p>{op}</p>)}</p>
+                    </div>
+                  ))
+                }
+
+            
+            </section>
+
+
+
+
+
             <section className="mt-5 dod">
                 <h2><CardGiftcardIcon className="icon" /> New Arrivals</h2>
                 <div className="row m-auto">

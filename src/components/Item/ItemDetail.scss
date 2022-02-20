@@ -58,6 +58,20 @@
 }
 .descriptionreviewtab{
     margin: 1% 5%;
+    .specificationdiv{
+        margin-right: 10%;
+    }
+    .attributes{
+        margin-right: 10%;
+        padding:2%;
+        .row{
+            padding: 1% 0;
+            border-bottom: 1px solid rgb(223, 223, 223);
+            .key{
+                font-weight: bold;
+            }
+        }
+    }
 }
 
 .review-container{

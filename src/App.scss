@@ -37,7 +37,9 @@ body{
 ::-webkit-scrollbar-thumb:hover{
   background:#5a1e96 !important;
 }
-
+.cursor-pointer:hover{
+  cursor: pointer;
+}
 
 @media (max-width: 992px) {
 

@@ -13,7 +13,17 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button'
+import { useForm } from 'react-hook-form';
+import WooCommerceAPI from 'woocommerce-api'
 function LogIn(props) {
+  const {handleSubmit,register,formState:{errors},setError}=useForm()
+  var WooCommerce = new WooCommerceAPI({
+    url: 'https://shop.hellomitr.com/',
+    consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
+    consumerSecret: 'cs_c1c28f110eee7b2a528cde222bad766892f004d0',
+    wpAPI: true,
+    version: 'wc/v1'
+  });
     const [values, setValues] = React.useState({
         amount: '',
         password: '',
@@ -39,16 +49,22 @@ function LogIn(props) {
       };
 
       const onSubmit = (data)=>{
-
+        WooCommerce.getAsync(`customers?email=${data.email}`)
+        .then((response) => {
+          console.log("phone",JSON.parse(response.toJSON().body))
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
       }
 
   return (
     <div className="shadow authcontainer">
         <h1>Welcome To Hellomitr</h1>
         <p>Log in with email & password</p>
-        <form onSubmit={handleChange(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
         
-        <TextField className="textfield" id="outlined-basics" variant="outlined" label="Email or Phone" fullWidth />
+        <TextField {...register('email',{required:true})} error={errors.email?true:false} className="textfield" id="outlined-basics" variant="outlined" label="Email or Phone" fullWidth />
         <FormControl className="textfield" sx={{width: '100%' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
@@ -68,6 +84,7 @@ function LogIn(props) {
                 </IconButton>
               </InputAdornment>
             }
+            
             label="Password"
           />
         </FormControl>
