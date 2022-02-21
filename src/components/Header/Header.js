@@ -39,15 +39,15 @@ const Header = (props) => {
 		  <div className="icondiv m-auto row justify-content-end">
 
 		  <Link to="cart">
-		  <Badge badgeContent={4} color="primary">
-			<IconButton color="tertiary">
+		  <Badge badgeContent={props.cart.length} color="primary">
+			<IconButton className="icon-bg" color="tertiary">
 				<ShoppingBagIcon className="icon" />
 			</IconButton>
 			</Badge>
 			</Link>
 
 			<Link to="signup">
-			<IconButton color="tertiary">
+			<IconButton className="icon-bg" color="tertiary">
 				<AccountCircleIcon className="icon" />
 			</IconButton>
 			</Link>
@@ -57,9 +57,10 @@ const Header = (props) => {
     );
 
 }
-const mapStateToProps =({user})=>{
+const mapStateToProps =({user,cart})=>{
 	return {
-		userToken:user.user
+		userToken:user.user,
+		cart
 	}
 	}
 	export default compose(

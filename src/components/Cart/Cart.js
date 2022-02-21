@@ -8,8 +8,18 @@ import { IconButton } from '@mui/material'
 import Button from '@mui/material/Button'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import {connect} from 'react-redux'
+import {removeFromCart} from '../redux/cart/cartActions'
+import emptycart from './empty-cart.png'
 
 function Cart(props) {
+    const renderTotal = ()=>{
+        let total = 0
+        props.cart.map((item)=>{
+            total = total + parseInt(item.price)
+        })
+        return total
+    }
   return (
     <div>
         <Header />
@@ -17,24 +27,33 @@ function Cart(props) {
 
         <div className="cart">
 
-        <div className="row cart-container">
+        {props.cart.length<=0?
+        <div className="emptycart">
+            <img src={emptycart} alt="emptycart" />
+            <h1>Cart is empty</h1>
+        </div>
+        :<div className="row cart-container">
 
-        <section className="shadow-sm col-8 row m-auto cart-item">
+
+        <div className="col-8">
+        {
+                props.cart.map((item,index)=>(
+                    <section className="shadow-sm  row m-auto cart-item" key={index}>
             <div className="col-3 imgdiv">
-                <img src="/assets/images/products/xiaomi-watch.png" alt="product" />
+                <img src={item.images[0].src} alt="product" />
             </div>
 
             <div className="col-6 productdetail">
-                <h3>Xiaomi smart watch 3.5mm</h3>
+                <h3>{item.name}</h3>
             <section className="pricerow m-auto row align-items-center">
-                <div className="price">Rs 689</div>
-                <div className="mrp">752</div>
+                <div className="price">Rs {item.price}</div>
+                <div className="mrp">{item.regular_price}</div>
                 <div className="poff">0.00% off</div>
             </section>
             </div>
 
             <div className="col-2 closequantity">
-                <IconButton>
+                <IconButton onClick={()=>props.removeFromCart(item)}>
                     <CloseIcon />
                 </IconButton>
                 <div className="row align-items-center justify-content-end ">
@@ -48,15 +67,19 @@ function Cart(props) {
                 </div>
             </div>
         </section>
+                ))
+        }
+        </div>
+
 
         <section className="shadow-sm col-3 total-container">
-            <p>Total :  <span className="total">INR 2543</span></p>
+            <p>Total :  <span className="total">INR {renderTotal()}</span></p>
             <hr />
             <Button onClick={()=>props.history.push("checkout")} className="btn" fullWidth variant="contained">checkout</Button>
         </section>
 
 
-        </div>
+        </div>}
 
 
         </div>
@@ -65,4 +88,15 @@ function Cart(props) {
   )
 }
 
-export default Cart
+const mapStateToProps = ({cart})=>{
+return {
+    cart
+}
+}
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        removeFromCart:(item)=>dispatch(removeFromCart(item))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Cart)

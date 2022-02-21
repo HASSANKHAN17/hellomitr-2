@@ -88,7 +88,7 @@ function SignUp(props) {
           console.log(data)
           WooCommerce.postAsync("customers", data)
           .then((response) => {
-            console.log(response);
+            console.log("phone",JSON.parse(response.toJSON().body))
           })
           .catch((error) => {
             console.log(error.response);

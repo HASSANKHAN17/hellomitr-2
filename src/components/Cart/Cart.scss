@@ -1,6 +1,17 @@
 @import  "../../App.scss";
 
 .cart{
+    .emptycart{
+        img{
+            display: block;
+            margin: auto;
+            width: 10vw;
+            margin-top: 5%;
+        }
+        h1{
+            text-align: center;
+        }
+    }
     .cart-container{
         margin: 2% 5%;
     }

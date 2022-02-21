@@ -14,6 +14,8 @@ import Item from './Item'
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
+import {addToCart} from '../redux/cart/cartActions'
+import {connect} from 'react-redux'
 
 function ItemDetail(props) {
   let details = props.location.state;
@@ -23,6 +25,10 @@ function ItemDetail(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const renderOff = ()=>{
+    console.log("pof",details.price/details.regular_price*100)
+    return Math.ceil(100-(details.price/details.regular_price*100))
+  }
 console.log(props)
   return (
     <div>
@@ -48,15 +54,15 @@ console.log(props)
             <section className="pricerow m-auto row align-items-center">
                 <div className="price">₹{details.price}</div>
                 <div className="mrp">{details.regular_price}</div>
-                <div className="poff">0.00% off</div>
+                <div className="poff">{renderOff()}% off</div>
             </section>
 
-            <p className='mt-3'>You Save: ₹0.00 <br />
+            <p className='mt-3'>You Save: ₹{details.regular_price-details.price} <br />
             (Inclusive of all taxes)
             </p>
 
             <div className="row m-auto">
-                <Button variant="contained">Add to cart</Button>
+                <Button onClick={()=>props.addToCart(details)} variant="contained">Add to cart</Button>
                 <Button variant="contained" className="ml-3">Buy Now</Button>
             </div>
             <p className="mt-3">Sold by: Hellomitr outlook</p>
@@ -182,4 +188,16 @@ console.log(props)
   )
 }
 
-export default ItemDetail
+const mapStateToProps = ({cart})=>{
+  return {
+    cart
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    addToCart:(item)=>dispatch(addToCart(item))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ItemDetail)
