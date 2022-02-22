@@ -9,7 +9,7 @@ import Button from '@mui/material/Button'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {connect} from 'react-redux'
-import {removeFromCart} from '../redux/cart/cartActions'
+import {removeFromCart,increaseItemCount,decreaseItemCount} from '../redux/cart/cartActions'
 import emptycart from './empty-cart.png'
 
 function Cart(props) {
@@ -20,6 +20,10 @@ function Cart(props) {
         })
         return total
     }
+    const renderOff = (details)=>{
+        console.log("pof",details.price/details.regular_price*100)
+        return Math.ceil(100-(details.price/details.regular_price*100))
+      }
   return (
     <div>
         <Header />
@@ -48,7 +52,7 @@ function Cart(props) {
             <section className="pricerow m-auto row align-items-center">
                 <div className="price">Rs {item.price}</div>
                 <div className="mrp">{item.regular_price}</div>
-                <div className="poff">0.00% off</div>
+                <div className="poff">{renderOff(item)}% off</div>
             </section>
             </div>
 
@@ -56,15 +60,17 @@ function Cart(props) {
                 <IconButton onClick={()=>props.removeFromCart(item)}>
                     <CloseIcon />
                 </IconButton>
-                <div className="row align-items-center justify-content-end ">
-                <IconButton color="primary">
-                    <RemoveIcon className="iconbutton" />
-                </IconButton>
-                    <span className="quantity">25</span>
-                    <IconButton color="primary">
-                    <AddIcon className="iconbutton" />
-                </IconButton>
-                </div>
+                <div className="row m-auto align-items-center justify-content-between">
+              <IconButton disabled={item.count===1?true:false} onClick={()=>props.decreaseItemCount(item.id)} color="primary" className="iconbutton">
+                <RemoveIcon />
+              </IconButton>
+              <div className="count">
+                <h2>{item.count}</h2>
+              </div>
+              <IconButton onClick={()=>props.increaseItemCount(item.id)} color="primary" className="iconbutton">
+                <AddIcon />
+              </IconButton>
+            </div>
             </div>
         </section>
                 ))
@@ -75,7 +81,7 @@ function Cart(props) {
         <section className="shadow-sm col-3 total-container">
             <p>Total :  <span className="total">INR {renderTotal()}</span></p>
             <hr />
-            <Button onClick={()=>props.history.push("checkout")} className="btn" fullWidth variant="contained">checkout</Button>
+            <Button onClick={()=>!props.user?props.history.push("/login"):props.history.push("checkout")} className="btn" fullWidth variant="contained">checkout</Button>
         </section>
 
 
@@ -88,14 +94,17 @@ function Cart(props) {
   )
 }
 
-const mapStateToProps = ({cart})=>{
+const mapStateToProps = ({cart,user})=>{
 return {
-    cart
+    cart,
+    user:user.user
 }
 }
 const mapDispatchToProps = (dispatch)=>{
     return {
-        removeFromCart:(item)=>dispatch(removeFromCart(item))
+        removeFromCart:(item)=>dispatch(removeFromCart(item)),
+        increaseItemCount:(id)=>dispatch(increaseItemCount(id)),
+        decreaseItemCount:(id)=>dispatch(decreaseItemCount(id))
     }
 }
 

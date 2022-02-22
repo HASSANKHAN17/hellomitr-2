@@ -13,10 +13,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button'
+import {setUser} from '../redux/user/userActions'
 import { useForm } from 'react-hook-form';
+import Alert from '@mui/material/Alert'
 import WooCommerceAPI from 'woocommerce-api'
+import {connect} from 'react-redux'
 function LogIn(props) {
-  const {handleSubmit,register,formState:{errors},setError}=useForm()
+  const {handleSubmit,register,formState:{errors}}=useForm()
+  const [error,setError]=React.useState("")
   var WooCommerce = new WooCommerceAPI({
     url: 'https://shop.hellomitr.com/',
     consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -51,10 +55,16 @@ function LogIn(props) {
       const onSubmit = (data)=>{
         WooCommerce.getAsync(`customers?email=${data.email}`)
         .then((response) => {
-          console.log("phone",JSON.parse(response.toJSON().body))
+          console.log("user",JSON.parse(response.toJSON().body))
+          if(JSON.parse(response.toJSON().body).length>0){
+            props.setUser(JSON.parse(response.toJSON().body)[0])
+            props.history.push("/myprofile")
+          }else{
+            setError("User doesn't exist")
+          }
         })
         .catch((error) => {
-          console.log(error.response.data);
+          console.log(error);
         });
       }
 
@@ -65,7 +75,7 @@ function LogIn(props) {
         <form onSubmit={handleSubmit(onSubmit)}>
         
         <TextField {...register('email',{required:true})} error={errors.email?true:false} className="textfield" id="outlined-basics" variant="outlined" label="Email or Phone" fullWidth />
-        <FormControl className="textfield" sx={{width: '100%' }} variant="outlined">
+        {/* <FormControl className="textfield" sx={{width: '100%' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -87,10 +97,10 @@ function LogIn(props) {
             
             label="Password"
           />
-        </FormControl>
+        </FormControl> */}
 
        
-        
+        {error.length>0?<Alert className="alert" severity="error">{error}</Alert>:null}
         <Button className="btn" variant="contained" type="submit">LogIn</Button>
         </form>
         <div className="alreadyuser">
@@ -100,4 +110,10 @@ function LogIn(props) {
   )
 }
 
-export default LogIn
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    setUser:(user)=>dispatch(setUser(user))
+  }
+}
+
+export default connect(null,mapDispatchToProps)(LogIn)

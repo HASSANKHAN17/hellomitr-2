@@ -14,13 +14,16 @@ import Item from './Item'
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
-import {addToCart} from '../redux/cart/cartActions'
+import {addToCart,increaseItemCount,decreaseItemCount,removeFromCart} from '../redux/cart/cartActions'
 import {connect} from 'react-redux'
-
+import AddIcon from '@mui/icons-material/Add';
+import IconButton from '@mui/material/IconButton'
+import RemoveIcon from '@mui/icons-material/Remove';
 function ItemDetail(props) {
   let details = props.location.state;
     const [image,setImage]=React.useState(details.images[0].src)
     const [value, setValue] = React.useState('1');
+    const [inCart,setInCart] = React.useState([])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -29,6 +32,16 @@ function ItemDetail(props) {
     console.log("pof",details.price/details.regular_price*100)
     return Math.ceil(100-(details.price/details.regular_price*100))
   }
+  React.useEffect(()=>{
+    if(props.cart.length>0){
+      let av = props.cart.filter(item=>item.id===details.id)
+      if(av.length>0){
+        setInCart(av)
+      }
+    }else{
+      setInCart([])
+    }
+  },[props.cart])
 console.log(props)
   return (
     <div>
@@ -61,10 +74,22 @@ console.log(props)
             (Inclusive of all taxes)
             </p>
 
-            <div className="row m-auto">
+            {inCart.length<=0?<div className="row m-auto">
                 <Button onClick={()=>props.addToCart(details)} variant="contained">Add to cart</Button>
                 <Button variant="contained" className="ml-3">Buy Now</Button>
+            </div>:
+            <div className="row m-auto align-items-center">
+              <IconButton  onClick={()=>inCart[0].count===1?props.removeFromCart(details):props.decreaseItemCount(details.id)} color="primary" className="iconbutton">
+                <RemoveIcon />
+              </IconButton>
+              <div className="count">
+                <h2>{inCart[0].count}</h2>
+              </div>
+              <IconButton onClick={()=>props.increaseItemCount(details.id)} color="primary" className="iconbutton">
+                <AddIcon />
+              </IconButton>
             </div>
+            }
             <p className="mt-3">Sold by: Hellomitr outlook</p>
         </div>
     </div>
@@ -196,7 +221,10 @@ const mapStateToProps = ({cart})=>{
 
 const mapDispatchToProps = (dispatch)=>{
   return {
-    addToCart:(item)=>dispatch(addToCart(item))
+    removeFromCart:(item)=>dispatch(removeFromCart(item)),
+    addToCart:(item)=>dispatch(addToCart(item)),
+    increaseItemCount:(id)=>dispatch(increaseItemCount(id)),
+    decreaseItemCount:(id)=>dispatch(decreaseItemCount(id))
   }
 }
 

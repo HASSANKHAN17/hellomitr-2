@@ -38,7 +38,7 @@ function Home(props) {
     const [men,setMen]=React.useState([])
     const [women,setWomen]=React.useState([])
     const [loading,setLoading]=React.useState(false)
-    
+    const [newArrivals,setNewArrivals]=React.useState([])
 
     React.useState(()=>{
         setLoading(true)
@@ -50,6 +50,11 @@ function Home(props) {
             version: 'wc/v1'
           });
           //WooCommerce.getAsync("products?category=126&per_page=100&category=193include")
+          WooCommerce.getAsync("products?orderby=date&order=desc&per_page=6")
+            .then((result) => {
+            console.log("new arr",JSON.parse(result.toJSON().body))
+            setNewArrivals(JSON.parse(result.toJSON().body))
+            })
           WooCommerce.getAsync("products?category=126&per_page=6")
             .then((result) => {
             console.log("phone",JSON.parse(result.toJSON().body))
@@ -58,10 +63,18 @@ function Home(props) {
             .catch((error) => {
             console.log(error.result.data);
             });
-            WooCommerce.getAsync("products?search=laptop&per_page=6")
+            WooCommerce.getAsync("products?category=181&per_page=6")
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setLedtv(JSON.parse(result.toJSON().body))
+            })
+            .catch((error) => {
+            console.log(error.result.data);
+            });
+            WooCommerce.getAsync("products?category=97&per_page=6")
+            .then((result) => {
+            console.log(JSON.parse(result.toJSON().body))
+            setLaptop(JSON.parse(result.toJSON().body))
             })
             .catch((error) => {
             console.log(error.result.data);
@@ -148,30 +161,15 @@ function Home(props) {
             <section className="shadow-sm dod">
                 <h2><CardGiftcardIcon className="icon" /> New Arrivals</h2>
                 <div className="row m-auto">
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail")}>
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
+                {
+                    newArrivals.length>0?(
+                        newArrivals.map((item,index)=>(
+                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
+                            <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            </div>            
+                    ))
+                    ):null
+                }
 
                 </div>
             </section>
@@ -362,36 +360,7 @@ function Home(props) {
                 </div>
             </section>
 
-            <section className="shadow-sm mostbought">
-                <h2><TrendingUpIcon className="icon" /> Furniture</h2>
-                <div className="row m-auto">
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                </div>
-            </section>
+           
 
             <Footer />
         </div>

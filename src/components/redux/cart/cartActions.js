@@ -11,3 +11,17 @@ return {
     payload:item
 }
 }
+
+export const increaseItemCount = (id)=>{
+    return {
+        type:'INCREASE_ITEM_COUNT',
+        payload:id
+    }
+}
+
+export const decreaseItemCount = (id)=>{
+    return{
+        type:'DECREASE_ITEM_COUNT',
+        payload:id
+    }
+}
