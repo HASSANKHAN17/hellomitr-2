@@ -6,7 +6,6 @@
     .imagediv{
         text-align: center;
         .mainimg{
-            height: 50vh;
             width: 30vw;
         }
         .row{
@@ -42,7 +41,7 @@
         .price{
             font-size: 2em;
             font-weight: bold;
-            color: #d86800;
+            color: $primary;
         }
         .mrp{
             text-decoration: line-through;

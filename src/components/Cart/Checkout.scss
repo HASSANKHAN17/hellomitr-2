@@ -7,7 +7,7 @@
     background-color: white;
     margin: 2%;
     width: 100%;
-    padding:2% 3%;
+    padding:2% 5%;
     .pg{
         padding:2%;
         margin: 3% 0;
@@ -16,7 +16,7 @@
     .pg:hover{
         background-color:#ff5e003b ;
         color: black;
-        transform: scale(1.1);
+        transform: scale(1.03);
         transition: .2s;
         cursor: pointer;
         border: 1px solid $primary;
@@ -27,7 +27,7 @@
         color: black;
         border: 1px solid $primary;
         border-radius: 5px;
-        transform: scale(1.1);
+        transform: scale(1.03);
     }
     .btn{
         margin: 5% 0;

@@ -58,7 +58,12 @@ function LogIn(props) {
           console.log("user",JSON.parse(response.toJSON().body))
           if(JSON.parse(response.toJSON().body).length>0){
             props.setUser(JSON.parse(response.toJSON().body)[0])
-            props.history.push("/myprofile")
+            if(props.location.state){
+              props.history.push("/checkout")
+            }else{
+              props.history.push("/myprofile")
+            }
+            
           }else{
             setError("User doesn't exist")
           }

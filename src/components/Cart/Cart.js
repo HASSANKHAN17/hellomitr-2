@@ -81,7 +81,7 @@ function Cart(props) {
         <section className="shadow-sm col-3 total-container">
             <p>Total :  <span className="total">INR {renderTotal()}</span></p>
             <hr />
-            <Button onClick={()=>!props.user?props.history.push("/login"):props.history.push("checkout")} className="btn" fullWidth variant="contained">checkout</Button>
+            <Button onClick={()=>!props.user?props.history.push("/signup",true):props.history.push("checkout")} className="btn" fullWidth variant="contained">checkout</Button>
         </section>
 
 

@@ -89,6 +89,11 @@ function SignUp(props) {
           WooCommerce.postAsync("customers", data)
           .then((response) => {
             console.log("phone",JSON.parse(response.toJSON().body))
+            if(props.location.state){
+              props.history.push("/cart")
+            }else{
+              props.history.push("/myprofile")
+            }
           })
           .catch((error) => {
             console.log(error.response);
@@ -164,7 +169,7 @@ function SignUp(props) {
         <Button className="btn" variant="contained" type="submit">Sign Up</Button>
         </form>
         <div className="alreadyuser">
-            <p>Already have an account? <span onClick={()=>props.history.push("login")}>LogIn</span></p>
+            <p>Already have an account? <span onClick={()=>props.history.push("login",props.location.state)}>LogIn</span></p>
         </div>
     </div>
   )
