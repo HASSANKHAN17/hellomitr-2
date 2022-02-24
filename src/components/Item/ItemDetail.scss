@@ -1,7 +1,10 @@
 @import  "../../App.scss";
 
-
+.itemdetail-container{
+    background-color: white;
+}
 .itemdetail{
+    background-color: white;
     padding:2% 0;
     .imagediv{
         text-align: center;
@@ -25,6 +28,9 @@
 
 }
 .productdetail{
+    h1{
+        font-family: $secondary-font;
+    }
     .ratingdiv{
         font-size: 1.1em;
         background-color: green;

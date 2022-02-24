@@ -12,6 +12,12 @@ return {
 }
 }
 
+export const emptyCart = ()=>{
+    return {
+        type:"EMPTY_CART"
+    }
+}
+
 export const increaseItemCount = (id)=>{
     return {
         type:'INCREASE_ITEM_COUNT',

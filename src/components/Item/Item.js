@@ -2,12 +2,12 @@ import React from 'react'
 import "./Item.scss"
 import smartwatch from '../../Images/subheader/smartwatch.png'
 import Rating from '@mui/material/Rating';
-
+import FlashOnIcon from '@mui/icons-material/FlashOn';
 function Item(props) {
   return (
-    <div className="shadow item" >
+    <div className="shadow-sm item" >
        <span className="discount">
-            50% off
+           <FlashOnIcon color="primary" /> Flash Sale
         </span>
         <div className=" info">
         
@@ -16,7 +16,10 @@ function Item(props) {
             <div className="rating">
             <Rating name="read-only" value={props.rating?parseInt(props.rating):4} readOnly />
             </div>
-            <p><span className="total">₹{props.price?props.price:205}</span> <span className="mrp">255</span></p>
+            <p>
+              <span className="total">₹{props.price?props.price:205}</span> <span className="mrp">{props.regularPrice?props.regularPrice:props.price}</span>
+              <span className="off">10% off</span>
+              </p>
 
         </div>
     </div>

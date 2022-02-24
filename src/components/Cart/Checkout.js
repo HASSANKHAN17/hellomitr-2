@@ -10,7 +10,7 @@ import safeandsecurep from './safeandsecurep.jpeg'
 import {connect} from 'react-redux'
 import WooCommerceAPI from 'woocommerce-api'
 function Checkout(props) {
-  const [selected,setSelected]=React.useState(0)
+  const [selected,setSelected]=React.useState(2)
   const [address,setAddress]=React.useState(0)
   const [delivery,setDelivery]=React.useState(0)
   const [total,setTotal]=React.useState(0)
@@ -30,59 +30,8 @@ function Checkout(props) {
       image: 'https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png',
       handler: function(response) {
           console.log(response);
-          // const data = {
-          //   payment_method: selected===2?"razor pay":"cashe",
-          //   payment_method_title: "Bank Transfer",
-          //   set_paid: true,
-          //   billing: {
-          //     first_name: "John",
-          //     last_name: "Doe",
-          //     address_1: "969 Market",
-          //     address_2: "",
-          //     city: "San Francisco",
-          //     state: "CA",
-          //     postcode: "94103",
-          //     country: "US",
-          //     email: "john.doe@example.com",
-          //     phone: "(555) 555-5555"
-          //   },
-          //   shipping: {
-          //     first_name: "John",
-          //     last_name: "Doe",
-          //     address_1: "969 Market",
-          //     address_2: "",
-          //     city: "San Francisco",
-          //     state: "CA",
-          //     postcode: "94103",
-          //     country: "US"
-          //   },
-          //   line_items: [
-          //     {
-          //       product_id: 93,
-          //       quantity: 2
-          //     },
-          //     {
-          //       product_id: 22,
-          //       variation_id: 23,
-          //       quantity: 1
-          //     }
-          //   ],
-          //   shipping_lines: [
-          //     {
-          //       method_id: "flat_rate",
-          //       method_title: "Flat Rate",
-          //       total: "10.00"
-          //     }
-          //   ]
-          // };
-          
-          // WooCommerce.post("orders", data)
-          //   .then((response) => {
-          //     console.log(response.data);
-          //   })
-          //   .catch((error) => {
-          //     console.log(error.response.data);
-          //   });
+          props.history.push(`/transaction?address=${address}?transactionId=${response.razorpay_payment_id}`,true)
+      
       },
       prefill: {
           name: 'Gaurav',
@@ -107,7 +56,7 @@ function Checkout(props) {
       document.body.appendChild(script);
       let total = 0
       props.cart.map((item)=>{
-          total = total + parseInt(item.price)
+        total = total + parseInt(item.price)*item.count
       })
       setTotal(total)
       // axios.get(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/fetchCASHePlans
@@ -119,9 +68,9 @@ function Checkout(props) {
       //   console.log(err)
       // })
   }, []);
-
+//console.log(total)
   const openCasheModal = ()=>{
-    axios.post(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:10000,tenure:3,mobilenumber:"9665276786",authKey:"2MLFiopx+givx5mPf8CchQ==",leafRefNo:"0142334456",merchantname:"Amazon",returnPageURL:"https://localhost:3000/orders"})
+    axios.post(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:10000,tenure:6,mobilenumber:'9665276786',authKey:"2MLFiopx+givx5mPf8CchQ==",leafRefNo:'123456785',merchantname:"Amazon",returnPageURL:`http://localhost:3000/transaction?address=${address}`})
     .then(res=>{
       console.log(res);
       window.location.href = `https://secure.qapayments.cashe.co.in/Login?transaction=${res.data.entity}`;

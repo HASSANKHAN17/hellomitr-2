@@ -7,14 +7,35 @@ import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlin
 import PersonIcon from '@mui/icons-material/Person';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import { withRouter } from 'react-router-dom';
-function Menu({id,history}) {
+import {setUser} from '../../redux/user/userActions'
+import {connect} from 'react-redux'
+import WooCommerceAPI from 'woocommerce-api'
+import {compose} from "redux";
+var WooCommerce = new WooCommerceAPI({
+    url: 'https://shop.hellomitr.com/',
+    consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
+    consumerSecret: 'cs_c1c28f110eee7b2a528cde222bad766892f004d0',
+    wpAPI: true,
+    version: 'wc/v1'
+  });
+function Menu({id,history,user,setUser}) {
+    React.useEffect(()=>{
+        WooCommerce.getAsync(`customers?email=${user.email}`)
+        .then((response) => {
+          console.log("user",JSON.parse(response.toJSON().body))
+          setUser(JSON.parse(response.toJSON().body)[0])
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    },[])
   return (
     <div className="shadow-sm menu">
         <p className="container-heading">Dashboard</p>
         <div onClick={()=>history.push("/orders")} className={id===1?"row  align-items-center link-container active":"row  align-items-center link-container"}>
             <div className="icon"><ShoppingBagOutlinedIcon /></div>
             <div className="heading"><p>Orders</p></div>
-            <div className="ml-auto total"><p>15</p></div>
+            <div className="ml-auto total"><p>{user.orders_count}</p></div>
         </div>
 
         {/* <div className={id===2?"row  align-items-center link-container active":"row  align-items-center link-container"}>
@@ -26,29 +47,44 @@ function Menu({id,history}) {
         <div className={id===3?"row  align-items-center link-container active":"row  align-items-center link-container"}>
             <div className="icon"><HeadsetMicOutlinedIcon /></div>
             <div className="heading"><p>Support tickets</p></div>
-            <div className="ml-auto total"><p>15</p></div>
+            <div className="ml-auto total"><p>0</p></div>
         </div>
 
         <p className="container-heading">Account Settings</p>
         <div onClick={()=>history.push("/myprofile")} className={id===4?"row  align-items-center link-container active":"row  align-items-center link-container"}>
             <div className="icon"><PersonIcon /></div>
             <div className="heading"><p>Profile Info</p></div>
-            <div className="ml-auto total"><p>15</p></div>
+            <div className="ml-auto total"><p>3</p></div>
         </div>
 
         <div onClick={()=>history.push("/addresses")} className={id===5?"row  align-items-center link-container active":"row  align-items-center link-container"}>
             <div className="icon"><AddLocationAltOutlinedIcon /></div>
             <div className="heading"><p>Addresses</p></div>
-            <div className="ml-auto total"><p>15</p></div>
+            <div className="ml-auto total"><p>2</p></div>
         </div>
 
         <div className={id===6?"row  align-items-center link-container active":"row  align-items-center link-container"}>
             <div className="icon"><PaymentOutlinedIcon /></div>
             <div className="heading"><p>Payment Methods</p></div>
-            <div className="ml-auto total"><p>15</p></div>
+            <div className="ml-auto total"><p>0</p></div>
         </div>
     </div>
   )
 }
 
-export default withRouter(Menu)
+
+const mapStateToProps =({user,cart})=>{
+	return {
+		user:user.user,
+		cart
+	}
+	}
+    const mapDispatchToProps = (dispatch)=>{
+        return {
+          setUser:(user)=>dispatch(setUser(user))
+        }
+      }
+	export default compose(
+		withRouter,
+		connect(mapStateToProps,mapDispatchToProps)
+	  )(Menu);

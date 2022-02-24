@@ -9,6 +9,8 @@ import Checkout from './components/Cart/Checkout'
 import MyProfile from './components/Dashboard/MyProfile/MyProfile'
 import Categories from './components/Categories/Categories'
 import Orders from './components/Dashboard/Orders/Orders'
+import OrderDetail from './components/Dashboard/Orders/OrderDetail';
+import Transaction from './components/Transaction/Transaction'
 import Addresses from './components/Dashboard/Addresses/Addresses'
 
 
@@ -25,6 +27,8 @@ function App() {
       <Route path="/myprofile" component={MyProfile} />
       <Route path="/orders" component={Orders} />
       <Route path="/addresses" component={Addresses} />
+      <Route path="/transaction" component={Transaction} />
+      <Route path="/orderdetail" component={OrderDetail} />
 
     </Switch>
   );

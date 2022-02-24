@@ -5,9 +5,27 @@ import Menu from '../Menu/Menu'
 import "./MyProfile.scss"
 import PersonIcon from '@mui/icons-material/Person';
 import {connect} from 'react-redux'
-
+import WooCommerceAPI from 'woocommerce-api'
+import {setUser} from '../../redux/user/userActions'
 function MyProfile(props) {
+    var WooCommerce = new WooCommerceAPI({
+        url: 'https://shop.hellomitr.com/',
+        consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
+        consumerSecret: 'cs_c1c28f110eee7b2a528cde222bad766892f004d0',
+        wpAPI: true,
+        version: 'wc/v1'
+      });
     let {user} = props;
+    React.useEffect(()=>{
+        WooCommerce.getAsync(`customers?email=${props.user.email}`)
+        .then((response) => {
+          console.log("user",JSON.parse(response.toJSON().body))
+          props.setUser(JSON.parse(response.toJSON().body)[0])
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    },[])
   return (
     <div>
         <Header />
@@ -70,5 +88,9 @@ return {
     user:user.user
 }
 }
-
-export default connect(mapStateToProps)(MyProfile)
+const mapDispatchToProps = (dispatch)=>{
+    return {
+      setUser:(user)=>dispatch(setUser(user))
+    }
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(MyProfile)

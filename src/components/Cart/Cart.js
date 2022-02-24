@@ -16,11 +16,12 @@ function Cart(props) {
     const renderTotal = ()=>{
         let total = 0
         props.cart.map((item)=>{
-            total = total + parseInt(item.price)
+            total = total + parseInt(item.price)*item.count
         })
         return total
     }
     const renderOff = (details)=>{
+        console.log(details)
         console.log("pof",details.price/details.regular_price*100)
         return Math.ceil(100-(details.price/details.regular_price*100))
       }
@@ -52,7 +53,7 @@ function Cart(props) {
             <section className="pricerow m-auto row align-items-center">
                 <div className="price">Rs {item.price}</div>
                 <div className="mrp">{item.regular_price}</div>
-                <div className="poff">{renderOff(item)}% off</div>
+                {item.regular_price&&item.price?<div className="poff">{renderOff(item)}% off</div>:null}
             </section>
             </div>
 

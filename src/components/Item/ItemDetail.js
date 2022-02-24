@@ -47,6 +47,9 @@ console.log(props)
     <div>
     <Header id="1" />
     <SubHeader />
+
+    <section className="itemdetail-container">
+
     <div className="row m-auto justify-content-between itemdetail">
         <div className="col-6 imagediv">
             <img src={image} alt="watch" className="mainimg" />
@@ -67,7 +70,7 @@ console.log(props)
             <section className="pricerow m-auto row align-items-center">
                 <div className="price">₹{details.price}</div>
                 <div className="mrp">{details.regular_price}</div>
-                <div className="poff">{renderOff()}% off</div>
+                {details.regular_price&&details.price?<div className="poff">{renderOff()}% off</div>:null}
             </section>
 
             <p className='mt-3'>You Save: ₹{details.regular_price-details.price} <br />
@@ -85,7 +88,7 @@ console.log(props)
               <div className="count">
                 <h2>{inCart[0].count}</h2>
               </div>
-              <IconButton onClick={()=>props.increaseItemCount(details.id)} color="primary" className="iconbutton">
+              <IconButton disabled={inCart[0].count===2?true:false} onClick={()=>props.increaseItemCount(details.id)} color="primary" className="iconbutton">
                 <AddIcon />
               </IconButton>
             </div>
@@ -104,7 +107,6 @@ console.log(props)
         </Box>
         <TabPanel value="1">
           {/* item specification section */}
-            <h1 className="spec">Specification:</h1>
             <div className="specificationdiv">
             <p dangerouslySetInnerHTML={{__html: details.description}} />
             </div>
@@ -203,7 +205,7 @@ console.log(props)
         </TabPanel>
       </TabContext>
     </Box>
-
+    </section>
 
 
 

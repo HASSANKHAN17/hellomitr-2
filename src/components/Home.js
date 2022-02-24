@@ -27,6 +27,7 @@ import realmelogo from '../Images/brands/1200px-Realme-realme-_logo_box-RGB-01_w
 import vivologo from '../Images/brands/vivo logo.png'
 import oppologo from '../Images/brands/OPPO_LOGO_2019.png'
 import Loading from './Lottie/Loading'
+import {ReactComponent as NewArrivals} from '../Images/icons/new-product-1.svg'
 
 function Home(props) {
     const [smartphone,setSmartPhone]=React.useState([])
@@ -41,7 +42,7 @@ function Home(props) {
     const [newArrivals,setNewArrivals]=React.useState([])
 
     React.useState(()=>{
-        setLoading(true)
+        //setLoading(true)
         var WooCommerce = new WooCommerceAPI({
             url: 'https://shop.hellomitr.com/',
             consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -115,11 +116,11 @@ function Home(props) {
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setWomen(JSON.parse(result.toJSON().body))
-            setLoading(false)
+            //setLoading(false)
             })
             .catch((error) => {
             console.log(error.result.data);
-            setLoading(false)
+            //setLoading(false)
             });
     },[])
 
@@ -128,23 +129,6 @@ function Home(props) {
         loading?<Loading />:<div className="home">
             <Header id="1" />
             <SubHeader />
-
-            {/* corousal */}
-                {/* <Carousel
-                    totalSlides={5}
-                    visibleSlides={1}
-                    infinite={true}
-                    autoPlay={true}
-                    showDots={true}
-                    showArrow={false}
-                    spacing="0px"
-                >
-                    <CarouselCard1 />
-                    <CarouselCard1 />
-                    <CarouselCard1 />
-                    <CarouselCard1 />
-                    <CarouselCard1 />
-                </Carousel> */}
                 <CarouselProvider
                 naturalSlideWidth={100}
                 naturalSlideHeight={22}
@@ -159,13 +143,13 @@ function Home(props) {
             </CarouselProvider>
 
             <section className="shadow-sm dod">
-                <h2><CardGiftcardIcon className="icon" /> New Arrivals</h2>
+                <h2><NewArrivals /> New Arrivals</h2>
                 <div className="row m-auto">
                 {
                     newArrivals.length>0?(
                         newArrivals.map((item,index)=>(
                             <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <Item name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null

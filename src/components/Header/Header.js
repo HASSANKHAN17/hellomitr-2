@@ -14,7 +14,6 @@ import "./Header.scss"
 import {compose} from "redux";
 
 const Header = (props) => {
-	console.log("header props",props)
 	const [searchItem,setSearchItem]=React.useState("")
 	const handleSubmit = (e)=>{
 		e.preventDefault()

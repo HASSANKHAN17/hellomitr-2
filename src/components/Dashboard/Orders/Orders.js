@@ -2,7 +2,45 @@ import React from 'react'
 import Header from '../../Header/Header'
 import SubHeader from '../../Header/SubHeader'
 import Menu from '../Menu/Menu'
-function Orders() {
+import WooCommerceAPI from 'woocommerce-api'
+import {connect} from 'react-redux'
+import {setUser} from '../../redux/user/userActions'
+import "./Orders.scss"
+import Pagination from '@mui/material/Pagination';
+function Orders(props) {
+    console.log("my orders",props)
+    const [orders,setOrders]=React.useState([])
+    var WooCommerce = new WooCommerceAPI({
+        url: 'https://shop.hellomitr.com/',
+        consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
+        consumerSecret: 'cs_c1c28f110eee7b2a528cde222bad766892f004d0',
+        wpAPI: true,
+        version: 'wc/v1'
+      });
+      const [pagenumber,setPageNumber]=React.useState(1)
+      const [count,setCount]=React.useState(0)
+
+      const getOrders = (page)=>{
+        setPageNumber(page)
+        setOrders([])
+        WooCommerce.getAsync(`orders?customer=${props.user.id}&per_page=5&page=${page}`)
+        .then((response) => {
+          console.log('orders',JSON.parse(response.toJSON().body));
+          
+          setOrders(JSON.parse(response.toJSON().body))
+        
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+
+    React.useEffect(()=>{
+        let c= Math.ceil(props.user.orders_count/5)
+      setCount(c)
+    getOrders(1)
+
+    },[])
   return (
     <div>
     <Header />
@@ -12,44 +50,47 @@ function Orders() {
             <Menu id={1} />
         </div>
         <div className="col-8 dashboard-subcontainer">
-            <h1>My Prorsdrfile</h1>
-            <div className="row">
-                    <div className="col-6">
-                            user 
-                    </div>
-                    <div className="col-2">
-                        orders
-                    </div>
-                    <div className="col-2">
-                            awaiting shopments
-                    </div>
-                    <div className="col-2">
-                        awaiting deliver
-                    </div>
+            <h1>My Orders</h1>
+            <div className="row mx-auto align-items-center justify-content-between order-keys">
+                <div className="col-2">
+                    <p>Order #</p>
+                </div>
+                <div className="col-2">
+                    <p>Status</p>
+                </div>
+                <div className="col-3">
+                    <p>Date Purchased</p>
+                </div>
+                <div className="col-2">
+                    <p>Total</p>
+                </div>
             </div>
+            {
+                orders.length>0?(
+                    orders.map((item,index)=>(
+                <div onClick={()=>props.history.push("orderdetail",item)} key={index} className="shadow-sm row mx-auto align-items-center justify-content-between order-values">
+                <div className="col-2">
+                    <p className="order">{item.id}</p>
+                </div>
+                <div className="col-2">
+                    <p className="status">{item.status}</p>
+                </div>
+                <div className="col-3">
+                    <p className='date'>{item.date_created}</p>
+                </div>
+                <div className="col-2">
+                    <p className="price">₹{item.total}</p>
+                </div>
+            </div>
+                    ))
+                ):null
+            }
+            <div className="ml-auto my-4">
+            <Pagination page={pagenumber} onChange={(e,pagenumber)=>getOrders(pagenumber)} count={count} />
+            </div>
+            
 
-            <div className="row">
-                <div className="col-2">
-                    firstname
-                    ralph
-                </div>
-                <div className="col-2">
-                    lastname
-                    edwards
-                </div>
-                <div className="col-2">
-                    Email
-                    ralfedwards@email.com
-                </div>
-                <div className="col-2">
-                    PHone
-                    +1983649392983
-                </div>
-                <div className="col-2">
-                    birthday
-                    01 Jan, 1970
-                </div>
-            </div>
+             
 
         </div>
     </div>
@@ -57,4 +98,15 @@ function Orders() {
   )
 }
 
-export default Orders
+const mapStateToProps = ({cart,user})=>{
+return{
+    cart,
+    user:user.user
+}
+}
+const mapDispatchToProps = (dispatch)=>{
+    return {
+      setUser:(user)=>dispatch(setUser(user))
+    }
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(Orders)
