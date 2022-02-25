@@ -22,6 +22,7 @@ function OrderDetail(props) {
 
             <div className="row m-auto order-info justify-content-between">
                 <p><span className="greyspan">Order Id: </span>{details.id}</p>
+                <p><span className="greyspan">transaction_id: </span>{details.transaction_id}</p>
                 <p><span className="greyspan">Placed On: </span>{details.date_paid}</p>
                 <p><span className="greyspan">Status: </span>{details.status}</p>
             </div>

@@ -68,6 +68,27 @@
         }
     }
 }
+
+
+.buynowpaylater{
+    margin-left: 5%;
+    height: 100%;
+    padding: 1%;
+    background-color: $secondary;
+    img{
+        width: 1.2vw;
+    }
+    .heading{
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
+
+
+
+
+
 .descriptionreviewtab{
     margin: 1% 5%;
     .specificationdiv{

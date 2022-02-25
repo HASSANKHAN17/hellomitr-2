@@ -2,7 +2,7 @@ import React from 'react'
 import WooCommerceAPI from 'woocommerce-api'
 import {connect} from 'react-redux'
 import "./Transaction.scss"
-import {emptyCart} from '../redux/cart/cartActions'
+import {emptySingleItem} from '../redux/SingleItem/singleItemActions'
 import hellomitrlogo from '../../Images/logo.png'
 import checked from './checked.png'
 import Success from '../Lottie/Success'
@@ -10,7 +10,7 @@ import Failure from '../Lottie/Failure'
 import cancel from './cancel.png'
 let seconds = 5
 
-function Transaction(props) {
+function TransactionSingle(props) {
     var WooCommerce = new WooCommerceAPI({
         url: 'https://shop.hellomitr.com/',
         consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -27,7 +27,7 @@ function Transaction(props) {
         let transactionId = props.location.search.split("?")[2]
         transactionId=transactionId.split("=")[1]
         let addressNo = props.location.search.split("?")[1]
-        let line_items = props.cart.map(item=>({product_id:item.id,quantity:item.count,images:item.images}))
+        let line_items = {product_id:props.singleItem.id,quantity:props.singleItem.count,images:props.singleItem.images}
         transactionId = transactionId.split("&")[0]
         let payment_method = props.location.state?"razorpay":"cashe"
         console.log(addressNo,transactionId,payment_method)
@@ -56,7 +56,7 @@ function Transaction(props) {
                           WooCommerce.postAsync("orders", data)
                             .then((response) => {
                               console.log(JSON.parse(response.toJSON().body));
-                                props.emptyCart()
+                              props.emptySingleItem()
                                 window.location.href = `http://localhost:3000/orders`;
                             })
                             .catch((error) => {
@@ -78,7 +78,7 @@ function Transaction(props) {
                   WooCommerce.postAsync("orders", data)
                     .then((response) => {
                       console.log(JSON.parse(response.toJSON().body));
-                        props.emptyCart()
+                        props.emptySingleItem()
                         window.location.href = `http://localhost:3000/orders`;
                     })
                     .catch((error) => {
@@ -113,15 +113,16 @@ function Transaction(props) {
     </div>
   )
 }
-const mapStateToProps = ({cart,user})=>{
+const mapStateToProps = ({cart,user,singleItem})=>{
     return{
         cart,
-        user:user.user
+        user:user.user,
+        singleItem
     }
     }
     const mapDispatchToProps =(dispatch)=>{
       return {
-        emptyCart:()=>dispatch(emptyCart())
+        emptySingleItem:()=>dispatch(emptySingleItem())
       }
     }
-export default connect(mapStateToProps,mapDispatchToProps)(Transaction)
+export default connect(mapStateToProps,mapDispatchToProps)(TransactionSingle)

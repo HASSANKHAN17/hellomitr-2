@@ -28,7 +28,11 @@ import vivologo from '../Images/brands/vivo logo.png'
 import oppologo from '../Images/brands/OPPO_LOGO_2019.png'
 import Loading from './Lottie/Loading'
 import {ReactComponent as NewArrivals} from '../Images/icons/new-product-1.svg'
-
+import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
+import TvRoundedIcon from '@mui/icons-material/TvRounded';
+import LaptopMacRoundedIcon from '@mui/icons-material/LaptopMacRounded';
+import HeadphonesBatteryRoundedIcon from '@mui/icons-material/HeadphonesBatteryRounded';
+import WatchRoundedIcon from '@mui/icons-material/WatchRounded';
 function Home(props) {
     const [smartphone,setSmartPhone]=React.useState([])
     const [ledtv,setLedtv]=React.useState([])
@@ -88,15 +92,8 @@ function Home(props) {
             .catch((error) => {
             console.log(error.result.data);
             });
-            WooCommerce.getAsync("products?search=shoes&per_page=6")
-            .then((result) => {
-            console.log(JSON.parse(result.toJSON().body))
-            setShoes(JSON.parse(result.toJSON().body))
-            })
-            .catch((error) => {
-            console.log(error.result.data);
-            });
-            WooCommerce.getAsync("products?search=smartwatch&per_page=6")
+            
+            WooCommerce.getAsync("products?category=103&per_page=6")
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setSmartWatch(JSON.parse(result.toJSON().body))
@@ -104,24 +101,24 @@ function Home(props) {
             .catch((error) => {
             console.log(error.result.data);
             });
-            WooCommerce.getAsync("products?search=men&per_page=6")
-            .then((result) => {
-            console.log(JSON.parse(result.toJSON().body))
-            setMen(JSON.parse(result.toJSON().body))
-            })
-            .catch((error) => {
-            console.log(error.result.data);
-            });
-            WooCommerce.getAsync("products?search=women&per_page=6")
-            .then((result) => {
-            console.log(JSON.parse(result.toJSON().body))
-            setWomen(JSON.parse(result.toJSON().body))
-            //setLoading(false)
-            })
-            .catch((error) => {
-            console.log(error.result.data);
-            //setLoading(false)
-            });
+            // WooCommerce.getAsync("products?search=men&per_page=6")
+            // .then((result) => {
+            // console.log(JSON.parse(result.toJSON().body))
+            // setMen(JSON.parse(result.toJSON().body))
+            // })
+            // .catch((error) => {
+            // console.log(error.result.data);
+            // });
+            // WooCommerce.getAsync("products?search=women&per_page=6")
+            // .then((result) => {
+            // console.log(JSON.parse(result.toJSON().body))
+            // setWomen(JSON.parse(result.toJSON().body))
+            // //setLoading(false)
+            // })
+            // .catch((error) => {
+            // console.log(error.result.data);
+            // //setLoading(false)
+            // });
     },[])
 
 
@@ -142,14 +139,14 @@ function Home(props) {
                 </Slider>
             </CarouselProvider>
 
-            <section className="shadow-sm dod">
+            <section className="dod">
                 <h2><NewArrivals /> New Arrivals</h2>
                 <div className="row m-auto">
                 {
                     newArrivals.length>0?(
                         newArrivals.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -160,7 +157,7 @@ function Home(props) {
 
 
             <section className="shadow-sm brands">
-            <h1>Shop by brands</h1>
+            <h1>Shop by Brands</h1>
             <div className="row m-auto justify-content-center align-items-center">
                 <div className="col-3">
                     <img src={applelogo} alt="applelogo" />
@@ -196,14 +193,14 @@ function Home(props) {
             </section>
 
             <section className="shadow-sm trending">
-                <h2><TrendingUpIcon className="icon" /> Smartphones</h2>
+                <h2><SmartphoneRoundedIcon className="icon" /> Smartphones</h2>
                 <div className="row m-auto">
                 
                 {
                     smartphone.length>0?(
                         smartphone.map((item,index)=>(
                             <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <Item cid={126} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -233,13 +230,13 @@ function Home(props) {
 
 
             <section className="shadow-sm trending">
-                <h2><TrendingUpIcon className="icon" /> LED TVs</h2>
+                <h2><TvRoundedIcon className="icon" /> LED TVs</h2>
                 <div className="row m-auto">
                 {
                     ledtv.length>0?(
                         ledtv.map((item,index)=>(
                             <div key={index}  className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <Item cid={181} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -249,13 +246,13 @@ function Home(props) {
             </section>
 
             <section className="shadow-sm trending">
-                <h2><TrendingUpIcon className="icon" /> Laptop</h2>
+                <h2><LaptopMacRoundedIcon className="icon" /> Laptop</h2>
                 <div className="row m-auto">
                 {
                     laptop.length>0?(
                         laptop.map((item,index)=>(
                             <div  key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <Item cid={97} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -265,13 +262,13 @@ function Home(props) {
             </section>
 
             <section className="shadow-sm trending">
-                <h2><TrendingUpIcon className="icon" /> Accessories</h2>
+                <h2><HeadphonesBatteryRoundedIcon className="icon" /> Accessories</h2>
                 <div className="row m-auto">
                 {
                     Accessories.length>0?(
                         Accessories.map((item,index)=>(
                             <div class key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <Item cid={193} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -280,7 +277,7 @@ function Home(props) {
                 </div>
             </section>
 
-            <section className="shadow-sm trending">
+            {/* <section className="shadow-sm trending">
                 <h2><TrendingUpIcon className="icon" /> Shoes</h2>
                 <div className="row m-auto">
                 {
@@ -294,17 +291,17 @@ function Home(props) {
                 }
 
                 </div>
-            </section>
+            </section> */}
 
 
-            <section className="shadow-sm trending">
-                <h2><TrendingUpIcon className="icon" /> Smartwatch</h2>
+            <section className="trending">
+                <h2><WatchRoundedIcon className="icon" /> Smartwatch</h2>
                 <div className="row m-auto">
                 {
                     smartwatch.length>0?(
                         smartwatch.map((item,index)=>(
                             <div clas key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <Item cid={103} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -312,7 +309,7 @@ function Home(props) {
                 </div>
             </section>
 
-            <section className="shadow-sm trending">
+            {/* <section className="shadow-sm trending">
                 <h2><TrendingUpIcon className="icon" /> Men</h2>
                 <div className="row m-auto">
                 {
@@ -342,7 +339,7 @@ function Home(props) {
                 }
 
                 </div>
-            </section>
+            </section> */}
 
            
 

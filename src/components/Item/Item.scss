@@ -1,10 +1,11 @@
 @import  "../../App.scss";
 .item{
+    background-color: white;
     margin: 8% 2%;
     border-radius: 5px;
     height: 90%;
     padding-top: 5%;
-    padding-bottom: 10%;
+    padding-bottom: 3%;
     
     
    .discount{
@@ -44,12 +45,22 @@
            font-weight: bold;
            padding:2%;
        }
+    }
+    .cartcountdiv{
+        margin: 2%;
+        .count{
+            font-size: 1.2em;
+        }
+        .iconbuttonadd{
+            background-color:#fe5f030a ;
+        }
    }
    img{
        width: 100%;
        display: block;
        margin: auto;
    }
+ 
    
    
 }

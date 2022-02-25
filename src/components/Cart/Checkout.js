@@ -8,6 +8,8 @@ import axios from 'axios'
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import safeandsecurep from './safeandsecurep.jpeg'
 import {connect} from 'react-redux'
+import Cashe from './CASHe Logo 2.png'
+import Razorpaylogo from './Razorpaay.png'
 import WooCommerceAPI from 'woocommerce-api'
 function Checkout(props) {
   const [selected,setSelected]=React.useState(2)
@@ -24,7 +26,7 @@ function Checkout(props) {
   const openPayModal = () => {
     const options = {
       key: 'rzp_test_Sn8RPLYLlLXlyD',
-      amount: total*100, //  = INR 1
+      amount: total*100, //  = ₹ 1
       name: 'Hellomitr',
       description: 'some description',
       image: 'https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png',
@@ -55,10 +57,15 @@ function Checkout(props) {
       script.async = true;
       document.body.appendChild(script);
       let total = 0
-      props.cart.map((item)=>{
-        total = total + parseInt(item.price)*item.count
-      })
-      setTotal(total)
+      if(props.location.state){
+        setTotal(props.singleItem.price)
+      }else{
+        props.cart.map((item)=>{
+          total = total + parseInt(item.price)*item.count
+        })
+        setTotal(total)
+      }
+      
       // axios.get(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/fetchCASHePlans
       // /9665276786/10000`,{headers:{Authorization:'2MLFiopx+givx5mPf8CchQ=='}})
       // .then(res=>{
@@ -131,7 +138,7 @@ function Checkout(props) {
 
               <div onClick={()=>setDelivery(1)} className={delivery===1?"col-5 pg active":"col-5 pg"}>
                 <h5>Instant</h5>
-                <p>Additional INR499/- Only</p>
+                <p>Additional ₹499/- Only</p>
               </div>
 
             </div>
@@ -143,17 +150,18 @@ function Checkout(props) {
             <p>Choose Payment Method for your Order</p>
             <div className="m-auto row justify-content-between">
               <div onClick={()=>setSelected(3)} className={selected===3?"col-5 pg active":"col-5 pg"}>
-                <h5>Cashe</h5>
+              <img src={Cashe} alt="razorpya" />
+                
                 <p>EMI Tenure of 3 months</p>
               </div>
 
               <div onClick={()=>setSelected(6)} className={selected===6?"col-5 pg active":"col-5 pg"}>
-                <h5>Cashe</h5>
+              <img src={Cashe} alt="razorpya" />
                 <p>EMI Tenure of 6 months</p>
               </div>
 
               <div onClick={()=>setSelected(2)} className={selected===2?"col-5 pg active":"col-5 pg"}>
-                <h5>Razor Pay</h5>
+              <img src={Razorpaylogo} alt="razorpya" />
                 <p>Credit Card / Debit Card / Net Banking / UPI</p>
               </div>
 
@@ -173,21 +181,21 @@ function Checkout(props) {
               <h5>Your order</h5>
               <div className="row m-auto justify-content-between">
                 <p className="greytext">Subtotal:</p>
-                <p><b>INR 1523</b></p>
+                <p><b>₹ 1523</b></p>
               </div>
 
               <div className="row m-auto justify-content-between">
                 <p className="greytext">Shipping:</p>
-                <p><b>INR 23</b></p>
+                <p><b>₹ 23</b></p>
               </div>
 
               <div className="row m-auto justify-content-between">
                 <p className="greytext">Discount:</p>
-                <p><b>INR 1623</b></p>
+                <p><b>₹ 1623</b></p>
               </div>
 
               <hr />
-              <p className="total">INR {total}</p>
+              <p className="total">₹ {total}</p>
           </div>
         <div className="row">
           <div className="col-1">
@@ -212,10 +220,11 @@ function Checkout(props) {
   )
 }
 
-const mapStateToProps = ({user,cart})=>{
+const mapStateToProps = ({user,cart,singleItem})=>{
 return {
   user:user.user,
-  cart
+  cart,
+  singleItem
 }
 }
 

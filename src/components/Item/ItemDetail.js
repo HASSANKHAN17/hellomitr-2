@@ -15,16 +15,34 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
 import {addToCart,increaseItemCount,decreaseItemCount,removeFromCart} from '../redux/cart/cartActions'
+import {storeSingleItem} from '../redux/SingleItem/singleItemActions'
 import {connect} from 'react-redux'
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton'
 import RemoveIcon from '@mui/icons-material/Remove';
+import buynowpaylater from './WhatsApp Image 2022-02-15 at 2.49.46 PM.jpeg'
+import bajajfinance from './bajaj-finserv-ltd-zenda-kadrabad-jalna-home-loans-0ndctd4agc.webp'
+import zestmoney from './zest.jfif'
+import hdfc from './hdfc.jpg'
+import icici from './icici.png'
+import kotak from './Kotak_Mahindra_Bank_logo.png'
+import instacred from './instacred.png'
+import WooCommerceAPI from 'woocommerce-api'
 function ItemDetail(props) {
+
+  var WooCommerce = new WooCommerceAPI({
+    url: 'https://shop.hellomitr.com/',
+    consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
+    consumerSecret: 'cs_c1c28f110eee7b2a528cde222bad766892f004d0',
+    wpAPI: true,
+    version: 'wc/v1'
+  });
   let details = props.location.state;
-    const [image,setImage]=React.useState(details.images[0].src)
+    const [image,setImage]=React.useState(details?details.images[0].src:"")
     const [value, setValue] = React.useState('1');
     const [inCart,setInCart] = React.useState([])
-
+    const [data,setData]=React.useState([])
+    const [reviews,setReviews]=React.useState([])
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -41,8 +59,25 @@ function ItemDetail(props) {
     }else{
       setInCart([])
     }
-  },[props.cart])
-console.log(props)
+    WooCommerce.getAsync(`products?category=${props.cid}&per_page=5`)
+            .then((result) => {
+            console.log(JSON.parse(result.toJSON().body))
+            setData(JSON.parse(result.toJSON().body))
+            })
+            .catch((error) => {
+            console.log(error.result.data);
+            });
+            WooCommerce.getAsync(`products/reviews/${details.id}`)
+            .then((result) => {
+            console.log(JSON.parse(result.toJSON().body))
+            setReviews(JSON.parse(result.toJSON().body))
+            })
+            .catch((error) => {
+            console.log(error.result.data);
+            });
+           
+  },[])
+console.log(reviews)
   return (
     <div>
     <Header id="1" />
@@ -50,8 +85,8 @@ console.log(props)
 
     <section className="itemdetail-container">
 
-    <div className="row m-auto justify-content-between itemdetail">
-        <div className="col-6 imagediv">
+    <div className="row m-auto  itemdetail">
+        <div className="col-4 imagediv">
             <img src={image} alt="watch" className="mainimg" />
             <div className="row ml-auto mt-5 justify-content-between">
             {
@@ -60,7 +95,9 @@ console.log(props)
             </div>
         </div>
 
-        <div className='col-6 productdetail'>
+
+
+        <div className='col-4 productdetail'>
             <h1>{details.name}</h1>
             <p>
                 <span className="ratingdiv">{details.average_rating} <StarIcon /></span>
@@ -79,7 +116,10 @@ console.log(props)
 
             {inCart.length<=0?<div className="row m-auto">
                 <Button onClick={()=>props.addToCart(details)} variant="contained">Add to cart</Button>
-                <Button variant="contained" className="ml-3">Buy Now</Button>
+                <Button onClick={()=>{
+                  props.storeSingleItem(details)
+                  props.history.push("/checkout",true)
+                  }} variant="contained" className="ml-3">Buy Now</Button>
             </div>:
             <div className="row m-auto align-items-center">
               <IconButton  onClick={()=>inCart[0].count===1?props.removeFromCart(details):props.decreaseItemCount(details.id)} color="primary" className="iconbutton">
@@ -95,6 +135,30 @@ console.log(props)
             }
             <p className="mt-3">Sold by: Hellomitr outlook</p>
         </div>
+
+
+
+
+          <div className="col-2 shadow-sm buynowpaylater">
+            {/* <img src={buynowpaylater} /> */}
+            <p className="heading">Buy Now Pay Later Offers</p>
+            <hr />
+            <p><img src={bajajfinance} alt="bjf"/> Bajaj Finserv No Cost EMI</p>
+            <p><img src={zestmoney} alt="zest" /> ZestMoney No Cost EMI</p>
+            <p><img src={hdfc} alt="hdfc" /> HDFC Buy Now Pay Later</p>
+            <p><img src={icici} alt="hdfc" /> ICICI Bank Debit Card EMI</p>
+            <p><img src={kotak} alt="hdfc" /> Kotak Bank Debit Card EMI</p>
+            <p><img src={instacred} alt="hdfc" /> Instacred Cardless EMI</p>
+          </div>
+
+
+
+
+
+
+
+
+
     </div>
 
     <Box className="descriptionreviewtab" sx={{ width: '100%', typography: 'body1' }}>
@@ -131,27 +195,17 @@ console.log(props)
 
 
             <section className="mt-5 dod">
-                <h2><CardGiftcardIcon className="icon" /> New Arrivals</h2>
+                <h2><CardGiftcardIcon className="icon" /> Similar Items</h2>
                 <div className="row m-auto">
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail")}>
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
+                {
+                    data.length>0?(
+                        data.map((item,index)=>(
+                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
+                            <Item cid={126} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            </div>            
+                    ))
+                    ):null
+                }
 
                 </div>
             </section>
@@ -178,27 +232,17 @@ console.log(props)
 
 
         <section className="mt-5 dod">
-                <h2><CardGiftcardIcon className="icon" /> New Arrivals</h2>
+                <h2><CardGiftcardIcon className="icon" /> Similar Items</h2>
                 <div className="row m-auto">
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail")}>
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
-
-                <div className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <Item />
-                </div>
+                {
+                    data.length>0?(
+                        data.map((item,index)=>(
+                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
+                            <Item cid={126} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            </div>            
+                    ))
+                    ):null
+                }
 
                 </div>
             </section>
@@ -226,7 +270,8 @@ const mapDispatchToProps = (dispatch)=>{
     removeFromCart:(item)=>dispatch(removeFromCart(item)),
     addToCart:(item)=>dispatch(addToCart(item)),
     increaseItemCount:(id)=>dispatch(increaseItemCount(id)),
-    decreaseItemCount:(id)=>dispatch(decreaseItemCount(id))
+    decreaseItemCount:(id)=>dispatch(decreaseItemCount(id)),
+    storeSingleItem:(item)=>dispatch(storeSingleItem(item))
   }
 }
 
