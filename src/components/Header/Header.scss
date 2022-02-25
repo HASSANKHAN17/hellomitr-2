@@ -31,12 +31,20 @@
         .icon{
             font-size: 1.6em;
         }
+      
         padding-right: 2%;
     }
     .icon-bg{
         background-color: rgb(68, 68, 68);
     }
     .icon-bg:hover{
+        background-color: rgb(146, 146, 146);
+    }
+    .icon-bg-cart{
+        background-color: rgb(68, 68, 68);
+        margin-right: 15px;
+    }
+    .icon-bg-cart:hover{
         background-color: rgb(146, 146, 146);
     }
 }

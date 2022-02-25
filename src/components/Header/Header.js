@@ -18,7 +18,7 @@ const Header = (props) => {
 	const handleSubmit = (e)=>{
 		e.preventDefault()
 		props.history.push("/categories",searchItem)
-	}
+	}//sd
 	return (
       <div className="header row ">
 
@@ -39,7 +39,7 @@ const Header = (props) => {
 
 		  <Link to="cart">
 		  <Badge badgeContent={props.cart.length} color="primary">
-			<IconButton className="icon-bg" color="tertiary">
+			<IconButton className="icon-bg-cart" color="tertiary">
 				<ShoppingBagIcon className="icon" />
 			</IconButton>
 			</Badge>
