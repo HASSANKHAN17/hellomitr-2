@@ -28,7 +28,7 @@ function TransactionSingle(props) {
         let transactionId = props.location.search.split("?")[2]
         transactionId=transactionId.split("=")[1]
         let addressNo = props.location.search.split("?")[1]
-        let line_items = {product_id:props.singleItem.id,quantity:1,images:props.singleItem.images}
+        let line_items = [{product_id:props.singleItem.id,quantity:1,images:props.singleItem.images}]
         transactionId = transactionId.split("&")[0]
         let payment_method = props.location.state?"razorpay":"cashe"
         console.log(addressNo,transactionId,payment_method)
@@ -36,8 +36,9 @@ function TransactionSingle(props) {
 
 
         if(transactionId==="null"){
-            //failed transaction
-            setTransactionStatus(false)
+          //failed transaction
+          setTransactionStatus(false)
+          props.history.push("/checkout")
                   
         }else{
             console.log("transactionsuccess")
@@ -59,7 +60,7 @@ function TransactionSingle(props) {
                             .then((response) => {
                               console.log(JSON.parse(response.toJSON().body));
                               props.emptySingleItem()
-                                window.location.href = `http://localhost:3000/orders`;
+                                //window.location.href = `http://localhost:3000/orders`;
                             })
                             .catch((error) => {
                               console.log(error);
@@ -82,7 +83,7 @@ function TransactionSingle(props) {
                     .then((response) => {
                       console.log(JSON.parse(response.toJSON().body));
                         props.emptySingleItem()
-                        window.location.href = `http://localhost:3000/orders`;
+                        //window.location.href = `http://localhost:3000/orders`;
                     })
                     .catch((error) => {
                       console.log(error);

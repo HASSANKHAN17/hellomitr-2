@@ -45,7 +45,7 @@ const Header = (props) => {
 			</Badge>
 			</Link>
 
-			<Link to="signup">
+			<Link to={!props.userToken?"signup":"myprofile"}>
 			<IconButton className="icon-bg" color="tertiary">
 				<AccountCircleIcon className="icon" />
 			</IconButton>

@@ -34,9 +34,10 @@ function Transaction(props) {
 
 
 
-        if(transactionId==="transactionId=null"){
+        if(transactionId==="null"){
             //failed transaction
             setTransactionStatus(false)
+            props.history.push("/checkout")
                   
         }else if(transactionId.length>20){
             console.log("transactionsuccess")
@@ -57,7 +58,7 @@ function Transaction(props) {
                             .then((response) => {
                               console.log(JSON.parse(response.toJSON().body));
                                 props.emptyCart()
-                                window.location.href = `http://localhost:3000/orders`;
+                                //window.location.href = `http://localhost:3000/orders`;
                             })
                             .catch((error) => {
                               console.log(error);
@@ -79,7 +80,7 @@ function Transaction(props) {
                     .then((response) => {
                       console.log(JSON.parse(response.toJSON().body));
                         props.emptyCart()
-                        window.location.href = `http://localhost:3000/orders`;
+                        //window.location.href = `http://localhost:3000/orders`;
                     })
                     .catch((error) => {
                       console.log(error);

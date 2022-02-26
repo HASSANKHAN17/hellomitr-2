@@ -81,8 +81,8 @@ function ItemDetail(props) {
             console.log(error.result.data);
             });
            
-  },[])
-console.log(reviews)
+  },[props.cart])
+console.log(inCart)
   return (
     <div>
     <Header id="1" />
@@ -96,8 +96,8 @@ console.log(reviews)
             
             <div className=" imagerow">
             {
-              details.images.map((item,index)=><img key={index} src={item.src} 
-              onClick={()=>setImage(item.src)} alt="watch" className="subimg" />)
+              details.images.length>0?details.images.map((item,index)=><img key={index} src={item.src} 
+              onClick={()=>setImage(item.src)} alt="watch" className="subimg" />):null
             }
             </div>
         </div>
@@ -114,6 +114,8 @@ console.log(reviews)
             <div className="availableoffers">
               <p><b>Available Offers</b></p>
               <p><img src={cashelogo} alt="cashe" /> Special Launch Offer - Free Earbuds Worth upto ₹1999</p>
+              <p><img src={cashelogo} alt="cashe" /> No Cost EMI - 3 M & 6 M</p>
+              <p><img src={cashelogo} alt="cashe" /> Zero Downpayment</p>
             </div>
 
             <section className="pricerow m-auto row align-items-center">
@@ -133,6 +135,7 @@ console.log(reviews)
                     props.storeSingleItem(details)
                     props.history.push("/checkout",true)
                   }else{
+                    props.storeSingleItem(details)
                     props.history.push("/signup",true)
                   }
                   
@@ -152,7 +155,7 @@ console.log(reviews)
               </IconButton>
             </div>
             }
-            <p className="mt-3">Sold by: Hellomitr outlook</p>
+            <p className="mt-3">Sold by: <b>Hellomitr outlook</b></p>
         </div>
 
 
@@ -213,21 +216,7 @@ console.log(reviews)
 
 
 
-            <section className="mt-5 dod">
-                <h2><RankingSVG  /> Recommended Items</h2>
-                <div className="row m-auto">
-                {
-                    data.length>0?(
-                        data.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item cid={126} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
-                            </div>            
-                    ))
-                    ):null
-                }
-
-                </div>
-            </section>
+            
         </TabPanel>
         <TabPanel value="2">
 
@@ -250,26 +239,26 @@ console.log(reviews)
 
 
 
-        <section className="mt-5 dod">
-                <h2><RankingSVG /> Recommended Items</h2>
-                <div className="row m-auto">
-                {
-                    data.length>0?(
-                        data.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item cid={126} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
-                            </div>            
-                    ))
-                    ):null
-                }
-
-                </div>
-            </section>
+   
         </TabPanel>
       </TabContext>
     </Box>
     </section>
+    <section className="mt-5 mx-5 dod">
+                <h2><RankingSVG  /> Recommended Items</h2>
+                <div className="row  justify-content-around">
 
+                {
+                    data.length>0?(
+                        data.map((item,index)=>(
+                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2 itemdod">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
+                            </div>            
+                    ))
+                    ):null
+                }
+                </div>
+            </section>
 
 
     <Footer />

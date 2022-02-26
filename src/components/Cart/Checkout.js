@@ -16,6 +16,7 @@ function Checkout(props) {
   const [address,setAddress]=React.useState(0)
   const [delivery,setDelivery]=React.useState(0)
   const [total,setTotal]=React.useState(0)
+  const [subtotal,setSubTotal]=React.useState(0)
   var WooCommerce = new WooCommerceAPI({
     url: 'https://shop.hellomitr.com/',
     consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -23,10 +24,14 @@ function Checkout(props) {
     wpAPI: true,
     version: 'wc/v1'
   });
+  
+  const finalTotal = ()=>{
+    return delivery===1?total+499:total
+  }
   const openPayModal = () => {
     const options = {
       key: 'rzp_test_Sn8RPLYLlLXlyD',
-      amount: total*100, //  = ₹ 1
+      amount: finalTotal()*100, //  = ₹ 1
       name: 'Hellomitr',
       description: 'some description',
       image: 'https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png',
@@ -62,13 +67,17 @@ function Checkout(props) {
       script.async = true;
       document.body.appendChild(script);
       let total = 0
-      if(props.singleItem){
-        setTotal(props.singleItem.price)
+      let subTotal = 0;
+      if(Object.keys(props.singleItem).length>0){
+        setTotal(parseInt(props.singleItem.price))
+        setSubTotal(props.singleItem.regular_price?parseInt(props.singleItem.regular_price):parseInt(props.singleItem.price))
       }else{
         props.cart.map((item)=>{
           total = total + parseInt(item.price)*item.count
+          subTotal = item.regular_price?subTotal+parseInt(item.regular_price)*item.count:subTotal+parseInt(item.price)*item.count
         })
         setTotal(total)
+        setSubTotal(subTotal)
       }
       
       // axios.get(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/fetchCASHePlans
@@ -82,7 +91,7 @@ function Checkout(props) {
   }, []);
 //console.log(total)
   const openCasheModal = ()=>{
-    axios.post(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:10000,tenure:6,mobilenumber:'9665276786',authKey:"2MLFiopx+givx5mPf8CchQ==",leafRefNo:'123456785',merchantname:"Amazon",returnPageURL:`http://localhost:3000/transaction?address=${address}`})
+    axios.post(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:finalTotal(),tenure:selected,mobilenumber:'',authKey:"2MLFiopx+givx5mPf8CchQ==",leafRefNo:Math.floor(1000 + Math.random() * 9000),merchantname:"Hellomitr",returnPageURL:`http://localhost:3000/${Object.keys(props.singleItem).length>0?'singletransaction':'transaction'}?address=${address}`})
     .then(res=>{
       console.log(res);
       window.location.href = `https://secure.qapayments.cashe.co.in/Login?transaction=${res.data.entity}`;
@@ -186,21 +195,21 @@ function Checkout(props) {
               <h5>Your order</h5>
               <div className="row m-auto justify-content-between">
                 <p className="greytext">Subtotal:</p>
-                <p><b>₹ 1523</b></p>
+                <p><b>₹ {subtotal}</b></p>
               </div>
 
               <div className="row m-auto justify-content-between">
                 <p className="greytext">Shipping:</p>
-                <p><b>₹ 23</b></p>
+                <p><b>₹ {delivery?499:"-"}</b></p>
               </div>
 
               <div className="row m-auto justify-content-between">
                 <p className="greytext">Discount:</p>
-                <p><b>₹ 1623</b></p>
+                <p><b>₹ {subtotal-total}</b></p>
               </div>
 
               <hr />
-              <p className="total">₹ {total}</p>
+              <p className="total">₹ {finalTotal()}</p>
           </div>
         <div className="row">
           <div className="col-1">

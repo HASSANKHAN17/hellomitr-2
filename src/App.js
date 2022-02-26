@@ -13,6 +13,7 @@ import OrderDetail from './components/Dashboard/Orders/OrderDetail';
 import Transaction from './components/Transaction/Transaction'
 import Addresses from './components/Dashboard/Addresses/Addresses'
 import TransactionSingle from './components/Transaction/TransactionSingle';
+import Otp from './components/Auth/Otp'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Route path="/transaction" component={Transaction} />
       <Route path="/singletransaction" component={TransactionSingle} />
       <Route path="/orderdetail" component={OrderDetail} />
+      <Route path="/otp" component={Otp} />
 
     </Switch>
   );

@@ -1,3 +1,5 @@
+@import  "../../App.scss";
+
 .authcontainer{
     background-color: white;
     text-align: center;
@@ -27,4 +29,22 @@
             cursor: pointer;
         }
     }
+}
+
+.otp{
+    width: 40%;
+    text-align: center;
+    padding:5% 10%;
+    section{
+        margin: 8% 0;
+    }
+    .otpinput{
+        width: 1.5em !important;
+        height: 4rem;
+        margin: 0 .8rem;
+        font-size: 2rem;
+        border-radius: 5px;
+        border: 2px solid #cccf;
+      }
+   
 }

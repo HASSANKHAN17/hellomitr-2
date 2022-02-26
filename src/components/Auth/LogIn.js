@@ -17,10 +17,12 @@ import {setUser} from '../redux/user/userActions'
 import { useForm } from 'react-hook-form';
 import Alert from '@mui/material/Alert'
 import WooCommerceAPI from 'woocommerce-api'
+import SimpleBackdrop from '../utils/SimpleBackdrop';
 import {connect} from 'react-redux'
 function LogIn(props) {
   const {handleSubmit,register,formState:{errors}}=useForm()
   const [error,setError]=React.useState("")
+  const [loading,setLoading]=React.useState(false)
   var WooCommerce = new WooCommerceAPI({
     url: 'https://shop.hellomitr.com/',
     consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -53,16 +55,20 @@ function LogIn(props) {
       };
 
       const onSubmit = (data)=>{
+        setLoading(true)
         WooCommerce.getAsync(`customers?email=${data.email}`)
         .then((response) => {
           console.log("user",JSON.parse(response.toJSON().body))
+          setLoading(false)
           if(JSON.parse(response.toJSON().body).length>0){
-            props.setUser(JSON.parse(response.toJSON().body)[0])
-            if(props.location.state){
-              props.history.push("/checkout")
-            }else{
-              props.history.push("/myprofile")
-            }
+            let user = JSON.parse(response.toJSON().body)[0]
+            props.history.push("/otp",{user,checkout:props.location.state,mobile:data.phone})
+            // props.setUser(JSON.parse(response.toJSON().body)[0])
+            // if(props.location.state){
+            //   props.history.push("/checkout")
+            // }else{
+            //   props.history.push("/myprofile")
+            // }
             
           }else{
             setError("User doesn't exist")
@@ -70,16 +76,20 @@ function LogIn(props) {
         })
         .catch((error) => {
           console.log(error);
+          setLoading(false)
+          
         });
       }
 
   return (
     <div className="shadow authcontainer">
+      <SimpleBackdrop open={loading} />
         <h1>Welcome To Hellomitr</h1>
         <p>Log in with email & password</p>
         <form onSubmit={handleSubmit(onSubmit)}>
         
-        <TextField {...register('email',{required:true})} error={errors.email?true:false} className="textfield" id="outlined-basics" variant="outlined" label="Email or Phone" fullWidth />
+        <TextField {...register('email',{required:true})} error={errors.email?true:false} className="textfield" id="outlined-basics" variant="outlined" label="Email" fullWidth />
+        <TextField {...register('phone',{required:true})} error={errors.phone?true:false}  className="textfield" id="outlined-basics" variant="outlined" label="Phone" fullWidth />
         {/* <FormControl className="textfield" sx={{width: '100%' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
