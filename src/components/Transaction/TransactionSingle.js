@@ -11,6 +11,7 @@ import cancel from './cancel.png'
 let seconds = 5
 
 function TransactionSingle(props) {
+    console.log("transactionsingleprops",props)
     var WooCommerce = new WooCommerceAPI({
         url: 'https://shop.hellomitr.com/',
         consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -27,21 +28,22 @@ function TransactionSingle(props) {
         let transactionId = props.location.search.split("?")[2]
         transactionId=transactionId.split("=")[1]
         let addressNo = props.location.search.split("?")[1]
-        let line_items = {product_id:props.singleItem.id,quantity:props.singleItem.count,images:props.singleItem.images}
+        let line_items = {product_id:props.singleItem.id,quantity:1,images:props.singleItem.images}
         transactionId = transactionId.split("&")[0]
         let payment_method = props.location.state?"razorpay":"cashe"
         console.log(addressNo,transactionId,payment_method)
 
 
 
-        if(transactionId==="transactionId=null"){
+        if(transactionId==="null"){
             //failed transaction
             setTransactionStatus(false)
                   
-        }else if(transactionId.length>20){
+        }else{
             console.log("transactionsuccess")
             if(addressNo === "address=1"){
                 //billing
+                
                     const data = {
                             payment_method: "razor pay",
                             payment_method_title: "Bank Transfer",
@@ -52,7 +54,7 @@ function TransactionSingle(props) {
                             transaction_id:transactionId
                         
                           };
-                        
+                          console.log("inside billing")        
                           WooCommerce.postAsync("orders", data)
                             .then((response) => {
                               console.log(JSON.parse(response.toJSON().body));
@@ -64,6 +66,7 @@ function TransactionSingle(props) {
                             });
             }else{
                 //shipping
+                
                 const data = {
                     payment_method: "razor pay",
                     payment_method_title: "Bank Transfer",
@@ -74,7 +77,7 @@ function TransactionSingle(props) {
                     transaction_id:transactionId
                 
                   };
-                
+                  console.log("inside shippin")
                   WooCommerce.postAsync("orders", data)
                     .then((response) => {
                       console.log(JSON.parse(response.toJSON().body));

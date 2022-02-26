@@ -28,6 +28,9 @@ import icici from './icici.png'
 import kotak from './Kotak_Mahindra_Bank_logo.png'
 import instacred from './instacred.png'
 import WooCommerceAPI from 'woocommerce-api'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import {ReactComponent as RankingSVG} from './ranking-1.svg'
 function ItemDetail(props) {
 
   var WooCommerce = new WooCommerceAPI({
@@ -88,9 +91,11 @@ console.log(reviews)
     <div className="row m-auto  itemdetail">
         <div className="col-4 imagediv">
             <img src={image} alt="watch" className="mainimg" />
-            <div className="row ml-auto mt-5 justify-content-between">
+            
+            <div className=" imagerow">
             {
-              details.images.map((item,index)=><img key={index} src={item.src} onClick={()=>setImage(item.src)} alt="watch" className="subimg" />)
+              details.images.map((item,index)=><img key={index} src={item.src} 
+              onClick={()=>setImage(item.src)} alt="watch" className="subimg" />)
             }
             </div>
         </div>
@@ -104,6 +109,11 @@ console.log(reviews)
                 <span className="ratingreview">({details.rating_count} Ratings & Reviews)</span>
             </p>
 
+            <div className="availableoffers">
+              <p><b>Available Offers</b></p>
+              <p>Special Launch Offer - Free Earbuds Worth upto ₹1999</p>
+            </div>
+
             <section className="pricerow m-auto row align-items-center">
                 <div className="price">₹{details.price}</div>
                 <div className="mrp">{details.regular_price}</div>
@@ -114,13 +124,20 @@ console.log(reviews)
             (Inclusive of all taxes)
             </p>
 
-            {inCart.length<=0?<div className="row m-auto">
+            {inCart.length<=0?(details.in_stock?<div className="row m-auto">
                 <Button onClick={()=>props.addToCart(details)} variant="contained">Add to cart</Button>
                 <Button onClick={()=>{
-                  props.storeSingleItem(details)
-                  props.history.push("/checkout",true)
+                  if(props.user){
+                    props.storeSingleItem(details)
+                    props.history.push("/checkout",true)
+                  }else{
+                    props.history.push("/signup",true)
+                  }
+                  
                   }} variant="contained" className="ml-3">Buy Now</Button>
             </div>:
+            <Button variant="contained" disabled>out of stock</Button>
+            ):
             <div className="row m-auto align-items-center">
               <IconButton  onClick={()=>inCart[0].count===1?props.removeFromCart(details):props.decreaseItemCount(details.id)} color="primary" className="iconbutton">
                 <RemoveIcon />
@@ -139,7 +156,7 @@ console.log(reviews)
 
 
 
-          <div className="col-2 shadow-sm buynowpaylater">
+          <div className="col-2 shadow buynowpaylater">
             {/* <img src={buynowpaylater} /> */}
             <p className="heading">Buy Now Pay Later Offers</p>
             <hr />
@@ -180,7 +197,7 @@ console.log(reviews)
             <section className="attributes"> 
                 {
                   details.attributes.map((item,index)=>(
-                    <div className="row">
+                    <div className="row align-items-center">
                     <p className="col-4 key">{item.name}</p>
                     <p className="col-8 value">{item.options.map(op=><p>{op}</p>)}</p>
                     </div>
@@ -195,7 +212,7 @@ console.log(reviews)
 
 
             <section className="mt-5 dod">
-                <h2><CardGiftcardIcon className="icon" /> Similar Items</h2>
+                <h2><RankingSVG  /> Recommended Items</h2>
                 <div className="row m-auto">
                 {
                     data.length>0?(
@@ -232,7 +249,7 @@ console.log(reviews)
 
 
         <section className="mt-5 dod">
-                <h2><CardGiftcardIcon className="icon" /> Similar Items</h2>
+                <h2><RankingSVG /> Recommended Items</h2>
                 <div className="row m-auto">
                 {
                     data.length>0?(
@@ -259,9 +276,10 @@ console.log(reviews)
   )
 }
 
-const mapStateToProps = ({cart})=>{
+const mapStateToProps = ({cart,user})=>{
   return {
-    cart
+    cart,
+    user:user.user
   }
 }
 
@@ -276,3 +294,19 @@ const mapDispatchToProps = (dispatch)=>{
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ItemDetail)
+
+{/* <div className="row imagerow">
+            <CarouselProvider
+                naturalSlideWidth={10}
+                naturalSlideHeight={2}
+                totalSlides={3}
+                isPlaying
+                >
+                <Slider>
+                {
+                details.images.map((item,index)=><Slide index={index}><img key={index} src={item.src} 
+                onClick={()=>setImage(item.src)} alt="watch" className="subimg" /></Slide>)
+                }
+                </Slider>
+            </CarouselProvider>
+            </div> */}

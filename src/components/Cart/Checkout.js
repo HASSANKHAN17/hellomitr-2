@@ -32,7 +32,12 @@ function Checkout(props) {
       image: 'https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png',
       handler: function(response) {
           console.log(response);
-          props.history.push(`/transaction?address=${address}?transactionId=${response.razorpay_payment_id}`,true)
+          if(props.singleItem){
+            props.history.push(`/singletransaction?address=${address}?transactionId=${response.razorpay_payment_id}`,true)
+          }else{
+            props.history.push(`/transaction?address=${address}?transactionId=${response.razorpay_payment_id}`,true)
+          }
+          
       
       },
       prefill: {
@@ -57,7 +62,7 @@ function Checkout(props) {
       script.async = true;
       document.body.appendChild(script);
       let total = 0
-      if(props.location.state){
+      if(props.singleItem){
         setTotal(props.singleItem.price)
       }else{
         props.cart.map((item)=>{

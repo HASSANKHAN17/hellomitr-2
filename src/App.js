@@ -12,6 +12,7 @@ import Orders from './components/Dashboard/Orders/Orders'
 import OrderDetail from './components/Dashboard/Orders/OrderDetail';
 import Transaction from './components/Transaction/Transaction'
 import Addresses from './components/Dashboard/Addresses/Addresses'
+import TransactionSingle from './components/Transaction/TransactionSingle';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Route path="/orders" component={Orders} />
       <Route path="/addresses" component={Addresses} />
       <Route path="/transaction" component={Transaction} />
+      <Route path="/singletransaction" component={TransactionSingle} />
       <Route path="/orderdetail" component={OrderDetail} />
 
     </Switch>

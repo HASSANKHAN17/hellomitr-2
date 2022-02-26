@@ -55,12 +55,12 @@ function Home(props) {
             version: 'wc/v1'
           });
           //WooCommerce.getAsync("products?category=126&per_page=100&category=193include")
-          WooCommerce.getAsync("products?orderby=date&order=desc&per_page=6")
+          WooCommerce.getAsync("products?orderby=date&order=desc&per_page=4")
             .then((result) => {
             console.log("new arr",JSON.parse(result.toJSON().body))
             setNewArrivals(JSON.parse(result.toJSON().body))
             })
-          WooCommerce.getAsync("products?category=126&per_page=6")
+          WooCommerce.getAsync("products?category=126&per_page=4")
             .then((result) => {
             console.log("phone",JSON.parse(result.toJSON().body))
             setSmartPhone(JSON.parse(result.toJSON().body))
@@ -68,7 +68,7 @@ function Home(props) {
             .catch((error) => {
             console.log(error.result.data);
             });
-            WooCommerce.getAsync("products?category=181&per_page=6")
+            WooCommerce.getAsync("products?category=181&per_page=4")
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setLedtv(JSON.parse(result.toJSON().body))
@@ -76,7 +76,7 @@ function Home(props) {
             .catch((error) => {
             console.log(error.result.data);
             });
-            WooCommerce.getAsync("products?category=97&per_page=6")
+            WooCommerce.getAsync("products?category=97&per_page=4")
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setLaptop(JSON.parse(result.toJSON().body))
@@ -84,7 +84,7 @@ function Home(props) {
             .catch((error) => {
             console.log(error.result.data);
             });
-            WooCommerce.getAsync("products?category=193&per_page=6")
+            WooCommerce.getAsync("products?category=193&per_page=4")
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setAccessories(JSON.parse(result.toJSON().body))
@@ -93,7 +93,7 @@ function Home(props) {
             console.log(error.result.data);
             });
             
-            WooCommerce.getAsync("products?category=103&per_page=6")
+            WooCommerce.getAsync("products?category=103&per_page=4")
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setSmartWatch(JSON.parse(result.toJSON().body))
@@ -126,7 +126,7 @@ function Home(props) {
         loading?<Loading />:<div className="home">
             <Header id="1" />
             <SubHeader />
-                <CarouselProvider
+            <CarouselProvider
                 naturalSlideWidth={100}
                 naturalSlideHeight={22}
                 totalSlides={3}
@@ -141,11 +141,11 @@ function Home(props) {
 
             <section className="dod">
                 <h2><NewArrivals /> New Arrivals</h2>
-                <div className="row m-auto">
+                <div className="row m-auto justify-content-around">
                 {
                     newArrivals.length>0?(
                         newArrivals.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
                             <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
@@ -194,13 +194,12 @@ function Home(props) {
 
             <section className="shadow-sm trending">
                 <h2><SmartphoneRoundedIcon className="icon" /> Smartphones</h2>
-                <div className="row m-auto">
-                
+                <div className="row m-auto justify-content-around">
                 {
                     smartphone.length>0?(
                         smartphone.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item cid={126} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -213,7 +212,7 @@ function Home(props) {
 
 
             <section className="shadow-sm popularitems" style={{textAlign:"center"}}>
-                    <h1>Popular Items</h1>
+                    <h1>Buy Now Pay Later Offers</h1>
                     <CarouselProvider
                 naturalSlideWidth={50}
                 naturalSlideHeight={15}
@@ -231,12 +230,12 @@ function Home(props) {
 
             <section className="shadow-sm trending">
                 <h2><TvRoundedIcon className="icon" /> LED TVs</h2>
-                <div className="row m-auto">
+                <div className="row m-auto justify-content-around">
                 {
                     ledtv.length>0?(
                         ledtv.map((item,index)=>(
-                            <div key={index}  className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item cid={181} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -247,12 +246,12 @@ function Home(props) {
 
             <section className="shadow-sm trending">
                 <h2><LaptopMacRoundedIcon className="icon" /> Laptop</h2>
-                <div className="row m-auto">
+                <div className="row m-auto justify-content-around">
                 {
                     laptop.length>0?(
                         laptop.map((item,index)=>(
-                            <div  key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item cid={97} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -263,12 +262,12 @@ function Home(props) {
 
             <section className="shadow-sm trending">
                 <h2><HeadphonesBatteryRoundedIcon className="icon" /> Accessories</h2>
-                <div className="row m-auto">
+                <div className="row m-auto justify-content-around">
                 {
                     Accessories.length>0?(
                         Accessories.map((item,index)=>(
-                            <div class key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item cid={193} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
@@ -296,16 +295,17 @@ function Home(props) {
 
             <section className="trending">
                 <h2><WatchRoundedIcon className="icon" /> Smartwatch</h2>
-                <div className="row m-auto">
+                <div className="row m-auto justify-content-around">
                 {
                     smartwatch.length>0?(
                         smartwatch.map((item,index)=>(
-                            <div clas key={index} className="col-6 col-sm-2 col-md-2 col-lg-2 col-xl-2" onClick={()=>props.history.push("/itemdetail",item)}>
-                            <Item cid={103} name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
                 }
+
                 </div>
             </section>
 

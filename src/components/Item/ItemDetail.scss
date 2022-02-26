@@ -11,13 +11,13 @@
         .mainimg{
             width: 30vw;
         }
-        .row{
-            padding:0 30%;
+        .imagerow{
             .subimg{
                 border:1px solid #cccf;
                 border-radius: 5px;
                 padding:2%;
                 width: 5vw;
+                margin: 1%;
             }
             .subimg:hover{
                 cursor: pointer;
@@ -30,6 +30,7 @@
 .productdetail{
     h1{
         font-family: $secondary-font;
+        font-weight: 400;
     }
     .ratingdiv{
         font-size: 1.1em;
@@ -41,6 +42,13 @@
     .ratingreview{
         margin-left: 2%;
         font-size: 1.1em;
+    }
+    .availableoffers{
+        margin-top: 5%;
+        margin-bottom: 1%;
+        p{
+            margin: 0 !important;
+        }
     }
     .pricerow{
         padding-top: 2%;
@@ -96,12 +104,13 @@
     }
     .attributes{
         margin-right: 10%;
-        padding:2%;
         .row{
-            padding: 1% 0;
-            border-bottom: 1px solid rgb(223, 223, 223);
             .key{
+                padding: 1%;
                 font-weight: bold;
+                background-color: #a1a1a11c;
+            }
+            .value{
             }
         }
     }
