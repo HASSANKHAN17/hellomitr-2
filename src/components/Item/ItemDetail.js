@@ -30,6 +30,7 @@ import instacred from './instacred.png'
 import WooCommerceAPI from 'woocommerce-api'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import emiimg from './emiimg.png'
 import {ReactComponent as RankingSVG} from './ranking-1.svg'
 function ItemDetail(props) {
 
@@ -110,7 +111,7 @@ console.log(reviews)
             </p>
 
             <div className="availableoffers">
-              <p><b>Available Offers</b></p>
+              <p><img src={emiimg} alt="emiimg" /> <b>Available Offers</b></p>
               <p>Special Launch Offer - Free Earbuds Worth upto ₹1999</p>
             </div>
 
