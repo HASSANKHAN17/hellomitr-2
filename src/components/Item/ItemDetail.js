@@ -25,13 +25,14 @@ import bajajfinance from './bajaj-finserv-ltd-zenda-kadrabad-jalna-home-loans-0n
 import zestmoney from './zest.jfif'
 import hdfc from './hdfc.jpg'
 import icici from './icici.png'
-import kotak from './Kotak_Mahindra_Bank_logo.png'
-import instacred from './instacred.png'
+import kotak from './KOTAKBANK.NS.png'
+import instacred from './instacred.jpeg'
 import WooCommerceAPI from 'woocommerce-api'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import emiimg from './emiimg.png'
 import {ReactComponent as RankingSVG} from './ranking-1.svg'
+import cashelogo from '../../Images/CASHe Logo.png'
 function ItemDetail(props) {
 
   var WooCommerce = new WooCommerceAPI({
@@ -111,8 +112,8 @@ console.log(reviews)
             </p>
 
             <div className="availableoffers">
-              <p><img src={emiimg} alt="emiimg" /> <b>Available Offers</b></p>
-              <p>Special Launch Offer - Free Earbuds Worth upto ₹1999</p>
+              <p><b>Available Offers</b></p>
+              <p><img src={cashelogo} alt="cashe" /> Special Launch Offer - Free Earbuds Worth upto ₹1999</p>
             </div>
 
             <section className="pricerow m-auto row align-items-center">
@@ -159,14 +160,14 @@ console.log(reviews)
 
           <div className="col-2 shadow buynowpaylater">
             {/* <img src={buynowpaylater} /> */}
-            <p className="heading">Buy Now Pay Later Offers</p>
+            <p className="heading"><img src={emiimg} alt="emiimg" className="mr-2" /> Buy Now Pay Later Offers</p>
             <hr />
             <p><img src={bajajfinance} alt="bjf"/> Bajaj Finserv No Cost EMI</p>
             <p><img src={zestmoney} alt="zest" /> ZestMoney No Cost EMI</p>
             <p><img src={hdfc} alt="hdfc" /> HDFC Buy Now Pay Later</p>
             <p><img src={icici} alt="hdfc" /> ICICI Bank Debit Card EMI</p>
-            <p><img src={kotak} alt="hdfc" /> Kotak Bank Debit Card EMI</p>
-            <p><img src={instacred} alt="hdfc" /> Instacred Cardless EMI</p>
+            <p><img src={kotak} alt="hdfc" className="mr-2" /> Kotak Bank Debit Card EMI</p>
+            <p><img src={instacred} alt="hdfc" className="mr-2" /> Instacred Cardless EMI</p>
           </div>
 
 

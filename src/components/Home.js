@@ -18,9 +18,9 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import img1 from '../Images/carousel1banner/slider1.jpeg'
 import img2 from '../Images/carousel1banner/slider2.jpeg'
 import img3 from '../Images/carousel1banner/slider3.jpeg'
-import c2img1 from '../Images/carousel2banner/Group 23.png'
+import c2img1 from '../Images/carousel2banner/cashebanner.jpeg'
 import WooCommerceAPI from 'woocommerce-api'
-import applelogo from '../Images/brands/applelogo.png'
+import tcllogo from '../Images/brands/tclcropped.jpg'
 import samsunglogo from '../Images/brands/Samsung-Symbol.png'
 import xiaomilogo from '../Images/brands/Xiaomi-Logo.png'
 import realmelogo from '../Images/brands/1200px-Realme-realme-_logo_box-RGB-01_with_out_back_ground.svg.png'
@@ -33,6 +33,8 @@ import TvRoundedIcon from '@mui/icons-material/TvRounded';
 import LaptopMacRoundedIcon from '@mui/icons-material/LaptopMacRounded';
 import HeadphonesBatteryRoundedIcon from '@mui/icons-material/HeadphonesBatteryRounded';
 import WatchRoundedIcon from '@mui/icons-material/WatchRounded';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 function Home(props) {
     const [smartphone,setSmartPhone]=React.useState([])
     const [ledtv,setLedtv]=React.useState([])
@@ -43,7 +45,7 @@ function Home(props) {
     const [men,setMen]=React.useState([])
     const [women,setWomen]=React.useState([])
     const [loading,setLoading]=React.useState(false)
-    const [newArrivals,setNewArrivals]=React.useState([])
+    const [newArrivals,setNewArrivals]=React.useState({batch1:[],batch2:[],batch3:[]})
 
     React.useState(()=>{
         //setLoading(true)
@@ -55,10 +57,14 @@ function Home(props) {
             version: 'wc/v1'
           });
           //WooCommerce.getAsync("products?category=126&per_page=100&category=193include")
-          WooCommerce.getAsync("products?orderby=date&order=desc&per_page=4")
+          WooCommerce.getAsync("products?orderby=date&order=desc&per_page=12")
             .then((result) => {
-            console.log("new arr",JSON.parse(result.toJSON().body))
-            setNewArrivals(JSON.parse(result.toJSON().body))
+            let arr = JSON.parse(result.toJSON().body)
+            let a = arr.slice(0,4) //index to n-1
+            let b = arr.slice(4,8)
+            let c = arr.slice(8,12)
+            console.log("abc",a,b,c)
+            setNewArrivals({batch1:a,batch2:b,batch3:c})
             })
           WooCommerce.getAsync("products?category=126&per_page=4")
             .then((result) => {
@@ -141,18 +147,66 @@ function Home(props) {
 
             <section className="dod">
                 <h2><NewArrivals /> New Arrivals</h2>
+                <CarouselProvider
+                naturalSlideWidth={100}
+                naturalSlideHeight={38}
+                totalSlides={3}
+                >
+                <Slider>
+                    
+                <Slide index={0}>
                 <div className="row m-auto justify-content-around">
+
                 {
-                    newArrivals.length>0?(
-                        newArrivals.map((item,index)=>(
+                    newArrivals.batch1.length>0?(
+                        newArrivals.batch1.map((item,index)=>(
                             <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
                             <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
                     ):null
                 }
-
                 </div>
+                 </Slide>
+
+                 <Slide index={1}>
+                <div className="row m-auto justify-content-around">
+
+                {
+                    newArrivals.batch2.length>0?(
+                        newArrivals.batch2.map((item,index)=>(
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
+                            </div>            
+                    ))
+                    ):null
+                }
+                </div>
+                 </Slide>
+
+                 <Slide index={2}>
+                <div className="row m-auto justify-content-around">
+
+                {
+                    newArrivals.batch3.length>0?(
+                        newArrivals.batch3.map((item,index)=>(
+                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
+                            </div>            
+                    ))
+                    ):null
+                }
+                </div>
+                 </Slide>
+                </Slider>
+                
+                <div className="row carousalbtncont justify-content-between">
+                    <ButtonBack className="carousalbtn"><ArrowBackIosIcon sx={{ml:.5}} /></ButtonBack>
+                    <ButtonNext className="carousalbtn"><ArrowForwardIosIcon /></ButtonNext>
+                </div>
+            </CarouselProvider>
+                
+
             </section>
 
 
@@ -160,7 +214,7 @@ function Home(props) {
             <h1>Shop by Brands</h1>
             <div className="row m-auto justify-content-center align-items-center">
                 <div className="col-3">
-                    <img src={applelogo} alt="applelogo" />
+                    <img src={tcllogo} alt="applelogo" />
                 </div>
 
                 <div className="col-3">
@@ -212,10 +266,10 @@ function Home(props) {
 
 
             <section className="shadow-sm popularitems" style={{textAlign:"center"}}>
-                    <h1>Buy Now Pay Later Offers</h1>
+                    <h1>Check Your Eligibility</h1>
                     <CarouselProvider
                 naturalSlideWidth={50}
-                naturalSlideHeight={15}
+                naturalSlideHeight={25}
                 totalSlides={3}
                 isPlaying
                 >

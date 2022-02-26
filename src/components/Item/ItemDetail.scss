@@ -1,5 +1,23 @@
 @import  "../../App.scss";
 
+.carousalbtncont{
+    margin: 0 1%;
+    .carousalbtn{
+        color: $primary;
+        padding:10px;
+        border-radius: 50%;
+        border: none;
+        background-color: #a1a1a11c;
+    }
+    .carousalbtn:hover{
+        background-color: #fe5f0328;
+    }
+    .carousalbtn:focus{
+        outline: none;
+    }
+}
+
+
 .itemdetail-container{
     background-color: white;
 }
@@ -50,7 +68,7 @@
             width: 1.5vw;
         }
         p{
-            margin: 0 !important;
+            margin: 1% !important;
         }
     }
     .pricerow{
@@ -86,11 +104,11 @@
     height: 100%;
     padding: 1%;
     background-color: $secondary;
+    padding-left: 2%;
     img{
         width: 1.2vw;
     }
     .heading{
-        text-align: center;
         font-weight: bold;
     }
 }
