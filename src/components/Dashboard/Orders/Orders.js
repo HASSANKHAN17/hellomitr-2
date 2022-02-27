@@ -7,6 +7,8 @@ import {connect} from 'react-redux'
 import {setUser} from '../../redux/user/userActions'
 import "./Orders.scss"
 import Pagination from '@mui/material/Pagination';
+import Chip from '@mui/material/Chip';
+
 function Orders(props) {
     console.log("my orders",props)
     const [orders,setOrders]=React.useState([])
@@ -73,7 +75,7 @@ function Orders(props) {
                     <p className="order">{item.id}</p>
                 </div>
                 <div className="col-2">
-                    <p className="status">{item.status}</p>
+                    <Chip label={item.status} color={item.status==="completed"?"success":item.status==="cancelled"?"error":"default"}/>
                 </div>
                 <div className="col-3">
                     <p className='date'>{item.date_created}</p>

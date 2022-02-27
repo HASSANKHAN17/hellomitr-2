@@ -62,7 +62,7 @@ const Header = (props) => {
 			<div>
 		  <img onClick={()=>props.history.push("/")} className="cursor-pointer" src={iconImage} alt="img" />
 		  </div>
-		  <p>Deliver to {pincode}</p>
+		  <p>{pincode?`Deliver to ${pincode}`:"can't access location"}</p>
 		  </div>
 
 		  <div className="inputdiv m-auto">
