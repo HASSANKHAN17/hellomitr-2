@@ -220,10 +220,10 @@ function Home(props) {
                  </Slide>
                 </Slider>
                 
-                <div className="row carousalbtncont justify-content-between">
+                {/* <div className="row carousalbtncont justify-content-between">
                     <ButtonBack className="carousalbtn"><ArrowBackIosIcon sx={{ml:.5}} /></ButtonBack>
                     <ButtonNext className="carousalbtn"><ArrowForwardIosIcon /></ButtonNext>
-                </div>
+                </div> */}
             </CarouselProvider>
                 
 
@@ -324,10 +324,10 @@ function Home(props) {
                  </Slide>
                 </Slider>
                 
-                <div className="row carousalbtncont justify-content-between">
+                {/* <div className="row carousalbtncont justify-content-between">
                     <ButtonBack className="carousalbtn"><ArrowBackIosIcon sx={{ml:.5}} /></ButtonBack>
                     <ButtonNext className="carousalbtn"><ArrowForwardIosIcon /></ButtonNext>
-                </div>
+                </div> */}
             </CarouselProvider>
             </section>
 
@@ -410,10 +410,10 @@ function Home(props) {
                  </Slide>
                 </Slider>
                 
-                <div className="row carousalbtncont justify-content-between">
+                {/* <div className="row carousalbtncont justify-content-between">
                     <ButtonBack className="carousalbtn"><ArrowBackIosIcon sx={{ml:.5}} /></ButtonBack>
                     <ButtonNext className="carousalbtn"><ArrowForwardIosIcon /></ButtonNext>
-                </div>
+                </div> */}
             </CarouselProvider>
             </section>
 
@@ -480,10 +480,10 @@ function Home(props) {
                  </Slide>
                 </Slider>
                 
-                <div className="row carousalbtncont justify-content-between">
+                {/* <div className="row carousalbtncont justify-content-between">
                     <ButtonBack className="carousalbtn"><ArrowBackIosIcon sx={{ml:.5}} /></ButtonBack>
                     <ButtonNext className="carousalbtn"><ArrowForwardIosIcon /></ButtonNext>
-                </div>
+                </div> */}
             </CarouselProvider>
             </section>
 
@@ -550,10 +550,10 @@ function Home(props) {
                  </Slide>
                 </Slider>
                 
-                <div className="row carousalbtncont justify-content-between">
+                {/* <div className="row carousalbtncont justify-content-between">
                     <ButtonBack className="carousalbtn"><ArrowBackIosIcon sx={{ml:.5}} /></ButtonBack>
                     <ButtonNext className="carousalbtn"><ArrowForwardIosIcon /></ButtonNext>
-                </div>
+                </div> */}
             </CarouselProvider>
             </section>
 
@@ -615,10 +615,10 @@ function Home(props) {
                  </Slide>
                 </Slider>
                 
-                <div className="row carousalbtncont justify-content-between">
+                {/* <div className="row carousalbtncont justify-content-between">
                     <ButtonBack className="carousalbtn"><ArrowBackIosIcon sx={{ml:.5}} /></ButtonBack>
                     <ButtonNext className="carousalbtn"><ArrowForwardIosIcon /></ButtonNext>
-                </div>
+                </div> */}
             </CarouselProvider>
             </section>
 

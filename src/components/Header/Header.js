@@ -10,15 +10,51 @@ import IconButton from '@mui/material/IconButton'
 import Badge from '@mui/material/Badge';
 import { withRouter } from 'react-router-dom';
 import "./Header.scss"
-
+import Geocode from "react-geocode";
 import {compose} from "redux";
 
 const Header = (props) => {
 	const [searchItem,setSearchItem]=React.useState("")
+	const [error,setError]=React.useState("")
+	const [pincode,setPincode]=React.useState("")
 	const handleSubmit = (e)=>{
 		e.preventDefault()
 		props.history.push("/categories",searchItem)
 	}//sd
+
+	const getGeo = async ()=>{
+		window.navigator.geolocation.getCurrentPosition((loca)=>{
+		  let location = {lat:loca.coords.latitude,lng:loca.coords.longitude}
+			console.log(location)
+
+		  if(location.lat&&location.lng){
+			Geocode.setApiKey("AIzaSyC4e6FM7KdtXRbtgqe0mMtMoKDRgkn3nik");
+
+			Geocode.setLanguage("en");
+			
+			Geocode.setRegion("in");
+			
+			Geocode.setLocationType("ROOFTOP");
+			
+			Geocode.enableDebug();
+			
+			Geocode.fromLatLng(location.lat, location.lng).then(
+			  (response) => {
+				const address = response.results[0].formatted_address;
+				console.log(address.split(",")[4].split(" ")[2]);
+				setPincode(address.split(",")[4].split(" ")[2])
+			  },
+			  (error) => {
+				console.error(error);
+			  })
+		}
+		},(err)=>setError(err.message));
+	  }
+	React.useEffect(()=>{
+		getGeo()
+		
+
+	},[])
 	return (
       <div className="header row ">
 
@@ -26,7 +62,7 @@ const Header = (props) => {
 			<div>
 		  <img onClick={()=>props.history.push("/")} className="cursor-pointer" src={iconImage} alt="img" />
 		  </div>
-		  <p>Deliver to 431001</p>
+		  <p>Deliver to {pincode}</p>
 		  </div>
 
 		  <div className="inputdiv m-auto">

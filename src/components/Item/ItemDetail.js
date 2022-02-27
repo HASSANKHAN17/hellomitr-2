@@ -113,9 +113,10 @@ console.log(inCart)
 
             <div className="availableoffers">
               <p><b>Available Offers</b></p>
-              <p><img src={cashelogo} alt="cashe" /> Special Launch Offer - Free Earbuds Worth upto ₹1999</p>
               <p><img src={cashelogo} alt="cashe" /> No Cost EMI - 3 M & 6 M</p>
               <p><img src={cashelogo} alt="cashe" /> Zero Downpayment</p>
+              <p><img src={cashelogo} alt="cashe" /> Special Launch Offer - Free Earbuds Worth upto ₹1999</p>
+
             </div>
 
             <section className="pricerow m-auto row align-items-center">
