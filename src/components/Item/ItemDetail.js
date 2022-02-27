@@ -91,7 +91,7 @@ console.log(inCart)
     <section className="itemdetail-container">
 
     <div className="row m-auto  itemdetail">
-        <div className="col-4 imagediv">
+        <div className="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 imagediv">
             <img src={image} alt="watch" className="mainimg" />
             
             <div className=" imagerow">
@@ -104,8 +104,8 @@ console.log(inCart)
 
 
 
-        <div className='col-4 productdetail'>
-            <h1>{details.name}</h1>
+        <div className='col-12 col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 productdetail'>
+            <h1 className="productname">{details.name}</h1>
             <p>
                 <span className="ratingdiv">{details.average_rating} <StarIcon /></span>
                 <span className="ratingreview">({details.rating_count} Ratings & Reviews)</span>
@@ -162,7 +162,7 @@ console.log(inCart)
 
 
 
-          <div className="col-2 shadow buynowpaylater">
+          <div className="col-10 col-xs-10 col-sm-10 col-md-10 col-lg-3 col-xl-3 shadow buynowpaylater">
             {/* <img src={buynowpaylater} /> */}
             <p className="heading"><img src={emiimg} alt="emiimg" className="mr-2" /> Buy Now Pay Later Offers</p>
             <hr />

@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 import "./Header.scss"
 import Geocode from "react-geocode";
 import {compose} from "redux";
-
+import SearchIcon from '@mui/icons-material/Search';
 const Header = (props) => {
 	const [searchItem,setSearchItem]=React.useState("")
 	const [error,setError]=React.useState("")
@@ -28,7 +28,7 @@ const Header = (props) => {
 			console.log(location)
 
 		  if(location.lat&&location.lng){
-			Geocode.setApiKey("AIzaSyC4e6FM7KdtXRbtgqe0mMtMoKDRgkn3nik");
+			Geocode.setApiKey("AIzaSyDg9VFUCC0kNvQASEIR3Yt823_Lkrwp9YU");
 
 			Geocode.setLanguage("en");
 			
@@ -56,22 +56,67 @@ const Header = (props) => {
 
 	},[])
 	return (
-      <div className="header row ">
+      <div className="header row m-auto align-items-center">
+		  <div className="col-6 col-xs-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+		  <img onClick={()=>props.history.push("/")} className="logo-img" src={iconImage} alt="img" />
+		  </div>
+		  <div className="center col-6 col-xs-6 col-sm-6 col-md-6 col-lg-2 col-xl-2 pincode">
+			<p><b>{pincode?`Deliver to ${pincode}`:"can't access location"}</b></p>
+		  </div>
 
-		  <div className="row imgdiv m-auto align-items-center justify-content-center">
+
+		  <div className="col-7 col-xs-7 col-sm-7 col-md-7 col-lg-6 col-xl-6">
+			
+			<div className="row inputrow align-items-center">
+			
+			<div>
+			<SearchIcon className="searchicon" color="secondary" />
+			</div>
+
+			<div className="ml-2">
+			<form onSubmit={handleSubmit}>
+			<input placeholder="search items.." value={searchItem} onChange={(e)=>setSearchItem(e.target.value)}/>
+			</form>
+			</div>
+
+
+			</div>			  
+
+		  </div>
+
+
+		  <div className="col-5 col-xs-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 icon-container">
+
+			<span className='cart-container'>
+			<Badge badgeContent={props.cart.length} color="primary">
+			<IconButton onClick={()=>props.history.push("/cart")} className="icon-bg cart" color="tertiary">
+				<ShoppingBagIcon className="icon" />
+			</IconButton>
+			</Badge>
+			</span>
+
+			<span >
+			<IconButton onClick={()=>!props.userToken?props.history.push("/signup"):props.history.push("/myprofile")} className="icon-bg" color="tertiary">
+				<AccountCircleIcon className="icon" />
+			</IconButton>
+			</span>
+
+		  </div>
+
+		  {/* <div className="col-12 col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 row imgdiv m-auto align-items-center justify-content-center">
 			<div>
 		  <img onClick={()=>props.history.push("/")} className="cursor-pointer" src={iconImage} alt="img" />
 		  </div>
 		  <p>{pincode?`Deliver to ${pincode}`:"can't access location"}</p>
 		  </div>
 
-		  <div className="inputdiv m-auto">
+		  <div className="col-6 col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 inputdiv m-auto">
 			<form onSubmit={handleSubmit}>
 			<input placeholder="search for items.." value={searchItem} onChange={(e)=>setSearchItem(e.target.value)}/>
 			</form>
 		  </div>
 
-		  <div className="icondiv m-auto row justify-content-end">
+		  <div className="col-6 col-xs-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 icondiv m-auto row justify-content-end">
 
 		  <Link to="cart">
 		  <Badge badgeContent={props.cart.length} color="primary">
@@ -87,7 +132,7 @@ const Header = (props) => {
 			</IconButton>
 			</Link>
 			
-		  </div>
+		  </div> */}
 	  </div>
     );
 

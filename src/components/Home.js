@@ -46,9 +46,13 @@ function Home(props) {
     const [women,setWomen]=React.useState([])
     const [loading,setLoading]=React.useState(false)
     const [newArrivals,setNewArrivals]=React.useState({batch1:[],batch2:[],batch3:[]})
+    const [height,setHeight]=React.useState(45)
 
     React.useState(()=>{
         //setLoading(true)
+        if(window.innerWidth<750){
+            setHeight(250)
+        }
         var WooCommerce = new WooCommerceAPI({
             url: 'https://shop.hellomitr.com/',
             consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -147,7 +151,7 @@ function Home(props) {
             // });
     },[])
 
-
+//console.log()
     return (
         loading?<Loading />:<div className="home">
             <Header id="1" />
@@ -165,14 +169,17 @@ function Home(props) {
                 </Slider>
             </CarouselProvider>
 
-            <section className="dod">
+            <section className="carousel dod">
                 <h2><NewArrivals /> New Arrivals</h2>
                 <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={38}
+                naturalSlideHeight={height}
                 totalSlides={3}
                 >
-                <Slider>
+                <Slider
+                 
+                
+                >
                     
                 <Slide index={0}>
                 <div className="row m-auto justify-content-around">
@@ -180,7 +187,7 @@ function Home(props) {
                 {
                     newArrivals.batch1.length>0?(
                         newArrivals.batch1.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <div key={index} className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3">
                             <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
@@ -195,7 +202,7 @@ function Home(props) {
                 {
                     newArrivals.batch2.length>0?(
                         newArrivals.batch2.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <div key={index} className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3">
                             <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
@@ -210,7 +217,7 @@ function Home(props) {
                 {
                     newArrivals.batch3.length>0?(
                         newArrivals.batch3.map((item,index)=>(
-                            <div key={index} className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                            <div key={index} className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3">
                             <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                             </div>            
                     ))
@@ -273,7 +280,7 @@ function Home(props) {
                 <h2><SmartphoneRoundedIcon className="icon" /> Smartphones</h2>
                 <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={38}
+                naturalSlideHeight={height}
                 totalSlides={3}
                 >
                 <Slider>
@@ -338,7 +345,7 @@ function Home(props) {
                     <h1>Check Your Eligibility</h1>
                     <CarouselProvider
                 naturalSlideWidth={50}
-                naturalSlideHeight={25}
+                naturalSlideHeight={height}
                 totalSlides={3}
                 isPlaying
                 >
@@ -359,7 +366,7 @@ function Home(props) {
                 <h2><TvRoundedIcon className="icon" /> LED TVs</h2>
                  <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={38}
+                naturalSlideHeight={height}
                 totalSlides={3}
                 >
                 <Slider>
@@ -429,7 +436,7 @@ function Home(props) {
                 <h2><LaptopMacRoundedIcon className="icon" /> Laptop</h2>
                 <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={38}
+                naturalSlideHeight={height}
                 totalSlides={3}
                 >
                 <Slider>
@@ -499,7 +506,7 @@ function Home(props) {
                 <h2><HeadphonesBatteryRoundedIcon className="icon" /> Accessories</h2>
                 <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={38}
+                naturalSlideHeight={height}
                 totalSlides={3}
                 >
                 <Slider>
@@ -564,7 +571,7 @@ function Home(props) {
                 <h2><WatchRoundedIcon className="icon" /> Smartwatch</h2>
                 <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={38}
+                naturalSlideHeight={height}
                 totalSlides={3}
                 >
                 <Slider>

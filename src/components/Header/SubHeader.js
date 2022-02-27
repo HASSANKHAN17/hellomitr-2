@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom'
 function SubHeader() {
   return (
     <div className="shadow-sm subheader row m-auto justify-content-between">
-        <Link to="/categories?category=126" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=126" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/mobile.jpeg' alt="mobile" />
             </div>
@@ -21,7 +21,7 @@ function SubHeader() {
             </div>
         </Link>
 
-        <Link to="/categories?category=181" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=181" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/ledtv.jpeg' alt="ledtv" />
             </div>
@@ -33,7 +33,7 @@ function SubHeader() {
 
         </Link>
 
-        <Link to="/categories?category=97" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=97" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/laptop.jpeg' alt="mobile" />
             </div>
@@ -44,7 +44,7 @@ function SubHeader() {
 
         </Link>
 
-        <Link to="/categories?category=193" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=193" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/headphones.jpeg' alt="mobile" />
             </div>
@@ -55,7 +55,7 @@ function SubHeader() {
 
         </Link>
 
-        <Link to="/categories?category=124" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=124" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/shoes.jpeg' alt="mobile" />
             </div>
@@ -66,7 +66,7 @@ function SubHeader() {
 
         </Link>
 
-        <Link to="/categories?category=103" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=103" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/smartwatch.jpeg' alt="mobile" />
             </div>
@@ -77,7 +77,7 @@ function SubHeader() {
 
         </Link>
 
-        <Link to="/categories?category=104" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=104" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/jacket.jpeg' alt="mobile" />
             </div>
@@ -88,7 +88,7 @@ function SubHeader() {
 
         </Link>
 
-        <Link to="/categories?category=152" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=152" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/clothes.jpeg' alt="mobile" />
             </div>
@@ -99,7 +99,7 @@ function SubHeader() {
 
         </Link>
 
-        <Link to="/categories?category=174" className="row m-auto align-items-center justify-content-center itemcontainer">
+        <Link to="/categories?category=174" className=" row m-auto align-items-center justify-content-center itemcontainer">
             <div className="mr-3">
             <img src='/assets/subheader/furniture.jpeg' alt="mobile" />
             </div>

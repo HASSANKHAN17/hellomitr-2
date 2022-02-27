@@ -15,7 +15,16 @@ import Addresses from './components/Dashboard/Addresses/Addresses'
 import TransactionSingle from './components/Transaction/TransactionSingle';
 import Otp from './components/Auth/Otp'
 
-
+//pages 
+import AboutUs from './pages/AboutUs/AboutUs';
+import DeliveryInfo from './pages/DeliveryInfo/DeliveryInfo';
+import Disclaimer from './pages/Disclaimer/Disclaimer'
+import TermsAndConditions from './pages/TermsandConditions/TermsAndConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
+import SellerPolicy from './pages/SellerPolicy/SellerPolicy';
+import ReturnPolicy from './pages/ReturnPolicy/ReturnPolicy';
+import FrequentlyAsked from './pages/FAQ/FrequentlyAsked';
+import ContactUs from './pages/ContactUs/ContactUs';
 function App() {
   return (
     <Switch>
@@ -33,6 +42,18 @@ function App() {
       <Route path="/singletransaction" component={TransactionSingle} />
       <Route path="/orderdetail" component={OrderDetail} />
       <Route path="/otp" component={Otp} />
+
+
+      {/* static pages  */}
+      <Route path="/aboutus" component={AboutUs} />
+      <Route path="/deliveryinfo" component={DeliveryInfo} />
+      <Route path="/disclaimer" component={Disclaimer} />
+      <Route path="/termsandconditions" component={TermsAndConditions} />
+      <Route path="/privacypolicy" component={PrivacyPolicy} />
+      <Route path="/sellerpolicy" component={SellerPolicy} />
+      <Route path="/returnpolicy" component={ReturnPolicy} />
+      <Route path="/faq" component={FrequentlyAsked} />
+      <Route path="/contactus" component={ContactUs} />
 
     </Switch>
   );

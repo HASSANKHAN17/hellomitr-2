@@ -12,6 +12,9 @@ import Item from '../Item/Item'
 import WooCommerceAPI from 'woocommerce-api'
 import Pagination from '@mui/material/Pagination';
 import Loading from '../Lottie/Loading'
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import {IconButton} from '@mui/material'
 function Categories(props) {
     console.log("category props",props)
     const [data,setData]=React.useState([])
@@ -22,6 +25,7 @@ function Categories(props) {
     const [count,setCount]=React.useState(0)
     const [loading,setLoading]=React.useState(false)
     const [pagenumber,setPageNumber]=React.useState(1)
+    const [classN,setClass]=React.useState("")
     var WooCommerce = new WooCommerceAPI({
         url: 'https://shop.hellomitr.com/',
         consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -107,8 +111,10 @@ function Categories(props) {
         <Header />
         <SubHeader />
         {loading?<Loading />:<section className="row  categories" >
-            <div className="shadow-sm col-3 filters">
-
+            <div className={classN?"shadow-sm col-6 col-sm-6 col-xs-6 col-md-6 col-lg-3 col-xl-3 filtersactive":"shadow-sm col-6 col-sm-6 col-xs-6 col-md-6 col-lg-3 col-xl-3 filters"}>
+            <IconButton className="burger" onClick={()=>setClass(!classN)}>
+            <CloseIcon />
+            </IconButton>
                 <div className="section1">
                 <h3>Brand Products</h3>
                 <p>F Series</p>
@@ -156,15 +162,20 @@ function Categories(props) {
 
             </div>
 
-            <div className="shadow-sm col-8 products row">
-               
+            <div className="shadow-sm col-12 col-sm-12 col-xs-12 col-md-12 col-lg-8 col-xl-8 products ">
+            <IconButton className="burger" onClick={()=>setClass(!classN)}>
+            <MenuIcon />
+            </IconButton>
+               <section className="row">
                {
                    data.length>0?data.map((item,index)=>(
-                    <div key={index} className="col-4 cursor-pointer" onClick={()=>props.history.push("itemdetail",item)}>
-                    <Item name={item.name} rating={item.average_rating} price={item.price} image={item.images[0].src} />
+                    <div key={index} className="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 cursor-pointer" onClick={()=>props.history.push("itemdetail",item)}>
+                        <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
+                    
                     </div>
                    )):null
                }
+               </section>
             <div className="ml-auto my-4">
             <Pagination page={pagenumber} onChange={(e,pagenumber)=>getProducts(pagenumber)} count={count} />
             </div>

@@ -31,24 +31,24 @@ function MyProfile(props) {
         <Header />
         <SubHeader />
         <div className="row dashboard-container">
-            <div className="col-3">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                 <Menu id={4} />
             </div>
-            <div className="col-8 dashboard-subcontainer myprofile">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 dashboard-subcontainer myprofile">
                 <h1><PersonIcon /> My Profile</h1>
                 <div className="row section1 align-items-center justify-content-around">
-                        <div className="col-4">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <img src={user.avatar_url} alt="useravtar" /> 
                         </div>
-                        <div className="shadow-sm cont col-2">
+                        <div className="shadow-sm cont col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <h3>{user.orders_count}</h3>
                             <p>Total Orders</p>
                         </div>
-                        <div className="shadow-sm cont col-3">
+                        <div className="shadow-sm cont col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <h3>{user.total_spent}</h3>
                             <p>Total Spent</p>
                         </div>
-                        <div className="shadow-sm cont col-2">
+                        <div className="shadow-sm cont col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                             <h3>{user.last_order.id?user.last_order.id:"-"}</h3>
                             <p>Last Order</p>
                         </div>

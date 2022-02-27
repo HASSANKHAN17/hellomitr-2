@@ -6,6 +6,7 @@
     .filters{
         background-color: white;
         padding:2% ;
+        height: 100%;
      }
     .products{
         background-color: white;
@@ -14,4 +15,47 @@
     .textfield{
         width: 40%;
     }
+    .burger{
+        display: none;
+    }
 }
+
+
+@media (max-width: 992px) {
+
+}
+@media (max-width: 768px) {
+
+
+}
+@media (max-width: 576px) {
+    .categories{
+        margin: 2% 3%;
+        .burger{
+            display: inline;
+        }
+        .filters{
+            display: none;
+            background-color: white;
+            padding:2% ;
+            height: 100%;
+         }
+         .filtersactive{
+            display:inline-block;
+            position: absolute;
+            z-index: 2;
+            width: 70%;
+            background-color: white;
+            padding:2% ;
+            height: 150vh;
+         }
+        .products{
+            background-color: white;
+            margin-left: 1%;
+        }
+        .textfield{
+            width: 40%;
+        }
+    }
+}
+

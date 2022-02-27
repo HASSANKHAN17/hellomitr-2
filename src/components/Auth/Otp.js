@@ -26,9 +26,11 @@ function Otp(props) {
     const handleOtp=(o)=>{
         setOtp(o)
         if(o.length===4){
-            console.log(o,gotp)
-            if(otp==gotp){
+            let got = gotp.toString()
+            console.log(o,got)
+            if(o===got){
                 //verified
+                setError("")
                 props.setUser(user)
                 if(checkout){
                     props.history.push("/checkout")

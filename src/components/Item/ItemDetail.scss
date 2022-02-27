@@ -102,7 +102,9 @@
 .buynowpaylater{
     margin-left: 5%;
     height: 100%;
-    padding: 1%;
+    width: 100%;
+    padding: 2% 3% !important;
+    font-size: 1.1em;
     background-color: $secondary;
     padding-left: 2%;
     img{
@@ -161,3 +163,61 @@
         margin: 1% 0;
     }
 }
+
+
+
+@media (max-width: 992px) {
+
+}
+@media (max-width: 768px) {
+
+
+}
+@media (max-width: 576px) {
+    .productname{
+        padding: 5% 0;
+    }
+    .itemdetail{
+        padding:2% 0;
+        .imagediv{
+            .mainimg{
+                width: 100%;
+            }
+            .imagerow{
+                .subimg{
+                    border:1px solid #cccf;
+                    border-radius: 5px;
+                    padding:2%;
+                    width: 20vw;
+                    margin: 1%;
+                }
+                .subimg:hover{
+                    cursor: pointer;
+                }
+    
+            }
+        }
+    
+    }
+    .buynowpaylater{
+        margin: 7%;
+        height: 100%;
+        img{
+            width: 5vw;
+        }
+        
+    }
+    .descriptionreviewtab{
+      
+        .attributes{
+            .row{
+                .key{
+                    padding: 2%;
+                }
+                .value{
+                }
+            }
+        }
+    }
+}
+

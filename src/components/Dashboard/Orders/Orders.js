@@ -48,22 +48,22 @@ function Orders(props) {
     <Header />
     <SubHeader />
     <div className="row dashboard-container">
-        <div className="col-3">
+        <div className="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
             <Menu id={1} />
         </div>
-        <div className="col-8 dashboard-subcontainer">
+        <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 dashboard-subcontainer">
             <h1>My Orders</h1>
             <div className="row mx-auto align-items-center justify-content-between order-keys">
-                <div className="col-2">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                     <p>Order #</p>
                 </div>
-                <div className="col-2">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                     <p>Status</p>
                 </div>
-                <div className="col-3">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-3">
                     <p>Date Purchased</p>
                 </div>
-                <div className="col-2">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                     <p>Total</p>
                 </div>
             </div>
@@ -71,16 +71,16 @@ function Orders(props) {
                 orders.length>0?(
                     orders.map((item,index)=>(
                 <div onClick={()=>props.history.push("orderdetail",item)} key={index} className="shadow-sm row mx-auto align-items-center justify-content-between order-values">
-                <div className="col-2">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                     <p className="order">{item.id}</p>
                 </div>
-                <div className="col-2">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                     <Chip label={item.status} color={item.status==="completed"?"success":item.status==="cancelled"?"error":"default"}/>
                 </div>
-                <div className="col-3">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-3">
                     <p className='date'>{item.date_created}</p>
                 </div>
-                <div className="col-2">
+                <div className="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
                     <p className="price">₹{item.total}</p>
                 </div>
             </div>

@@ -16,10 +16,10 @@ function Addresses(props) {
         <Header />
         <SubHeader />
         <div className="row dashboard-container">
-            <div className="col-3">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                 <Menu id={5} />
             </div>
-            <div className="col-8 dashboard-subcontainer">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 dashboard-subcontainer">
                     <h1>My Addresses</h1>
                     <div className="shadow-sm addresscontainer">
                         <h3>Shipping Address <Button onClick={()=>{

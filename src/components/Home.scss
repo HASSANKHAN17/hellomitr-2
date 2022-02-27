@@ -2,7 +2,6 @@
 
 .home{
     .carousel1{
-        width: 100vw;
         margin: 0 !important;
     }
     .dod{
@@ -69,11 +68,12 @@
 
 }
 @media (max-width: 576px) {
+    .carousel{
+    }
     .home{
         .dod{
             margin:5% 0;
             padding:5% 0;
-            background-color: white;
             h2{
                 text-align: center;
             }
@@ -81,11 +81,27 @@
         .icon{
             font-size: 1.5em;
         }
+        .brands{
+            padding: 10% 0;
+           h1{
+               font-size: 2em;
+               padding-bottom: 2%;
+           }
+           .row{
+               padding:3% 0;
+               .col-3:hover{
+                   cursor: pointer;
+               }
+           }
+            img{
+                width: 100%;
+            }
+        }
     }
     
    
       .trending{
-          margin-top: 100% !important;
+          margin-top: 10% !important;
           margin-bottom: 10%;
           padding:1%;
           background-color: white;

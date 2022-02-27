@@ -10,7 +10,7 @@ $secondary-font:'Roboto', sans-serif;
 h1,h2,h3,h5{
   font-family: $primary-font;
 }
-p,span{
+p,span,blockquote,input{
   font-family: $secondary-font;
 }
 
@@ -46,6 +46,16 @@ body{
 }
 .iconbutton:hover{
   background-color: #d8680034;
+}
+.center-img{
+  display: block;
+  margin: auto;
+}
+.center{
+  text-align: center;
+}
+.l2{
+  line-height: 1.8;
 }
 @media (max-width: 992px) {
 

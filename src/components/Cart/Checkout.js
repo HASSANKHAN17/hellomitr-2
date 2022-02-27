@@ -11,6 +11,8 @@ import {connect} from 'react-redux'
 import Cashe from './CASHe Logo 2.png'
 import Razorpaylogo from './Razorpaay.png'
 import WooCommerceAPI from 'woocommerce-api'
+import { v4 as uuidv4 } from 'uuid';
+//uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 function Checkout(props) {
   const [selected,setSelected]=React.useState(2)
   const [address,setAddress]=React.useState(0)
@@ -37,7 +39,7 @@ function Checkout(props) {
       image: 'https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png',
       handler: function(response) {
           console.log(response);
-          if(props.singleItem){
+          if(Object.keys(props.singleItem).length>0){
             props.history.push(`/singletransaction?address=${address}?transactionId=${response.razorpay_payment_id}`,true)
           }else{
             props.history.push(`/transaction?address=${address}?transactionId=${response.razorpay_payment_id}`,true)
@@ -91,7 +93,7 @@ function Checkout(props) {
   }, []);
 //console.log(total)
   const openCasheModal = ()=>{
-    axios.post(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:finalTotal(),tenure:selected,mobilenumber:'',authKey:"2MLFiopx+givx5mPf8CchQ==",leafRefNo:Math.floor(1000 + Math.random() * 9000),merchantname:"Hellomitr",returnPageURL:`http://localhost:3000/${Object.keys(props.singleItem).length>0?'singletransaction':'transaction'}?address=${address}`})
+    axios.post(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:finalTotal(),tenure:selected,mobilenumber:'',authKey:"2MLFiopx+givx5mPf8CchQ==",leafRefNo:uuidv4(),merchantname:"Hellomitr",returnPageURL:`http://localhost:3000/${Object.keys(props.singleItem).length>0?'singletransaction':'transaction'}?address=${address}`})
     .then(res=>{
       console.log(res);
       window.location.href = `https://secure.qapayments.cashe.co.in/Login?transaction=${res.data.entity}`;
@@ -109,7 +111,7 @@ function Checkout(props) {
         <Header />
         <SubHeader />
         <div className='row m-auto checkout justify-content-between'>
-          <div className="col-8">
+          <div className="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
 
           <div className="shadow-sm paymentdetails">
             <h1>Delivery Details</h1>
@@ -189,7 +191,7 @@ function Checkout(props) {
 
           </div>
 
-          <div className="col-3">
+          <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
 
             <div className="shadow-sm totaldiv">
               <h5>Your order</h5>

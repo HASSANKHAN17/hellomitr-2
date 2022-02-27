@@ -49,27 +49,27 @@ function Footer() {
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2>About Company</h2>
-            <p><Link className="link">About Us</Link></p>
-            <p><Link className="link">Contact Us</Link></p>
-            <p><Link className="link">ISO 9001 2015 Certified</Link></p>
-            <p><Link className="link">Startup Certified 2020</Link></p>
+            <p><Link to="/aboutus" className="link">About Us</Link></p>
+            <p><Link to="/contactus" className="link">Contact Us</Link></p>
+            <p><Link to="#" className="link">ISO 9001 2015 Certified</Link></p>
+            <p><Link to="#" className="link">Startup Certified 2020</Link></p>
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2>Legal Policy</h2>
-            <p><Link className="link">Delivery Information</Link></p>
-            <p><Link className="link">Disclaimer</Link></p>
-            <p><Link className="link">Terms & Conditions</Link></p>
-            <p><Link className="link">Privacy Policy</Link></p>
-            <p><Link className="link">Seller Policy</Link></p>
-            <p><Link className="link">Return Policy</Link></p>
+            <p><Link to="/deliveryinfo" className="link">Delivery Information</Link></p>
+            <p><Link to="/disclaimer" className="link">Disclaimer</Link></p>
+            <p><Link to="/termsandconditions" className="link">Terms & Conditions</Link></p>
+            <p><Link to="/privacypolicy" className="link">Privacy Policy</Link></p>
+            <p><Link to="/sellerpolicy" className="link">Seller Policy</Link></p>
+            <p><Link to="/returnpolicy" className="link">Return Policy</Link></p>
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2> Helpdesk</h2>
-            <p><Link className="link">FAQs</Link></p>
-            <p><Link className="link">Help Center</Link></p>
-            <p><Link className="link">How to Buy</Link></p>
-            <p><Link className="link">Track Your Order</Link></p>
-            <p><Link className="link">Corporate & Bulk Purchasing</Link></p>
+            <p><Link to="/faq" className="link">FAQs</Link></p>
+            <p><Link to="#" className="link">Help Center</Link></p>
+            <p><Link to="#" className="link">How to Buy</Link></p>
+            <p><Link to="#" className="link">Track Your Order</Link></p>
+            <p><Link to="#" className="link">Corporate & Bulk Purchasing</Link></p>
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2>Contact Us</h2>
@@ -78,7 +78,7 @@ function Footer() {
               #46/3, 4, GB Palya Hosur Road,<br />
               Bengaluru Karnataka 560068
             </p>
-            <p>Email: helpline@hellomitr.com</p>
+            <p>Email: helpline @ hellomitr.com</p>
             <p>Phone: 1800 - 572 - 8211</p> 
             <div className="row m-auto">
               <IconButton color="secondary">
