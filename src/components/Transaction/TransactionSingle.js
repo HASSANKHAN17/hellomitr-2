@@ -60,7 +60,7 @@ function TransactionSingle(props) {
                             .then((response) => {
                               console.log(JSON.parse(response.toJSON().body));
                               props.emptySingleItem()
-                                //window.location.href = `http://localhost:3000/orders`;
+                                window.location.href = `${process.env.REACT_APP_DEVELOPMENT}/orders`;
                             })
                             .catch((error) => {
                               console.log(error);
@@ -83,7 +83,7 @@ function TransactionSingle(props) {
                     .then((response) => {
                       console.log(JSON.parse(response.toJSON().body));
                         props.emptySingleItem()
-                        //window.location.href = `http://localhost:3000/orders`;
+                        window.location.href = `${process.env.REACT_APP_DEVELOPMENT}/orders`;
                     })
                     .catch((error) => {
                       console.log(error);

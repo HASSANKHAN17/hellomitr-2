@@ -6,6 +6,7 @@ import {Provider} from 'react-redux'
 import {store,Persister} from './components/redux/Store'
 import { createTheme,ThemeProvider } from '@mui/material/styles';
 import { PersistGate } from 'redux-persist/integration/react'
+import ScrollToTop from './components/utils/ScrollToTop';
 
 const theme = createTheme({
   palette: {
@@ -74,6 +75,7 @@ ReactDOM.render(
   <PersistGate loading={null} persistor={Persister}>
     <BrowserRouter>
     <ThemeProvider theme={theme}>
+    <ScrollToTop />
     <App />
     </ThemeProvider>
     </BrowserRouter>

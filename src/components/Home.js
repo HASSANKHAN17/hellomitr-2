@@ -341,7 +341,7 @@ function Home(props) {
             {/* popular section carousal */}
 
 
-            <section className="shadow-sm popularitems" style={{textAlign:"center"}}>
+            {/* <section className="shadow-sm popularitems" style={{textAlign:"center"}}>
                     <h1>Check Your Eligibility</h1>
                     <CarouselProvider
                 naturalSlideWidth={50}
@@ -355,7 +355,7 @@ function Home(props) {
                 <Slide index={2}><img className="c2" src={img3} alt="img3" /></Slide>
                 </Slider>
             </CarouselProvider>
-            </section>
+            </section> */}
 
 
 

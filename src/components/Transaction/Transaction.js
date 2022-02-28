@@ -58,7 +58,7 @@ function Transaction(props) {
                             .then((response) => {
                               console.log(JSON.parse(response.toJSON().body));
                                 props.emptyCart()
-                                window.location.href = `http://localhost:3000/orders`;
+                                window.location.href = `${process.env.REACT_APP_DEVELOPMENT}/orders`;
                             })
                             .catch((error) => {
                               console.log(error);
@@ -80,7 +80,7 @@ function Transaction(props) {
                     .then((response) => {
                       console.log(JSON.parse(response.toJSON().body));
                         props.emptyCart()
-                        window.location.href = `http://localhost:3000/orders`;
+                        window.location.href = `${process.env.REACT_APP_DEVELOPMENT}/orders`;
                     })
                     .catch((error) => {
                       console.log(error);
