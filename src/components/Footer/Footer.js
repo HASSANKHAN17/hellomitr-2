@@ -51,8 +51,8 @@ function Footer() {
             <h2>About Company</h2>
             <p><Link to="/aboutus" className="link">About Us</Link></p>
             <p><Link to="/contactus" className="link">Contact Us</Link></p>
-            <p><span  className="link">ISO 9001 2015 Certified</span></p>
-            <p><span  className="link">Startup Certified 2020</span></p>
+            <p><span onClick={()=>window.location.href="https://d19fq2afrbh4en.cloudfront.net/ISO%209001%20HELLOMITR%20TECHNOLOGY.pdf"} className="cursor-pointer link">ISO 9001 2015 Certified</span></p>
+            <p><span onClick={()=>window.location.href="https://d8rk3eocjlda.cloudfront.net/startup-certificate.pdf"} className="cursor-pointer link" >Startup Certified 2020</span></p>
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2>Legal Policy</h2>
