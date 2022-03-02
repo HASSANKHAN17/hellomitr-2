@@ -51,8 +51,8 @@ function Footer() {
             <h2>About Company</h2>
             <p><Link to="/aboutus" className="link">About Us</Link></p>
             <p><Link to="/contactus" className="link">Contact Us</Link></p>
-            <p><Link to="#" className="link">ISO 9001 2015 Certified</Link></p>
-            <p><Link to="#" className="link">Startup Certified 2020</Link></p>
+            <p><span  className="link">ISO 9001 2015 Certified</span></p>
+            <p><span  className="link">Startup Certified 2020</span></p>
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2>Legal Policy</h2>
@@ -66,10 +66,10 @@ function Footer() {
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2> Helpdesk</h2>
             <p><Link to="/faq" className="link">FAQs</Link></p>
-            <p><Link to="#" className="link">Help Center</Link></p>
-            <p><Link to="#" className="link">How to Buy</Link></p>
-            <p><Link to="#" className="link">Track Your Order</Link></p>
-            <p><Link to="#" className="link">Corporate & Bulk Purchasing</Link></p>
+            <p><span  className="link">Help Center</span></p>
+            <p><span  className="link">How to Buy</span></p>
+            <p><span onClick={()=>window.location.href="https://hellomitr.shiprocket.co/"} className="cursor-pointer link">Track Your Order</span></p>
+            <p><Link to="/corporate" className="link">Corporate & Bulk Purchasing</Link></p>
         </div>
         <div className="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
             <h2>Contact Us</h2>

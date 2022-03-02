@@ -63,7 +63,7 @@ function LogIn(props) {
           if(JSON.parse(response.toJSON().body).length>0){
             let user = JSON.parse(response.toJSON().body)[0]
             props.history.push("/otp",{user,checkout:props.location.state,mobile:data.phone})
-            // props.setUser(JSON.parse(response.toJSON().body)[0])
+            props.setUser(JSON.parse(response.toJSON().body)[0])
             // if(props.location.state){
             //   props.history.push("/checkout")
             // }else{
@@ -117,7 +117,7 @@ function LogIn(props) {
        
         {error.length>0?<Alert className="alert" severity="error">{error}</Alert>:null}
         {/* <Button className="btn" variant="contained" type="submit">LogIn</Button> */}
-        <Button className="btn" variant="contained" onClick={()=>props.history.push("/otp")}>LogIn</Button>
+        <Button className="btn" variant="contained" type="submit">LogIn</Button>
         </form>
         <div className="alreadyuser">
             <p>Forgot your password? <span onClick={()=>props.history.push("login")}>Reset</span></p>

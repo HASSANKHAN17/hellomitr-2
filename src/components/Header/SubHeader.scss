@@ -51,6 +51,7 @@
 }
 @media (max-width: 576px) {
     .subheader{
+        display: none;
         background-color: white;
         padding:1% 3%;
         .itemcontainer{

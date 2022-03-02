@@ -21,10 +21,10 @@ import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton'
 import RemoveIcon from '@mui/icons-material/Remove';
 import buynowpaylater from './WhatsApp Image 2022-02-15 at 2.49.46 PM.jpeg'
-import bajajfinance from './bajaj-finserv-ltd-zenda-kadrabad-jalna-home-loans-0ndctd4agc.webp'
-import zestmoney from './zest.jfif'
-import hdfc from './hdfc.jpg'
-import icici from './icici.png'
+import bajajfinance from './bajajfinance.jpeg'
+import zestmoney from './zest.jpeg'
+import hdfc from './hdfc.jpeg'
+import icici from './icici.jpeg'
 import kotak from './KOTAKBANK.NS.png'
 import instacred from './instacred.jpeg'
 import WooCommerceAPI from 'woocommerce-api'
@@ -104,7 +104,7 @@ console.log(inCart)
 
 
 
-        <div className='col-12 col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 productdetail'>
+        <div className='col-12 col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 productdetail'>
             <h1 className="productname">{details.name}</h1>
             <p>
                 <span className="ratingdiv">{details.average_rating} <StarIcon /></span>

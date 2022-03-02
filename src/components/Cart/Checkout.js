@@ -32,11 +32,9 @@ function Checkout(props) {
   }
   const openPayModal = () => {
     const options = {
-      key: 'rzp_test_Sn8RPLYLlLXlyD',
+      key: 'rzp_live_O9OvC3bwSyv9WC',
       amount: finalTotal()*100, //  = ₹ 1
       name: 'Hellomitr',
-      description: 'some description',
-      image: 'https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png',
       handler: function(response) {
           console.log(response);
           if(Object.keys(props.singleItem).length>0){
@@ -47,16 +45,9 @@ function Checkout(props) {
           
       
       },
-      prefill: {
-          name: 'Gaurav',
-          contact: '9999999999',
-          email: 'demo@demo.com'
-      },
-      notes: {
-          address: 'some address'
-      },
+    
       theme: {
-          color: 'blue',
+          color: 'black',
           hide_topbar: false
       }
   };
@@ -93,10 +84,10 @@ function Checkout(props) {
   }, []);
 //console.log(total)
   const openCasheModal = ()=>{
-    axios.post(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:finalTotal(),tenure:selected,mobilenumber:'',authKey:"2MLFiopx+givx5mPf8CchQ==",leafRefNo:uuidv4(),merchantname:"Hellomitr",returnPageURL:`${process.env.REACT_APP_DEVELOPMENT}/${Object.keys(props.singleItem).length>0?'singletransaction':'transaction'}?address=${address}`})
+    axios.post(`https://prod-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:finalTotal(),tenure:selected,mobilenumber:props.user.billing.phone,authKey:"JQ5aLPRjELwWkrG7Vfpczw==",leafRefNo:uuidv4(),merchantname:"Hellomitr",returnPageURL:`${process.env.REACT_APP_DEVELOPMENT}/${Object.keys(props.singleItem).length>0?'singletransaction':'transaction'}?address=${address}`})
     .then(res=>{
       console.log(res);
-      window.location.href = `https://secure.qapayments.cashe.co.in/Login?transaction=${res.data.entity}`;
+      window.location.href = `https://prod-paymentgateway.cashe.co.in/Login?transaction=${res.data.entity}`;
     })
     .catch(err=>{
       console.log(err)

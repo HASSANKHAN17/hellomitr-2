@@ -54,7 +54,7 @@ function SignUp(props) {
           .then((response) => {
             setLoading(false)
             let res = JSON.parse(response.toJSON().body)
-            console.log("phone",res)
+            console.log("user",res)
             if(res.message){
               setError(res.code)
             }else{

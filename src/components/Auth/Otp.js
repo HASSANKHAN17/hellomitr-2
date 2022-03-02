@@ -13,13 +13,13 @@ function Otp(props) {
     const [gotp,setGotp]=React.useState("")
     const [error,setError]=React.useState("")
 
-    // const {user,checkout,mobile}=props.location.state
+    const {user,checkout,mobile}=props.location.state
 
     React.useState(()=>{
         let val = Math.floor(100000 + Math.random() * 9000);
         setGotp(val)
 
-        axios.post(`https://www.smsalert.co.in/api/push.json?apikey=61b13b4d558f4&sender=HLMITR&mobileno=9665276786&text=Your order verification code for Hellomitr is ${val}`)
+        axios.post(`https://www.smsalert.co.in/api/push.json?apikey=61b13b4d558f4&sender=HLMITR&mobileno=${mobile}&text=Your order verification code for Hellomitr is ${val}`)
         .then(res=>{
             console.log(res)
         })
@@ -42,13 +42,13 @@ function Otp(props) {
             console.log(o,got)
             if(o===got){
                 //verified
-                // setError("")
-                // props.setUser(user)
-                // if(checkout){
-                //     props.history.push("/checkout")
-                // }else{
-                //     props.history.push("/myprofile")
-                // }
+                setError("")
+                props.setUser(user)
+                if(checkout){
+                    props.history.push("/checkout")
+                }else{
+                    props.history.push("/myprofile")
+                }
             }else{
                 setError("Invalid OTP")
             }
@@ -59,7 +59,7 @@ function Otp(props) {
   return (
     <div className="shadow authcontainer otp">
         <h1>Enter otp </h1>
-        {/* <p className="codesent">Code sent to <b>{mobile}</b></p> */}
+        <p className="codesent">Code sent to <b>{mobile}</b></p>
 
         <OtpInput
         

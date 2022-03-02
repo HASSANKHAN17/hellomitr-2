@@ -25,6 +25,7 @@ import SellerPolicy from './pages/SellerPolicy/SellerPolicy';
 import ReturnPolicy from './pages/ReturnPolicy/ReturnPolicy';
 import FrequentlyAsked from './pages/FAQ/FrequentlyAsked';
 import ContactUs from './pages/ContactUs/ContactUs';
+import Corporate from './pages/CorporateandBP/Corporate';
 function App() {
   return (
     <Switch>
@@ -54,7 +55,7 @@ function App() {
       <Route path="/returnpolicy" component={ReturnPolicy} />
       <Route path="/faq" component={FrequentlyAsked} />
       <Route path="/contactus" component={ContactUs} />
-
+      <Route path="/corporate" component={Corporate} />
     </Switch>
   );
 }

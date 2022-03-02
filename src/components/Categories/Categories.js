@@ -15,7 +15,18 @@ import Loading from '../Lottie/Loading'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import {IconButton} from '@mui/material'
+import dataJ from './dataJ.json'
 function Categories(props) {
+
+
+    
+
+
+
+
+
+
+
     console.log("category props",props)
     const [data,setData]=React.useState([])
     const [actualData,setActualData]=React.useState([])
@@ -26,6 +37,8 @@ function Categories(props) {
     const [loading,setLoading]=React.useState(false)
     const [pagenumber,setPageNumber]=React.useState(1)
     const [classN,setClass]=React.useState("")
+    const [filterkeys,setFilterKeys]=React.useState({on_sale:false,in_stock:false,featured:false,star5:false,star4:false,star3:false,star2:false,star1:false})
+    const [flag,setFlag]=React.useState(false)
     var WooCommerce = new WooCommerceAPI({
         url: 'https://shop.hellomitr.com/',
         consumerKey: 'ck_d7bd31411532bc4fbfa97da6d587492acb1ed00c',
@@ -90,27 +103,42 @@ function Categories(props) {
             }
           
     },[props.location.search,props.location.state])
-    const handleChange =(value,key)=>{
-        console.log(value);
-        if(onsale){
-        let d = actualData.filter((item)=>item.on_sale && item[key]===value)
-        setData(d)
-        }else if(onsale && instock){
-            let d = data.filter((item)=>item.on_sale && item.in_stock && item[key]===value)
-        setData(d)
-        }else if(onsale && instock && featured){
-            let d = data.filter((item)=>item[key]===value)
-        setData(d)
-        }else{
-            let d = data.filter((item)=>item[key]===value)
-        setData(d)
-        }
+    const handleChange =(key,value)=>{
+        // console.log(value);
+        // if(onsale){
+        // let d = actualData.filter((item)=>item.on_sale && item[key]===value)
+        // setData(d)
+        // }else if(onsale && instock){
+        //     let d = data.filter((item)=>item.on_sale && item.in_stock && item[key]===value)
+        // setData(d)
+        // }else if(onsale && instock && featured){
+        //     let d = data.filter((item)=>item[key]===value)
+        // setData(d)
+        // }else{
+        //     let d = data.filter((item)=>item[key]===value)
+        // setData(d)
+        // }
+    //    if(key==="in_stock" && value===true){
+    //        console.log(data);
+    //        let item = data.filter(item=>item.stock_status==="instock")
+    //         console.log(item)
+    //         setData(item)
+    //    }else if(key==="in_stock"&& value===false){
+    //         let item = actualData.filter(item=>item.stock_status)
+    //         setData(item)
+    //    }
+    //setFilterKeys({...filterkeys,[key]:value})
     }
+
+    const handleFilter = ()=>{
+        console.log(filterkeys);
+    }
+
   return (
     <div>
         <Header />
         <SubHeader />
-        {loading?<Loading />:<section className="row  categories" >
+    <section className="row  categories" >
             <div className={classN?"shadow-sm col-6 col-sm-6 col-xs-6 col-md-6 col-lg-3 col-xl-3 filtersactive":"shadow-sm col-6 col-sm-6 col-xs-6 col-md-6 col-lg-3 col-xl-3 filters"}>
             <IconButton className="burger" onClick={()=>setClass(!classN)}>
             <CloseIcon />
@@ -140,9 +168,22 @@ function Categories(props) {
                 <div className='pt-3 section3'>
 
                 <FormGroup>
-                <FormControlLabel control={<Checkbox onChange={(e)=>handleChange(e.target.checked,"on_sale")}  />} label="On Sale" />
-                <FormControlLabel control={<Checkbox onChange={(e)=>handleChange(e.target.checked,"in_stock")} />} label="In Stock" />
-                <FormControlLabel control={<Checkbox onChange={(e)=>handleChange(e.target.checked,"featured")} />} label="Featured" />
+                <FormControlLabel control={<Checkbox onChange={(e)=>{
+                    
+                    handleChange("on_sale",e.target.checked)
+                    handleFilter()
+                }} />} label="On Sale" />
+                <FormControlLabel control={<Checkbox onChange={(e)=>{
+                    
+                    handleChange("in_stock",e.target.checked)
+                    handleFilter()
+                    }} />} label="In Stock" />
+                <FormControlLabel control={<Checkbox onChange={(e)=>{
+                    
+                    handleChange("featured",e.target.checked)
+                    handleFilter()
+                    
+                    }} />} label="Featured" />
                 </FormGroup>
                 <hr />
                 </div>
@@ -176,12 +217,12 @@ function Categories(props) {
                    )):null
                }
                </section>
-            <div className="ml-auto my-4">
+            {/* <div className="ml-auto my-4">
             <Pagination page={pagenumber} onChange={(e,pagenumber)=>getProducts(pagenumber)} count={count} />
-            </div>
+            </div> */}
 
             </div>
-        </section>}
+        </section>
 
         {/* <Footer /> */}
     </div>
