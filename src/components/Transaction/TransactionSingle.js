@@ -117,11 +117,11 @@ function TransactionSingle(props) {
     </div>
   )
 }
-const mapStateToProps = ({cart,user,singleItem})=>{
+const mapStateToProps = ({cart,user,singleItem,finalItem})=>{
     return{
         cart,
         user:user.user,
-        singleItem
+        singleItem:finalItem
     }
     }
     const mapDispatchToProps =(dispatch)=>{

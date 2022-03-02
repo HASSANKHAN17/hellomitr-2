@@ -12,6 +12,9 @@ import Cashe from './CASHe Logo 2.png'
 import Razorpaylogo from './Razorpaay.png'
 import WooCommerceAPI from 'woocommerce-api'
 import { v4 as uuidv4 } from 'uuid';
+import {emptySingleItem} from '../redux/SingleItem/singleItemActions'
+import {storeFinalItem} from '../redux/FinalItem/finalItemAction'
+
 //uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 function Checkout(props) {
   const [selected,setSelected]=React.useState(2)
@@ -32,7 +35,7 @@ function Checkout(props) {
   }
   const openPayModal = () => {
     const options = {
-      key: 'rzp_live_O9OvC3bwSyv9WC',
+      key: 'rzp_test_Sn8RPLYLlLXlyD', //testkey rzp_test_Sn8RPLYLlLXlyD  rzp_live_O9OvC3bwSyv9WC
       amount: finalTotal()*100, //  = ₹ 1
       name: 'Hellomitr',
       handler: function(response) {
@@ -64,6 +67,7 @@ function Checkout(props) {
       if(Object.keys(props.singleItem).length>0){
         setTotal(parseInt(props.singleItem.price))
         setSubTotal(props.singleItem.regular_price?parseInt(props.singleItem.regular_price):parseInt(props.singleItem.price))
+        props.storeFinalItem(props.singleItem)
       }else{
         props.cart.map((item)=>{
           total = total + parseInt(item.price)*item.count
@@ -71,6 +75,10 @@ function Checkout(props) {
         })
         setTotal(total)
         setSubTotal(subTotal)
+      }
+      return ()=>{
+        //clear single item and store it inside final item and set final item to orders in transaction
+        props.emptySingleItem()
       }
       
       // axios.get(`https://uat-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/fetchCASHePlans
@@ -227,6 +235,13 @@ function Checkout(props) {
   )
 }
 
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    emptySingleItem:()=>dispatch(emptySingleItem()),
+    storeFinalItem:(item)=>dispatch(storeFinalItem(item))
+  }
+}
+
 const mapStateToProps = ({user,cart,singleItem})=>{
 return {
   user:user.user,
@@ -235,4 +250,4 @@ return {
 }
 }
 
-export default connect(mapStateToProps)(Checkout)
+export default connect(mapStateToProps,mapDispatchToProps)(Checkout)
