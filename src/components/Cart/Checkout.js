@@ -35,7 +35,7 @@ function Checkout(props) {
   }
   const openPayModal = () => {
     const options = {
-      key: 'rzp_test_Sn8RPLYLlLXlyD', //testkey rzp_test_Sn8RPLYLlLXlyD  rzp_live_O9OvC3bwSyv9WC
+      key: 'rzp_live_O9OvC3bwSyv9WC', //testkey rzp_test_Sn8RPLYLlLXlyD  rzp_live_O9OvC3bwSyv9WC
       amount: finalTotal()*100, //  = ₹ 1
       name: 'Hellomitr',
       handler: function(response) {
