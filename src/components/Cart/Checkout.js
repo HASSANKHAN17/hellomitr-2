@@ -84,10 +84,10 @@ function Checkout(props) {
   }, []);
 //console.log(total)
   const openCasheModal = ()=>{
-    axios.post(`https://prod-paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:finalTotal(),tenure:selected,mobilenumber:props.user.billing.phone,authKey:"JQ5aLPRjELwWkrG7Vfpczw==",leafRefNo:uuidv4(),merchantname:"Hellomitr",returnPageURL:`${process.env.REACT_APP_DEVELOPMENT}/${Object.keys(props.singleItem).length>0?'singletransaction':'transaction'}?address=${address}`})
+    axios.post(`https://paymentgateway.cashe.co.in/api/cashe/paymentgateway/customer/generateTransaction`,{amount:finalTotal(),tenure:selected,mobilenumber:props.user.billing.phone,authKey:"JQ5aLPRjELwWkrG7Vfpczw==",leafRefNo:uuidv4(),merchantname:"Hellomitr",returnPageURL:`${process.env.REACT_APP_DEVELOPMENT}/${Object.keys(props.singleItem).length>0?'singletransaction':'transaction'}?address=${address}`})
     .then(res=>{
       console.log(res);
-      window.location.href = `https://prod-paymentgateway.cashe.co.in/Login?transaction=${res.data.entity}`;
+      window.location.href = `https://secure.payments.cashe.co.in/Login?transaction=${res.data.entity}`;
     })
     .catch(err=>{
       console.log(err)
