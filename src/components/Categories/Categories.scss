@@ -11,6 +11,11 @@
     .products{
         background-color: white;
         margin-left: 1%;
+        .row{
+            .product-item{
+                margin: 1% 0%!important;
+            }
+        }
     }
     .textfield{
         width: 40%;
@@ -18,6 +23,7 @@
     .burger{
         display: none;
     }
+    
 }
 
 

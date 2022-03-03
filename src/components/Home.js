@@ -239,16 +239,16 @@ function Home(props) {
 
             <section className="shadow-sm brands">
             <h1>Shop by Brands</h1>
-            <div className="row m-auto justify-content-center align-items-center">
+            <div className="row m-auto justify-content-center align-items-center" onClick={()=>props.history.push("/categories","tcl")}>
                 <div className="col-3">
                     <img src={tcllogo} alt="applelogo" />
                 </div>
 
-                <div className="col-3">
+                <div className="col-3" onClick={()=>props.history.push("/categories","samsung")}>
                     <img src={samsunglogo} alt="samsunglogo" />
                 </div>
 
-                <div className="col-3">
+                <div className="col-3" onClick={()=>props.history.push("/categories","oppo")}>
                     <img src={oppologo} alt="oppologo" />
                 </div>
 
@@ -257,15 +257,15 @@ function Home(props) {
 
 
             <div className="row m-auto justify-content-center align-items-center">
-            <div className="col-3">
+            <div className="col-3" onClick={()=>props.history.push("/categories","vivo")}>
                     <img src={vivologo} alt="vivologo" />
                 </div>
 
-                <div className="col-3">
+                <div className="col-3" onClick={()=>props.history.push("/categories","xiaomi")}>
                     <img src={xiaomilogo} alt="xiaomilogo" />
                 </div>
 
-                <div className="col-3">
+                <div className="col-3" onClick={()=>props.history.push("/categories","realme")}>
                     <img src={realmelogo} alt="realmelogo" />
                 </div>
 

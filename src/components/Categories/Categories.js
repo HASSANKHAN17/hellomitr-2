@@ -50,7 +50,7 @@ function Categories(props) {
     const getProducts =(page)=>{
         setPageNumber(page)
         setLoading(true)
-        WooCommerce.getAsync(`products${props.location.search}&page=${page}&per_page=15`)
+        WooCommerce.getAsync(`products${props.location.search}&page=${page}&per_page=15&featured=${filterkeys.featured}`)
         .then((result) => {
         console.log("phone",JSON.parse(result.toJSON().body))
         setData(JSON.parse(result.toJSON().body))
@@ -64,45 +64,58 @@ function Categories(props) {
     }
 
 
+    const getAllProducts = (page)=>{
+        if(page){
+            setPageNumber(page)
+        }
+        if(props.location.search!==""){
+            WooCommerce.getAsync(`products${props.location.search}&page=${page?page:pagenumber}&per_page=15&featured=${filterkeys.featured}`)
+            .then((result) => {
+            console.log("phone",JSON.parse(result.toJSON().body))
+            setData(JSON.parse(result.toJSON().body))
+           })
+            .catch((error) => {
+            console.log(error.result.data);
+            setLoading(false)
+            });
+            WooCommerce.getAsync(`products/categories/${props.location.search.split("=")[1]}`)
+            .then((response) => {
+                console.log(JSON.parse(response.toJSON().body));
+                setCount(JSON.parse(response.toJSON().body).count)
+                setLoading(false)
+
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+                setLoading(false)
+            });
+        }else{
+            WooCommerce.getAsync(`products?search=${props.location.state}&per_page=100`)
+            .then((result) => {
+            console.log("search",JSON.parse(result.toJSON().body))
+            setLoading(false)
+            setData(JSON.parse(result.toJSON().body))
+           })
+            .catch((error) => {
+            console.log(error.result.data);
+            setLoading(false)
+            });
+        }
+    }
+
+
     React.useEffect(()=>{
             setLoading(true)
-            if(props.location.search!==""){
-                WooCommerce.getAsync(`products${props.location.search}&per_page=15`)
-                .then((result) => {
-                console.log("phone",JSON.parse(result.toJSON().body))
-                setData(JSON.parse(result.toJSON().body))
-                setActualData(JSON.parse(result.toJSON().body))
-               })
-                .catch((error) => {
-                console.log(error.result.data);
-                setLoading(false)
-                });
-                WooCommerce.getAsync(`products/categories/${props.location.search.split("=")[1]}`)
-                .then((response) => {
-                    console.log(JSON.parse(response.toJSON().body));
-                    setCount(JSON.parse(response.toJSON().body).count)
-                    setLoading(false)
-    
-                })
-                .catch((error) => {
-                    console.log(error.response.data);
-                    setLoading(false)
-                });
-            }else{
-                WooCommerce.getAsync(`products?search=${props.location.state}`)
-                .then((result) => {
-                console.log("search",JSON.parse(result.toJSON().body))
-                setLoading(false)
-                setData(JSON.parse(result.toJSON().body))
-                setActualData(JSON.parse(result.toJSON().body))
-               })
-                .catch((error) => {
-                console.log(error.result.data);
-                setLoading(false)
-                });
-            }
+           getAllProducts()
+        //    WooCommerce.getAsync(`products?search=vivo&on_sale=TRUE`)
+        //    .then((result) => {
+        //    console.log("vivo",JSON.parse(result.toJSON().body))
+        //   })
+        //    .catch((error) => {
+        //    console.log(error.result.data);
+        //    });
           
-    },[props.location.search,props.location.state])
+    },[props.location.search,props.location.state,filterkeys])
     const handleChange =(key,value)=>{
         // console.log(value);
         // if(onsale){
@@ -131,8 +144,8 @@ function Categories(props) {
     }
 
     const handleFilter = ()=>{
-        console.log(filterkeys);
     }
+    console.log(filterkeys);
 
   return (
     <div>
@@ -169,19 +182,19 @@ function Categories(props) {
 
                 <FormGroup>
                 <FormControlLabel control={<Checkbox onChange={(e)=>{
-                    
-                    handleChange("on_sale",e.target.checked)
-                    handleFilter()
+                    setFilterKeys({...filterkeys,on_sale:e.target.checked})
+                    // handleChange("on_sale",e.target.checked)
+                    // handleFilter()
                 }} />} label="On Sale" />
                 <FormControlLabel control={<Checkbox onChange={(e)=>{
-                    
-                    handleChange("in_stock",e.target.checked)
-                    handleFilter()
+                    setFilterKeys({...filterkeys,in_stock:e.target.checked})
+                    // handleChange("in_stock",e.target.checked)
+                    // handleFilter()
                     }} />} label="In Stock" />
                 <FormControlLabel control={<Checkbox onChange={(e)=>{
-                    
-                    handleChange("featured",e.target.checked)
-                    handleFilter()
+                    setFilterKeys({...filterkeys,featured:e.target.checked})
+                    // handleChange("featured",e.target.checked)
+                    // handleFilter()
                     
                     }} />} label="Featured" />
                 </FormGroup>
@@ -207,19 +220,19 @@ function Categories(props) {
             <IconButton className="burger" onClick={()=>setClass(!classN)}>
             <MenuIcon />
             </IconButton>
-               <section className="row">
+               <section className="row justify-content-between">
                {
                    data.length>0?data.map((item,index)=>(
-                    <div key={index} className="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 cursor-pointer" onClick={()=>props.history.push("itemdetail",item)}>
+                    <div key={index} className="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 cursor-pointer product-item" onClick={()=>props.history.push("itemdetail",item)}>
                         <Item cid={193} item={item} name={item.name} rating={item.average_rating} regularPrice={item.regular_price} price={item.price} image={item.images[0].src} />
                     
                     </div>
                    )):null
                }
                </section>
-            {/* <div className="ml-auto my-4">
-            <Pagination page={pagenumber} onChange={(e,pagenumber)=>getProducts(pagenumber)} count={count} />
-            </div> */}
+            <div className="ml-auto my-4">
+            <Pagination page={pagenumber} onChange={(e,pagenumber)=>getAllProducts(pagenumber)} count={count} />
+            </div>
 
             </div>
         </section>
