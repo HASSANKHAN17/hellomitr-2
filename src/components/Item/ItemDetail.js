@@ -48,6 +48,7 @@ function ItemDetail(props) {
     const [inCart,setInCart] = React.useState([])
     const [data,setData]=React.useState([])
     const [reviews,setReviews]=React.useState([])
+    const [variation,setVariation]=React.useState({})
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -72,7 +73,7 @@ function ItemDetail(props) {
             .catch((error) => {
             console.log(error.result.data);
             });
-            WooCommerce.getAsync(`products/reviews/${details.id}`)
+            WooCommerce.getAsync(`products/reviews`)
             .then((result) => {
             console.log(JSON.parse(result.toJSON().body))
             setReviews(JSON.parse(result.toJSON().body))
@@ -82,7 +83,7 @@ function ItemDetail(props) {
             });
            
   },[props.cart])
-console.log(inCart)
+console.log(details)
   return (
     <div>
     <Header id="1" />
@@ -125,9 +126,30 @@ console.log(inCart)
                 {details.regular_price&&details.price?<div className="poff">{renderOff()}% off</div>:null}
             </section>
 
-            <p className='mt-3'>You Save: ₹{details.regular_price-details.price} <br />
+            <p className='mt-3'>You Save: ₹{details.regular_price?details.regular_price-details.price:0} <br />
             (Inclusive of all taxes)
             </p>
+
+
+            {
+              details.variations.length>0&&<div  className="row m-auto variationdiv">
+                {
+                  details.variations.map((item,index)=>(<div onClick={()=>{
+                    if(item.price!=="" && item.regular_price!==""){
+                      details.regular_price = item.regular_price;
+                      details.price = item.price;
+                    }
+                    setImage(item.image[0].src)
+                    setVariation(item)
+                    }} className={"variation cursor-pointer"} key={index}>
+                    <img src={item.image[0].src} className="center-img" alt="attimg" />
+                    <div>
+                    <p>{item.attributes[0].option}</p>
+                    </div>
+                  </div>))
+                }
+              </div>
+            }
 
             {inCart.length<=0?(details.in_stock?<div className="row m-auto">
                 <Button onClick={()=>props.addToCart(details)} variant="contained">Add to cart</Button>
@@ -221,7 +243,7 @@ console.log(inCart)
         </TabPanel>
         <TabPanel value="2">
 
-                <div className="review-container">
+                {/* <div className="review-container">
                     <div className="row m-auto">
                         <div className=" imgcontainer">
                         <Avatar alt="Remy Sharp" className="avatar" src="assets/images/avatars/001-man.svg" />
@@ -236,7 +258,7 @@ console.log(inCart)
                         </div>
                     </div>
                     <p className="review">Non in ex veniam dolore. Cupidatat voluptate minim consequat ullamco laboris. Sit culpa veniam esse labore elit irure eiusmod ullamco laborum qui ut fugiat. Sint ullamco nulla dolore est anim consectetur incididunt dolor deserunt nisi dolore et officia. Amet consectetur aute pariatur nulla pariatur Lorem nostrud id minim sunt sint irure.</p>
-                </div>
+                </div> */}
 
 
 

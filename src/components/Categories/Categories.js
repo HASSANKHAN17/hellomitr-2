@@ -26,8 +26,6 @@ function Categories(props) {
 
 
 
-
-    console.log("category props",props)
     const [data,setData]=React.useState([])
     const [actualData,setActualData]=React.useState([])
     const [onsale,setOnSale]=React.useState(false)
@@ -37,7 +35,7 @@ function Categories(props) {
     const [loading,setLoading]=React.useState(false)
     const [pagenumber,setPageNumber]=React.useState(1)
     const [classN,setClass]=React.useState("")
-    const [filterkeys,setFilterKeys]=React.useState({on_sale:false,in_stock:false,featured:false,star5:false,star4:false,star3:false,star2:false,star1:false})
+    const [filterkeys,setFilterKeys]=React.useState({on_sale:false,in_stock:false,featured:false,5:false,4:false,3:false,2:false,1:false})
     const [flag,setFlag]=React.useState(false)
     var WooCommerce = new WooCommerceAPI({
         url: 'https://shop.hellomitr.com/',
@@ -50,9 +48,8 @@ function Categories(props) {
     const getProducts =(page)=>{
         setPageNumber(page)
         setLoading(true)
-        WooCommerce.getAsync(`products${props.location.search}&page=${page}&per_page=15&featured=${filterkeys.featured}`)
+        WooCommerce.getAsync(`products${props.location.search}&page=${page}&per_page=15`)
         .then((result) => {
-        console.log("phone",JSON.parse(result.toJSON().body))
         setData(JSON.parse(result.toJSON().body))
         setActualData(JSON.parse(result.toJSON().body))
         setLoading(false)
@@ -62,17 +59,17 @@ function Categories(props) {
         console.log(error.result.data);
         });
     }
-
+console.log(data)
 
     const getAllProducts = (page)=>{
         if(page){
             setPageNumber(page)
         }
         if(props.location.search!==""){
-            WooCommerce.getAsync(`products${props.location.search}&page=${page?page:pagenumber}&per_page=15&featured=${filterkeys.featured}`)
+            WooCommerce.getAsync(`products${props.location.search}&page=${page?page:pagenumber}&per_page=15`)
             .then((result) => {
-            console.log("phone",JSON.parse(result.toJSON().body))
             setData(JSON.parse(result.toJSON().body))
+            setActualData(JSON.parse(result.toJSON().body))
            })
             .catch((error) => {
             console.log(error.result.data);
@@ -80,7 +77,6 @@ function Categories(props) {
             });
             WooCommerce.getAsync(`products/categories/${props.location.search.split("=")[1]}`)
             .then((response) => {
-                console.log(JSON.parse(response.toJSON().body));
                 setCount(JSON.parse(response.toJSON().body).count)
                 setLoading(false)
 
@@ -92,9 +88,9 @@ function Categories(props) {
         }else{
             WooCommerce.getAsync(`products?search=${props.location.state}&per_page=100`)
             .then((result) => {
-            console.log("search",JSON.parse(result.toJSON().body))
             setLoading(false)
             setData(JSON.parse(result.toJSON().body))
+            setActualData(JSON.parse(result.toJSON().body))
            })
             .catch((error) => {
             console.log(error.result.data);
@@ -116,36 +112,55 @@ function Categories(props) {
         //    });
           
     },[props.location.search,props.location.state,filterkeys])
+    console.log(filterkeys)
     const handleChange =(key,value)=>{
-        // console.log(value);
-        // if(onsale){
-        // let d = actualData.filter((item)=>item.on_sale && item[key]===value)
-        // setData(d)
-        // }else if(onsale && instock){
-        //     let d = data.filter((item)=>item.on_sale && item.in_stock && item[key]===value)
-        // setData(d)
-        // }else if(onsale && instock && featured){
-        //     let d = data.filter((item)=>item[key]===value)
-        // setData(d)
-        // }else{
-        //     let d = data.filter((item)=>item[key]===value)
-        // setData(d)
-        // }
-    //    if(key==="in_stock" && value===true){
-    //        console.log(data);
-    //        let item = data.filter(item=>item.stock_status==="instock")
-    //         console.log(item)
-    //         setData(item)
-    //    }else if(key==="in_stock"&& value===false){
-    //         let item = actualData.filter(item=>item.stock_status)
-    //         setData(item)
-    //    }
-    //setFilterKeys({...filterkeys,[key]:value})
+        let localFilterKeys = filterkeys;
+        localFilterKeys[key] = value;
+        setFilterKeys(localFilterKeys)
+        //console.log("local",localFilterKeys)
+        let trueValueArray = Object.entries(localFilterKeys).map((item)=>item[1]===true&&item[0])
+        trueValueArray = trueValueArray.filter(item=>item!==false)
+        let trueValuedData = []
+    console.log(Math.ceil(parseInt(actualData[5].average_rating)));
+    console.log(trueValueArray)
+
+        switch (trueValueArray.length) {
+            case 0:
+                trueValuedData = actualData;
+                break;
+            case 1:
+                trueValuedData = actualData.filter((item)=>item[trueValueArray[0]])
+                break;
+            case 2:
+                trueValuedData = actualData.filter((item)=>item[trueValueArray[0]] && item[trueValueArray[1]])
+                break;
+            case 3:
+                trueValuedData = actualData.filter((item)=>item[trueValueArray[0]] && item[trueValueArray[1]] && item[trueValueArray[2]])
+                break;    
+            case 4:
+                //star 5
+                // trueValuedData = actualData.filter((item)=>item[trueValueArray[0]] && item[trueValueArray[1]] && item[trueValueArray[2]] && item[trueValueArray[3]])
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            default:
+                break;
+        }
+        console.log(trueValuedData)
+        // let trueValuedData = trueValueArray.map((trueitem)=>{
+        //     return data.filter((item)=>item[trueitem]===true)
+        // })
+        //console.log(trueValuedData);
+
     }
 
-    const handleFilter = ()=>{
-    }
-    console.log(filterkeys);
+    
 
   return (
     <div>
@@ -182,18 +197,18 @@ function Categories(props) {
 
                 <FormGroup>
                 <FormControlLabel control={<Checkbox onChange={(e)=>{
-                    setFilterKeys({...filterkeys,on_sale:e.target.checked})
-                    // handleChange("on_sale",e.target.checked)
+                    //setFilterKeys({...filterkeys,on_sale:e.target.checked})
+                    handleChange("on_sale",e.target.checked)
                     // handleFilter()
                 }} />} label="On Sale" />
                 <FormControlLabel control={<Checkbox onChange={(e)=>{
-                    setFilterKeys({...filterkeys,in_stock:e.target.checked})
-                    // handleChange("in_stock",e.target.checked)
+                    //setFilterKeys({...filterkeys,in_stock:e.target.checked})
+                    handleChange("in_stock",e.target.checked)
                     // handleFilter()
                     }} />} label="In Stock" />
                 <FormControlLabel control={<Checkbox onChange={(e)=>{
-                    setFilterKeys({...filterkeys,featured:e.target.checked})
-                    // handleChange("featured",e.target.checked)
+                    //setFilterKeys({...filterkeys,featured:e.target.checked})
+                    handleChange("featured",e.target.checked)
                     // handleFilter()
                     
                     }} />} label="Featured" />
@@ -204,7 +219,9 @@ function Categories(props) {
                 <div className="pt-3 section4">
                     <h3>Ratings</h3>
                     <FormGroup>
-                    <FormControlLabel control={<Checkbox />} label={<Rating name="read-only" value={5} readOnly />} />
+                    <FormControlLabel control={<Checkbox onChange={(e)=>{
+                        handleChange(5,e.target.checked)
+                    }} />} label={<Rating name="read-only" value={5} readOnly />} />
                     <FormControlLabel control={<Checkbox />} label={<Rating name="read-only" value={4} readOnly />} />
                     <FormControlLabel control={<Checkbox />} label={<Rating name="read-only" value={3} readOnly />} />
                     <FormControlLabel control={<Checkbox />} label={<Rating name="read-only" value={2} readOnly />} />

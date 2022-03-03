@@ -119,9 +119,9 @@ function LogIn(props) {
         {/* <Button className="btn" variant="contained" type="submit">LogIn</Button> */}
         <Button className="btn" variant="contained" type="submit">LogIn</Button>
         </form>
-        <div className="alreadyuser">
+        {/* <div className="alreadyuser">
             <p>Forgot your password? <span onClick={()=>props.history.push("login")}>Reset</span></p>
-        </div>
+        </div> */}
     </div>
   )
 }

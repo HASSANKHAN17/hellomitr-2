@@ -46,6 +46,24 @@
 
 }
 .productdetail{
+    .variationdiv{
+        .variation{
+            border: 1px solid #cccf;
+            border-radius: 10px;
+            padding-top: 2%;
+            margin-left: 2%;
+            img{
+                width: 6vw;
+            }
+            p{
+                background-color: #a1a1a1;
+                color: white;
+                padding: 2%;
+                text-align: center;
+            }
+            
+        }
+    }
     h1{
         font-family: $secondary-font;
         font-weight: 400;

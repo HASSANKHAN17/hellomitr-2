@@ -11,7 +11,7 @@ function PrivacyPolicy() {
           
 
 				<h1 className="center my-4">Privacy Policy</h1>
-<p>This statement of privacy (“Privacy Policy”) describes how Hellomitr Technology Pvt Ltd (hereinafter referred to as “we”, “us” “our”) collect, use, and disclose information pertaining to you- the user (hereinafter referred to as “you”, “your”) obtained via this website shop.hellomitr.com “Website/app/iOS”.</p>
+<p>This statement of privacy (“Privacy Policy”) describes how Hellomitr Technology Pvt Ltd (hereinafter referred to as “we”, “us” “our”) collect, use, and disclose information pertaining to you- the user (hereinafter referred to as “you”, “your”) obtained via this website www.hellomitr.com “Website/app/iOS”.</p>
 <p>Please read the following to learn about our practice of secure collection, use, disclosure and dissemination of information practices.</p>
 <p>By visiting this Website you agree to be bound by the terms and conditions of this Privacy Policy. If you do not agree, please do not use or access our Website. This Privacy Policy is incorporated into and subject to our Terms of Use (“Terms of Use”).</p>
 <h3>1. Consent</h3>

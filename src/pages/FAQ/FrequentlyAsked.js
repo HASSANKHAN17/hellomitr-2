@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import SubHeader from '../../components/Header/SubHeader'
+import {Link} from 'react-router-dom'
 function FrequentlyAsked() {
   return (
     <div>
@@ -35,7 +36,7 @@ shipping partner takes minimum 2-5 days maximum as per Pin-codes and distance ba
 <h3>How Can I Return a Product?</h3>
 <p>To get a refund you need to submit a request to our support portal or mail us at helpline@hellomitr.com.<br/>
 Submit your proof of delivery and reason why you want a refund if you are eligible then we will issue a Instant refund against your order.<br/>
-Read our Refund Policy : https://shop.hellomitr.com/return/</p>
+Read our Refund Policy : <Link to="/returnpolicy">https://www.hellomitr.com/return/</Link></p>
 <h2>How to avail Debit Card EMI?</h2>
 <h3>What are the steps to avail a Debit EMI?</h3>
 <p>Find the product you want to buy and visit the product detail page. If the product is available on your Debit EMI and your account is eligible, you will find “Debit EMI” within EMI section where you can check available tenures and interest rates. To complete the purchase, add the product to cart and continue to payment page. On payment page, you will need to select “EMI Menu” and then add Bank’s Debit card. Select the appropriate tenure and continue with transaction. You will get re-directed to bank page to complete the payment similar to debit card.</p>
@@ -55,8 +56,7 @@ Read our Refund Policy : https://shop.hellomitr.com/return/</p>
 <p>Currently we do not offer No Cost EMI on debit card EMIs. To check whether product qualifies for No Cost EMI , see EMI tenures on payment detail page.</p>
 <h3>What if I cancel or return the product?</h3>
 <p className="mb-5">If your product qualifies for return, you can cancel the order or return the product within 7 days. Your EMI payment will be canceled by the bank. Please note, your bank may charge you foreclosure or cancelation fees<br/>
-We’re Here to Help ! <a href="https://shop.hellomitr.com/contact/">Contact us</a></p>
-
+We’re Here to Help ! <Link to="/contactus">Contact us</Link></p>
 		</div>
         <Footer/>
     </div>

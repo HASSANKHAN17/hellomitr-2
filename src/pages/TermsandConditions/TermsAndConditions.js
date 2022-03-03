@@ -11,11 +11,11 @@ function TermsAndConditions() {
             <h1 className="my-4 center">Terms and Conditions</h1>
 
             <p className="l2">
-            Welcome to hellomitr.com and its shopping-domain ‘shop.hellomitr.com’ If you continue to browse and use this website you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern Hellomitr Technology Private Limited’s relationship with you.
+            Welcome to hellomitr.com and its shopping-domain ‘www.hellomitr.com’ If you continue to browse and use this website you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern Hellomitr Technology Private Limited’s relationship with you.
             </p>
 
             <p className="l2">
-            The term ‘Hellomitr’ or ‘us’ or ‘we’ or ‘Hellomitr Technology Private Limited’ refers to the owner of the website whose registered office is Plot No. 3, Sant Nagar Main Road, Karnal, Haryana – 132001 and the Head office registered in Noval Tech Park , #46/4 Palya GB , Hosur Road , Bangalore 560068-Karnataka .The term ‘you’ refers to the user or viewer of our website.
+            The term ‘Hellomitr’ or ‘us’ or ‘we’ or ‘Hellomitr Technology Private Limited’ refers to the owner of the website whose Head office registered in Noval Tech Park , #46/4 Palya GB , Hosur Road , Bangalore 560068-Karnataka .The term ‘you’ refers to the user or viewer of our website.
             </p>
 
             <p className="l2">Following terms of use are subject to apply :</p>
